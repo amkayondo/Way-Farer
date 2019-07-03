@@ -1,35 +1,34 @@
 
-.sgn-ctn {
-    background-image: url(../images/img1.jpg);
+.lgn-ctn {
+    background-image: url(../images/img3.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.sgn-ctn {
+.lgn-ctn {
     width: 100%;
     height: 100%;
     position: fixed;
 }
 
-.su-in {
+.ln-in {
     width: 100%;
     position: fixed;
     text-align: center;
-    height: 100%;
-    background-color: #1f1f1f3d;
+    margin-top: -7px;
 }
 
-img.si-img {
+img.lg-img {
     width: 136px;
 }
 
-form#su-f {
-    width: 648px;
+#ln-f {
+    width: 616px;
     position: absolute;
     left: 50%;
-    margin-left: -346px;
-    margin-top: 5px;
+    margin-left: -330px;
+    margin-top: 2px;
     padding: 13px;
 }
 
@@ -41,13 +40,13 @@ form#su-f {
     color: #fff;
 }
 
-a.a-su {
-    margin-left: -154px;
+a.a-lg {
+    margin-left: -161px;
+    margin-top: 224px;
     position: fixed;
-    margin-top: 231px;
 }
 
-input#snup {
+input#lgn {
     font-family: sans-serif;
     outline: none;
     cursor: pointer;
@@ -59,37 +58,34 @@ input#snup {
     padding: 4px 6px 4px 9px;
     width: 298px;
     color: #181717;
-    border-radius: 14px;
+    border-radius: 7px;
     border-color: transparent;
     font-size: 21px;
     font-weight: 900;
 }
 
 
-input#lname {
-    margin-top: 13px;
-    margin-left: 6px;
-    width: 318px;
-}
+
 
 input#email {
     margin-top: 13px;
+    width: 318px;
 }
 
 input#password {
     margin-top: 13px;
-    /* margin-left: 6px; */
-    width: 318px;
+    margin-left: 1px;
+    width: 319px;
 }
 
-input#snup {
+input#lgn {
     margin-top: 13px;
-    margin-left: 35px;
-    width: 327px;
-    border-radius: 7px;
+    width: 321px;
 }
 
 
 button.btn {
-    width: 328px;
+    width: 324px;
+    margin-top: 13px;
+    margin-left: -9px;
 }
