@@ -21,9 +21,20 @@ a {
     text-decoration: none;
 }
 
-.btn {font-family: sans-serif;outline: none;cursor: pointer;
-    background-color: #efefef;border: 0;box-shadow: none;
-    box-sizing: border-box;height: 53px;padding: 4px 6px 4px 9px;
-    width: 321px;color: #181717;border-radius: 14px;
-    border-color: transparent;font-size: 21px;font-weight: 900;
+.btn {
+    font-family: sans-serif;
+    outline: none;
+    cursor: pointer;
+    background-color: #efefef;
+    border: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    height: 53px;
+    padding: 4px 6px 4px 9px;
+    width: 321px;
+    color: #181717;
+    border-radius: 7px;
+    border-color: transparent;
+    font-size: 21px;
+    font-weight: 900;
 }
