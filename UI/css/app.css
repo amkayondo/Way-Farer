@@ -3,6 +3,9 @@
     height: 61px;
     width: 100%;
     box-shadow: 0 0 7px 0px #545454;
+    position: fixed;
+    z-index: 3;
+    top: 0;
 }
 
 
@@ -73,14 +76,13 @@ button.btn.sig.up {
     background: #84f788;
 }
 .hmpbg{
-    background-image: url(../images/bg-img.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+   
+background: #ffffff;
 }
 
 .hmpbg {
-    height: 416px;
+    height: 235px;
+    margin-top: 15px;
 }
 
 .bgtp {
@@ -88,7 +90,7 @@ button.btn.sig.up {
     font-size: 32px;
     font-weight: 900;
     font-family: app_font;
-    color: #fff;
+    color: #000;
     position: absolute;
     left: 50%;
     margin-left: -200px;
@@ -131,11 +133,13 @@ button.bk--st {
     font-size: 17px;
     height: 42px;
     border: 1px solid;
+    outline: none;
     border-radius: 6px;
     font-family: app_font;
     font-weight: 900;
     background: #0afea6;
     margin-left: -10px;
+    cursor: pointer;
 }
 
 td.t--hd {
@@ -151,4 +155,56 @@ td.t--dt {
     padding: 12px;
     border: 1px solid;
     border-radius: 9px;
+}
+
+.fil--tp {
+    position: absolute;
+    margin-top: 126px;
+    left: 383px;
+    background: white;
+    width: 499px;
+    padding: 11px;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 2px #949494;
+}
+
+.f-fo {
+    background: white;
+    width: 196px;
+    margin-left: 19px;
+}
+
+input#dst-int {
+    width: 196px;
+    font-size: 17px;
+    height: 35px;
+    margin-top: 11px;
+}
+
+label.fl-lb {
+    font-family: app_font;
+    padding-left: 8px;
+    font-weight: 900;
+}
+
+.sdsdf {
+    float: right;
+    margin-top: -56px;
+    margin-right: 12px;
+}
+
+button#flt--btn {
+    height: 46px;
+    width: 144px;
+    background-color: #ffffff;
+    color: #000;
+    font-size: 14px;
+    font-weight: 900;
+    border-radius: 35px;
+    border: 1px solid black;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
 }
