@@ -35,8 +35,8 @@ form#su-f {
 
 .su-ti {
     font-size: 33px;
-    margin-top: -27px;
-    font-family: sans-serif;
+    margin-top: 5px;
+    font-family: app_font;
     font-weight: 900;
     color: #fff;
 }
@@ -48,7 +48,7 @@ a.a-su {
 }
 
 input#snup {
-    font-family: sans-serif;
+    font-family: app_font;
     outline: none;
     cursor: pointer;
     background-color: #07ffb8;
@@ -92,4 +92,8 @@ input#snup {
 
 button.btn {
     width: 328px;
+}
+
+.sgtp {
+    margin-top: 33px;
 }
