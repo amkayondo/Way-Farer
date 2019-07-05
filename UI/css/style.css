@@ -1,8 +1,13 @@
+/* defaults */
+@font-face {
+    font-family: app_font;
+    src: url(./fonts/Century\ Gothic.ttf);
+  }
 body{
     margin: 0;
 }
 input {
-    font-family: sans-serif;
+    font-family: app_font;
     outline: none;
     background-color: #efefef;
     border: 0;
@@ -19,10 +24,11 @@ input {
 }
 a {
     text-decoration: none;
+    color: #000000;
 }
 
 .btn {
-    font-family: sans-serif;
+    font-family: app_font;
     outline: none;
     cursor: pointer;
     background-color: #efefef;

@@ -16,7 +16,7 @@
     width: 100%;
     position: fixed;
     text-align: center;
-    margin-top: -7px;
+    margin-top: 23px;
 }
 
 img.lg-img {
@@ -34,8 +34,8 @@ img.lg-img {
 
 .su-ti {
     font-size: 33px;
-    margin-top: -27px;
-    font-family: sans-serif;
+    margin-top: 4px;
+    font-family: app_font;
     font-weight: 900;
     color: #fff;
 }
@@ -47,7 +47,7 @@ a.a-lg {
 }
 
 input#lgn {
-    font-family: sans-serif;
+    font-family: app_font;
     outline: none;
     cursor: pointer;
     background-color: #07ffb8;
