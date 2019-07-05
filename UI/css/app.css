@@ -160,9 +160,9 @@ td.t--dt {
 .fil--tp {
     position: absolute;
     margin-top: 126px;
-    left: 383px;
+    left: 313px;
     background: white;
-    width: 499px;
+    width: 678px;
     padding: 11px;
     border-radius: 20px;
     box-shadow: 0 0 4px 2px #949494;
@@ -171,7 +171,8 @@ td.t--dt {
 .f-fo {
     background: white;
     width: 196px;
-    margin-left: 19px;
+    margin-left: 33px;
+    float: left;
 }
 
 input#dst-int {
@@ -189,7 +190,7 @@ label.fl-lb {
 
 .sdsdf {
     float: right;
-    margin-top: -56px;
+    margin-top: 10px;
     margin-right: 12px;
 }
 
@@ -199,12 +200,20 @@ button#flt--btn {
     background-color: #ffffff;
     color: #000;
     font-size: 14px;
-    font-weight: 900;
     border-radius: 35px;
     border: 1px solid black;
+    font-family: app_font;
+    font-weight: 900 !important;
 }
 
 button {
     cursor: pointer;
     outline: none;
+}
+
+input#orgn-int {
+    width: 211px;
+    font-size: 17px;
+    height: 35px;
+    margin-top: 11px;
 }
