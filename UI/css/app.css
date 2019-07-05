@@ -217,3 +217,26 @@ input#orgn-int {
     height: 35px;
     margin-top: 11px;
 }
+
+.sgsf {
+    margin-top: 80px;
+}
+
+.sg--hd {
+    font-size: 43px;
+    font-family: app_font;
+    font-weight: 900;
+    margin-left: 124px;
+}
+
+div#tpdata {
+    padding: 12px;
+    border: 1px solid;
+    border-radius: 9px;
+}
+
+div#tpdata {
+    width: fit-content;
+    margin-left: 107px;
+    margin-top: 20px;
+}
