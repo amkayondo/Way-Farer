@@ -3,18 +3,21 @@ const Ltrips = document.getElementById('ntp--cnt');
 
 // Not loggedin nav
 logedIn.innerHTML = `
-<a href="index.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
-<div class="nltt">Way-Farer</div>
+<a href="index.html"><div class="ntlg"><img src="../images/logo2.png" alt="Way Farer logo" class="ntlg-img">
+<div class="nltt">Admin</div>
 </a>
-<ul class="ncv">
-<li class="sjd"><a href="#" class="nv-a active">Trips available</a></li>
-</ul>
-<div class="rghtnvm">
-<a href="./signup.html" class="jsdf fins">Create account</a>
-<a href="./signin.html" class="jsdf"><button class="btn sig in">SIGNIN</button></a>
+<div class="rghtnvm lgdin">
+<div id="usdds">
+    <img src="../images/user.png" alt="Way Farer user" class="usrda-img">
 </div>
-</div>`
-
+</div>
+<div id="uspdd">
+    <div class="ksfnk">
+        <a href="#" class="a--urc"><div class="sght">Item</div></a>
+        <a href="../index.html" class="a--urc"><div class="sght">Logout</div></a>
+</div>
+</div>
+`
 // trips, not logged in
 const xtyo = `    <td class="t--hd">Bus</td>
 <td class="t--hd">Origin</td>
