@@ -1,7 +1,7 @@
 const logedIn = document.getElementById('nav-login');
 const Ltrips = document.getElementById('ntp--cnt');
 
-// Not loggedin nav
+// loggedin nav
 logedIn.innerHTML = `
 <a href="index.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
 <div class="nltt">Admin</div>
@@ -14,7 +14,7 @@ logedIn.innerHTML = `
 <div id="uspdd">
     <div class="ksfnk">
         <a href="#" class="a--urc"><div class="sght">Item</div></a>
-        <a href="../index.html" class="a--urc"><div class="sght">Logout</div></a>
+        <a href="./index.html" class="a--urc"><div class="sght">Logout</div></a>
 </div>
 </div>
 `
@@ -45,9 +45,7 @@ Ltrips.innerHTML = `
 <table class="tp--lst">
                <tr class="tp--thd">
             ${xtyo}
-               <!-- Not logged in trips -->
             ${sdfre}
             ${sdfre}
             ${sdfre}
-           </table>
-`
+           </table>`
