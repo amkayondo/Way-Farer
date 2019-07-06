@@ -35,6 +35,7 @@ const sdfre = `<tr id="tp--itm">
 <td class="t--dt">3 Sept, 2019</td>
 <td class="t--dt">UGX 40000</td>
 <td class="t--dt">active</td>
+
 <td class="t--dt">
  <a href="./book.html">
      <button class="bk--st">BOOK SEATS</button>
