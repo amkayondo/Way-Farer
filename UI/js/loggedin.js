@@ -15,7 +15,7 @@ logedIn.innerHTML = `
     <div class="ksfnk">
         <a href="#" class="a--urc"><div class="sght">Item</div></a>
         <a href="../index.html" class="a--urc"><div class="sght">Logout</div></a>
-    </div>
+</div>
 </div>
 `
 // trips, not logged in
