@@ -3,12 +3,12 @@ const Ltrips = document.getElementById('ntp--cnt');
 
 // Not loggedin nav
 logedIn.innerHTML = `
-<a href="index.html"><div class="ntlg"><img src="../images/logo2.png" alt="Way Farer logo" class="ntlg-img">
+<a href="index.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
 <div class="nltt">Admin</div>
 </a>
 <div class="rghtnvm lgdin">
 <div id="usdds">
-    <img src="../images/user.png" alt="Way Farer user" class="usrda-img">
+    <img src="./images/user.png" alt="Way Farer user" class="usrda-img">
 </div>
 </div>
 <div id="uspdd">
