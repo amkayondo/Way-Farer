@@ -175,10 +175,11 @@ td.t--dt {
     float: left;
 }
 
-input#dst-int {
+#dst-int {
     width: 196px;
     font-size: 17px;
     height: 35px;
+    background: #b3b2b2;
     margin-top: 11px;
 }
 
@@ -215,11 +216,12 @@ button {
     font-weight: 900;
 }
 
-input#orgn-int {
+#orgn-int {
     width: 211px;
     font-size: 17px;
     height: 35px;
     margin-top: 11px;
+    background: #b3b2b2;
 }
 
 .sgsf {
@@ -284,32 +286,34 @@ div#adm-nav {
     margin-top: 16px;
 }
 
-input#orgn {
+#orgn {
     margin-left: 139px;
     background-color: #dedcdc;
     width: 442px;
+    margin-top: -34px;
+    padding-top: 12px;
 }
 
-input#dst {
+#dst {
     margin-left: 82px;
     background-color: #dedcdc;
     width: 442px;
 }
 
-input#tpdtat {
+#tpdtat {
     margin-left: 113px;
     background-color: #dedcdc;
     width: 442px;
     text-align: center;
 }
 
-input#ctctp {
+#ctctp {
     margin-left: 14px;
     background-color: #dedcdc;
     width: 442px;
 }
 
-input#fctr {
+#fctr {
     margin-left: 158px;
     background-color: #dedcdc;
     width: 442px;
@@ -320,13 +324,18 @@ label.ctlt {
     font-weight: 900;
 }
 
-button#cretp {
+#cretp {
     width: 301px;
     font-size: 17px;
     background: #01fd68;
     height: 48px;
 }
-
+#cretp--t {
+    width: 301px;
+    font-size: 17px;
+    background: #01fd68;
+    height: 48px;
+}
 button#cantp {
     width: 301px;
     font-size: 17px;
@@ -338,4 +347,42 @@ button#cantp {
 .ctbtny {
     margin-top: 16px;
     margin-left: 50px;
+}
+
+div#nav-login {background: white;height: 62px;box-shadow: 0 0 5px #888888;}
+
+.crttinpt {
+    font-family: app_font;
+    outline: none;
+    background-color: #efefef;
+    border: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    height: 53px;
+    padding: 4px 6px 4px 9px;
+    width: 528px !important;
+    width: 298px;
+    color: #181717;
+    border-radius: 7px;
+    border-color: transparent;
+    font-size: 21px;
+    font-weight: 900;
+    margin-top: 13px !important;
+    padding-top: 13px;
+    margin-left: 22px !important;
+    text-align: left !important;
+    padding-left: 24px;
+}
+
+.tpdts {
+    background: white;
+    width: 569px;
+    padding: 13px;
+    margin-left: 55px;
+}
+
+.trpax {
+    position: fixed;
+    left: 50%;
+    margin-left: -344px;
 }
