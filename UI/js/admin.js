@@ -1,6 +1,7 @@
 const adminNav = document.getElementById('adm-nav');
 const newtrip = document.getElementById('cretp');
-const cancel = document.getElementById('cantp');
+const gohome = document.getElementById('cantp');
+const cancel = document.getElementById('cantptw');
 
 adminNav.innerHTML = `
 <a href="index.html"><div class="ntlg"><img src="../images/logo2.png" alt="Way Farer logo" class="ntlg-img">
@@ -15,9 +16,13 @@ adminNav.innerHTML = `
 </div>`
 
 newtrip.addEventListener('click', () => {
-    location = './trips.html';
+    location = './trip.html';
+});
+
+gohome.addEventListener('click', () => {
+    location = './index.html';
 });
 
 cancel.addEventListener('click', () => {
-    location = './index.html';
+location = './trip_del.html';
 });
