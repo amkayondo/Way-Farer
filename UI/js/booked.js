@@ -1,13 +1,11 @@
-const book_data = document.getElementById('bktpd');
 const booked = document.getElementById('bktpdtw');
 
-const d1 = `<input type="number" id="stkis" placeholder="Number of seats">`;
+const d2 = `<input type="text" id="stkis" placeholder="Number of seats" value="SEATS : 5" disabled>`;
 
-
-book_data.innerHTML = `
-            <div class="fld--lb">DATE : 23, SEPT 2019</div>
+booked.innerHTML = `
+<div class="fld--lb">DATE : 23, SEPT 2019</div>
             <div class="set--lb">
-            ${d1}
+            ${d2}
             </div>
             <div class="bd--ctn">  
         <div class="dbt-tp">
