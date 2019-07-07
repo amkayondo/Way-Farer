@@ -515,3 +515,143 @@ div#uspdd {
 .sght:hover {
     background: #909090;
 }
+
+.njsdb {
+    font-size: 38px;
+    font-weight: 900;
+    margin-top: 51px;
+    margin-left: 160px;
+}
+
+.bpDpAddr {
+    margin: 15px 0 13px 3px;
+}
+.msd {
+    position: relative;
+}
+.oh {
+    overflow: hidden;
+    height: 60px;
+}
+.dshes {
+    top: 22px;
+    position: absolute;
+    margin-left: 2px;
+    border: 0;
+    border-left: 1px dashed #979797;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+    float: left;
+    width: 2%;
+    height: 152px;
+}
+.bllts {
+    float: left;
+    width: 6%;
+}
+.wnskw, .circle--bs {
+    width: 5px;
+    height: 5px;
+    background: #3e3e52;
+    border-radius: 50%;
+    font-size: 50px;
+    display: inline-block;
+    margin-right: 8px;
+}
+.ksfnl {
+    margin-left: 6%;
+    font-size: 24px;
+    width: 94%;
+}
+.orgi--lb {
+    position: relative;
+    display: inline-block;
+    font-size: 27px;
+    color: #3e3e52;
+}
+.orgi--lb .bpDpNameTooltiptext {
+    visibility: hidden;
+    width: 120%;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -56%;
+    font-size: 13px;
+}
+.selectedBpDpAdd-Lbl {
+    font-size: 14px;
+    color: #7e7e8c;
+    margin: 8px 0 24px;
+}
+.msfsfe {
+    margin-top: -5px;
+}
+
+.bd--ctn {
+    background: aquamarine;
+    width: 656px;
+    padding: 10px;
+    margin-left: -3px;
+    margin-top: 14px;
+}
+
+.bktyeu {
+    background: white;
+    width: 656px;
+    padding: 10px;
+    margin-left: 158px;
+    margin-top: 14px;
+}
+
+.sdgfs {
+    margin-top: 21px;
+    margin-left: -5px;
+}
+
+div#fr--lb {
+    font-size: 22px;
+    background: #cecece;
+    font-weight: 900;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.fld--lb {
+    font-size: 27px;
+}
+
+.ntdh {
+    margin-top: 30px;
+}
+
+button#bk-tk {
+    width: 332px;
+    font-size: 17px;
+    height: 42px;
+    outline: none;
+    border-radius: 6px;
+    font-family: app_font;
+    font-weight: 900;
+    background: #0afea6;
+}
+
+.ldjf {
+    margin-left: 31px;
+    position: absolute;
+    background-color: #b7b7b7 !important;
+    width: 303px !important;
+}
+
+.adjns {
+    margin-top: 16px;
+    margin-left: -4px;
+}
+
+.cnblh {background: red !important;color: #fff;}
