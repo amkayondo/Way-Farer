@@ -611,6 +611,7 @@ div#uspdd {
 
 .sdgfs {
     margin-top: 21px;
+    margin-left: -5px;
 }
 
 div#fr--lb {
@@ -647,3 +648,10 @@ button#bk-tk {
     background-color: #b7b7b7 !important;
     width: 303px !important;
 }
+
+.adjns {
+    margin-top: 16px;
+    margin-left: -4px;
+}
+
+.cnblh {background: red !important;color: #fff;}
