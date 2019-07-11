@@ -562,12 +562,14 @@ div#uspdd {
     margin-left: 6%;
     font-size: 24px;
     width: 94%;
+    font-weight: 900;
 }
 .orgi--lb {
     position: relative;
     display: inline-block;
     font-size: 27px;
-    color: #3e3e52;
+    color: #000000;
+    font-weight: 900;
 }
 .orgi--lb .bpDpNameTooltiptext {
     visibility: hidden;
@@ -594,7 +596,7 @@ div#uspdd {
 }
 
 .bd--ctn {
-    background: aquamarine;
+    background: #00ffa161;
     width: 656px;
     padding: 10px;
     margin-left: -3px;
@@ -654,7 +656,7 @@ button#bk-tk {
     margin-left: -4px;
 }
 
-.cnblh {background: red !important;color: #fff;}
+.cnblh {background: #ff0000d4 !important;color: #fff;}
 
 .set--lb {
     margin-top: 13px;
@@ -787,7 +789,7 @@ button.bk--st.ksd {
 }
 
 .shlr:hover {
-    background-color: aquamarine;
+    background-color: #ffeb00;
     color: black;
 }
 
