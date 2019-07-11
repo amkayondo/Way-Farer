@@ -27,3 +27,6 @@ WayFarer is a public bus transportation booking service.
 ## **UI Templates**
 
 [https://amkayondo.github.io/Way-Farer/UI/](https://amkayondo.github.io/Way-Farer/UI/)
+
+# **Author**
+## **Kayondo Edward**
