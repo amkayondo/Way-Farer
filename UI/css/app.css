@@ -76,13 +76,10 @@ button.btn.sig.up {
     background: #84f788;
 }
 .hmpbg{
-   
-background: #ffffff;
 }
 
 .hmpbg {
-    height: 235px;
-    margin-top: 15px;
+    height: 244px;
 }
 
 .bgtp {
@@ -94,7 +91,7 @@ background: #ffffff;
     position: absolute;
     left: 50%;
     margin-left: -200px;
-    margin-top: 67px;
+    margin-top: 94px;
 }
 
 a.jsdf.fins {
@@ -159,7 +156,7 @@ td.t--dt {
 
 .fil--tp {
     position: absolute;
-    margin-top: 126px;
+    margin-top: 148px;
     left: 313px;
     background: white;
     width: 678px;
@@ -262,12 +259,13 @@ div#adm-nav {
 }
 
 .cttp {
-    margin-left: 154px;
+    margin-left: 348px;
     font-size: 34px;
     font-family: app_font;
     font-weight: 900;
     text-align: center;
     width: 100%;
+    margin-top: -4px;
 }
 
 .crtdt {
@@ -279,7 +277,9 @@ div#adm-nav {
 
 .crth {
     font-size: 39px;
+    padding-bottom: 23px;
     text-align: center;
+    padding-top: 25px;
 }
 
 .cttdrt {
@@ -329,6 +329,7 @@ label.ctlt {
     font-size: 17px;
     background: #01fd68;
     height: 48px;
+    margin-top: 14px;
 }
 #cretp--t {
     width: 301px;
@@ -356,7 +357,7 @@ label.ctlt {
     margin-left: 50px;
 }
 
-div#nav-login {background: white;height: 62px;box-shadow: 0 0 5px #888888;}
+div#nav-login {background: white;height: 62px;box-shadow: 0 0 5px #888888;z-index: 5;position: fixed;width: 100%;top: 0;}
 
 .crttinpt {
     font-family: app_font;
@@ -476,8 +477,7 @@ img.usrda-img {
 }
 
 .rghtnvm.lgdin {
-    background: white;
-    width: 209px;
+    width: 279px;
     right: 100px;
 }
 
@@ -519,8 +519,8 @@ div#uspdd {
 .njsdb {
     font-size: 38px;
     font-weight: 900;
-    margin-top: 51px;
-    margin-left: 160px;
+    margin-top: 71px;
+    margin-left: 268px;
 }
 
 .bpDpAddr {
@@ -605,7 +605,7 @@ div#uspdd {
     background: white;
     width: 656px;
     padding: 10px;
-    margin-left: 158px;
+    margin-left: 259px;
     margin-top: 14px;
 }
 
@@ -658,4 +658,149 @@ button#bk-tk {
 
 .set--lb {
     margin-top: 13px;
+}
+
+button.-bth {
+    width: 150px;
+    height: 38px;
+    font-weight: 900;
+    font-size: 15px;
+    background: #ffffff;
+    margin-top: 5px;
+    margin-left: 27px;
+    border-radius: 15px;
+    border: 2px solid #7e61aa;
+    color: #7e61aa;
+}
+
+.nksd {
+    margin-top: 87px;
+    margin-left: 169px;
+}
+
+.blshd {
+    font-size: 38px;
+    margin-left: 61px;
+    font-weight: 900;
+}
+
+.tofds.skdfad {
+    margin-top: 47px;
+    margin-left: 36px;
+}
+
+.kznc {
+    width: 100%;
+    text-align: center;
+    margin-top: 43px;
+}
+
+button#ldmore {
+    height: 39px;
+    width: 164px;
+    font-weight: 900;
+    font-size: 15px;
+}
+
+button.bk--st.ksd {
+    background: #dddddd;
+    border: 0px;
+}
+
+.admreo {
+    position: absolute;
+    margin-top: 73px;
+    background: white;
+    width: 100%;
+    z-index: -6;
+}
+
+.trplsv {margin-top: 28px;background: #828384;width: 328px;padding: 12px;height: 117px;font-size: 46px;font-weight: 900;margin-left: 267px;border-radius: 8px;padding-left: 36px;float: left;}
+
+.trplsv.ksfnsl {
+    width: 328px;
+    margin-left: 77px;
+    background-color: #00ff1f;
+    color: #000;
+}
+
+.adtps {
+    position: absolute;
+    margin-top: 309px;
+    margin-left: 246px;
+}
+
+.jjdjs {
+    background: #8e8e8e;
+    font-weight: 900;
+    text-align: center;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 21px;
+    padding-right: 21px;
+    border-radius: 11px;
+}
+
+.jdsfks {
+    font-size: 29px;
+    font-weight: 900;
+    padding-bottom: 13px;
+}
+
+.sibar {
+    height: 100%;
+    width: 227px;
+    position: fixed;
+    border-right: 1px solid #808080c2;
+}
+
+.tp--ntl {
+    margin-left: 150px;
+}
+
+.crth.slfk {
+    font-weight: 900;
+    font-size: 47px;
+}
+
+.crth.slfds {
+    font-size: 40px;
+    font-weight: 900;
+    padding-bottom: 41px;
+    margin-top: -43px;
+}
+
+.sdbrms {
+    margin-top: 92px;
+    margin-left: 24px;
+}
+
+.shlr {
+    background: #908f8f;
+    width: fit-content;
+    padding: 6px;
+    margin-top: 10px;
+    padding-left: 28px;
+    padding-right: 28px;
+    border-radius: 8px;
+    font-weight: 900;
+}
+
+.shlr:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+.sibar.lektr {
+    margin-top: -84px;
+    width: 203px;
+}
+
+div#admsbr {
+    z-index: -4;
+}
+
+.admsdbrms {
+    margin-top: 120px;
+    margin-left: 14px;
 }
