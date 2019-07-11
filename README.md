@@ -1,5 +1,5 @@
 # Way-Farer
-[![Maintainability](https://api.codeclimate.com/v1/badges/7c3f8da2d189be616172/maintainability)](https://codeclimate.com/github/amkayondo/Way-Farer/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7c3f8da2d189be616172/maintainability)](https://codeclimate.com/github/amkayondo/Way-Farer/maintainability) [![Coverage Status](https://coveralls.io/repos/github/amkayondo/Way-Farer/badge.svg?branch=develop)](https://coveralls.io/github/amkayondo/Way-Farer?branch=develop) [![Build Status](https://travis-ci.org/amkayondo/Way-Farer.svg?branch=develop)](https://travis-ci.org/amkayondo/Way-Farer)
 
 WayFarer is a public bus transportation booking service.
 

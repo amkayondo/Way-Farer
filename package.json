@@ -1,0 +1,42 @@
+{
+  "name": "way-farer",
+  "version": "1.0.0",
+  "description": "[![Maintainability](https://api.codeclimate.com/v1/badges/7c3f8da2d189be616172/maintainability)](https://codeclimate.com/github/amkayondo/Way-Farer/maintainability)",
+  "main": "index.js",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.4",
+    "eslint-config-airbnb": "^17.1.1",
+    "express": "^4.17.1",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/node": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0"
+  },
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
+    "dev": "nodemon --exec babel-node server/index.js",
+    "start": "node --exec babel-node server/index.js",
+    "coveralls": "nyc --reporter=lcov npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amkayondo/Way-Farer.git"
+  },
+  "author": "kayondo edward",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amkayondo/Way-Farer/issues"
+  },
+  "homepage": "https://github.com/amkayondo/Way-Farer#readme"
+}
