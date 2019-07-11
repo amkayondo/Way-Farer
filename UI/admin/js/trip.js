@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Way Farer | Create anew trip</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/app.css">
-</head>
-<body>
-    <div id="adm-nav"></div>
-    <div id="admsbr"></div>
-    <div class="tpcr--ctn">
-        <div class="cttp">Create anew trip</div>
+const updateTrip = document.getElementById('updtp');
+
+updateTrip.innerHTML = `<div class="tpcr--ctn">
         <div class="crtdt">
-            <div class="crth">Add Trip details</div>
+            <div class="crth slfds">Update Trip details</div>
             <div class="cttdrt">
                 <label for="origin" class="ctlt">ORIGIN</label>
                 <input type="text" id="orgn" >
@@ -36,13 +24,10 @@
                 <input type="number" id="fctr" >
             </div>
             <div class="ctbtny">
-                <button id="cretp">CREATE TRIP</button>
+            <a href="./trip.html">
+                <button id="cretp">UPDATE TRIP</button>
+            </a>
                 <button id="cantp">CANCEL</button>
             </div>
         </div>
-    </div>
-<script src="../js/admin.js"></script>
-<script src="../js/menu.js"></script>
-<script src="./js/sidebar.js"></script>
-</body>
-</html>
+    </div>`

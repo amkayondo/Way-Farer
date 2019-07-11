@@ -1,0 +1,113 @@
+/* before */
+.mbhnbg{
+    display: none;
+}
+/* after */
+@media screen and (max-width: 800px) {
+    .left, .main, .right {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+    div#nav-no-login {
+        height: 149px;
+    }
+    
+    
+    .ntlg {
+        top: -10px;
+    }
+    
+    img.ntlg-img {
+        width: 130px;
+    }
+    .hmpbg{
+        display: none;
+    }
+    .mbhnbg{
+        display: block;
+    }
+    
+    .nltt {
+        display: none;
+    }
+    
+    li.sjd {
+        display: none;
+    }
+    
+    .rghtnvm {
+        top: 33px;
+        right: 18px;
+    }
+    
+    a.jsdf.fins {
+        font-size: 41px;
+        font-weight: 900;
+    }
+    
+    button.btn.sig.in {
+        width: 257px;
+        font-size: 37px;
+        height: 79px;
+        margin-left: 51px;
+    }
+    
+.hmpbg {
+    margin-top: 143px;
+}
+
+
+.mbhnbg {
+    margin-top: 171px;
+    padding: 13px;
+    width: 100%;
+    margin-left: -38px;
+}
+
+.tps--lst {
+    margin-left: 0px;
+}
+
+.ntl--hd {
+    margin-left: 0px;
+}
+
+input.inort {font-size: 41px;width: 798px;margin-top: 12px;height: 111px;margin-left: 54px;padding-left: 31px;}
+
+div#nav-login {
+    box-shadow: 0 0 white;
+}
+
+img.usrda-img {
+    width: 103px;
+}
+
+.njsdb {
+    margin-left: 0px;
+}
+
+.bktyeu {
+    margin-left: 0px;
+    width: 100%;
+    padding: 0px;
+}
+
+.bd--ctn {
+    width: 100%;
+    padding: 0;
+}
+
+div#fr--lb {
+    width: 100%;
+    padding: 0;
+}
+
+.sdgfs {
+    margin-left: 0;
+}
+
+div#nav-login {
+    margin-top: 87px;
+}
+/* end */
+}
+

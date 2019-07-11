@@ -3,8 +3,9 @@ const Ltrips = document.getElementById('ntp--cnt');
 
 // loggedin nav
 logedIn.innerHTML = `
-<a href="index.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
-<div class="nltt">Admin</div>
+<link rel="stylesheet" href="css/screens.css">
+<a href="./home.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
+<div class="nltt">Way-Farer</div>
 </a>
 <div class="rghtnvm lgdin">
 <div id="usdds">
@@ -50,3 +51,4 @@ Ltrips.innerHTML = `
             ${sdfre}
             ${sdfre}
            </table>`
+
