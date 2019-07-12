@@ -8,11 +8,13 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coverage": "^0.4.1",
     "coveralls": "^3.0.4",
     "eslint-config-airbnb": "^17.1.1",
     "express": "^4.17.1",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
+    "swagger-ui-express": "^4.0.7",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -28,7 +30,9 @@
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
     "dev": "nodemon --exec babel-node server/index.js",
     "start": "node --exec babel-node server/index.js",
-    "coveralls": "nyc --reporter=lcov npm run test"
+    "coverage": "nyc --reporter=lcov npm run test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
