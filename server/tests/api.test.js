@@ -3,6 +3,8 @@ import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
 
+const should = chai.should();
+
 chai.use(chaiHttp);
 
 describe('API', () => {
