@@ -33,7 +33,7 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
     "dev": "nodemon --exec babel-node server/index.js",
-    "start": "node --exec babel-node server/index.js",
+    "start": "babel-node server/index.js",
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint"
