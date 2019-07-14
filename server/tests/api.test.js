@@ -3,7 +3,7 @@ import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
 
-const should = chai.should();
+// const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -26,6 +26,7 @@ describe('API', () => {
         password: '12345',
       })
       .end((err, res) => {
+        should.exist(res.status);
         res.should.have.status(200);
         done();
       });
