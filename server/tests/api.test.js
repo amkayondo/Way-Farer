@@ -14,4 +14,18 @@ describe('API', () => {
       });
     done();
   });
+  it('should create an account', (done) => {
+    chai.request(app)
+      .get('api/v1/auth/signup')
+      .send({
+        firstName: 'tom',
+        lastName: 'timo',
+        email: 'timo@gio.com',
+        password: '12345',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+      });
+    done();
+  });
 });
