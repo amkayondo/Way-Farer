@@ -17,7 +17,7 @@ describe('API', () => {
   });
   it('should create an account', (done) => {
     chai.request(app)
-      .post('api/v1/auth/signup')
+      .post('/api/v1/auth/signup')
       .send({
         firstName: 'tom',
         lastName: 'timo',
