@@ -1,10 +1,7 @@
 import chai, { expect } from 'chai';
-import should from 'should';
 import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
-
-// const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -27,8 +24,7 @@ describe('API', () => {
         password: '12345',
       })
       .end((err, res) => {
-        should(res).have.status(200);
-        done();
+        expect(res).to.have.status(200);
       });
     done();
   });
