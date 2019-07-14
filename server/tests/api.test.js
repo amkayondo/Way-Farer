@@ -27,7 +27,7 @@ describe('API', () => {
         password: '12345',
       })
       .end((err, res) => {
-        should(res.status).have.status(200);
+        should(res).have.status(200);
         done();
       });
     done();
