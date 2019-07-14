@@ -3,6 +3,7 @@ import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
 
+
 chai.use(chaiHttp);
 
 describe('API', () => {
@@ -16,7 +17,7 @@ describe('API', () => {
   });
   it('should create an account', (done) => {
     chai.request(app)
-      .get('api/v1/auth/signup')
+      .post('/api/v1/auth/signup')
       .send({
         firstName: 'tom',
         lastName: 'timo',
