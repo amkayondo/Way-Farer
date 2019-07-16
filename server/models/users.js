@@ -1,27 +1,30 @@
+// User Database
+const userDataBase = [];
+
 // User Model
-export default class User {
-  constructor() {
-    this.userdb = [];
-    this.userData = (
+const User = {
+  userDataBase,
+  // User data structure
+  userData(id,
+    firstName,
+    lastName,
+    email,
+    password) {
+    return {
       id,
       firstName,
       lastName,
       email,
       password,
-    ) => ({
-      id,
-      firstName,
-      lastName,
-      email,
-      password,
-    });
-  }
+    };
+  },
 
+  // FInd User
   findUser(data_) {
-    const userExists = this.userdb.find(x => x.email === data_.email);
-    return userExists;
-  }
+    return userDataBase.find(x => x.email === data_);
+  },
 
+  // create new user
   createNewUser(userInfo) {
     const data = this.userData(
       userInfo.id,
@@ -30,6 +33,11 @@ export default class User {
       userInfo.email,
       userInfo.password,
     );
-    this.userdb.push(data);
-  }
-}
+    userDataBase.push(data);
+  },
+
+  // Find user by Id
+  // findUserById()
+};
+
+module.exports = User;
