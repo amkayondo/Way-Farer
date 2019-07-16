@@ -1,15 +1,19 @@
+import Joi from '@hapi/joi';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
+import resPonse from '../../helpers/responses/response';
 
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
 const newUser = new User();
 
-const newUserData = newUser.userdb;
+
+// const userdB = newUser.userdb;
 
 const signUp = (req, res) => {
   bcrypt.hash(req.body.password, 10,
+    // eslint-disable-next-line consistent-return
     (err, hash) => {
       if (err) {
         res.status(500).json(
@@ -29,22 +33,35 @@ const signUp = (req, res) => {
 
         const payload = {
           id: uuid.v4(),
+          firstName: req.body.first_name,
+          lastName: req.body.last_name,
           email: req.body.email,
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
           admin: false,
         };
-        const token = createToken(payload);
-        res.header('Authorization', token);
-        newUser.createNewUser(data);
-        res.status(200).json({
-          status: 200,
-          data: newUserData,
-          token,
+        const inputData = req.body;
+        const schema = Joi.object().keys({
+          first_name: Joi.string().min(3).alphanum().required(),
+          last_name: Joi.string().min(3).alphanum().required(),
+          email: Joi.string().email().required(),
+          password: Joi.string().min(3).alphanum().required(),
+        });
+        // Validate
+        Joi.validate(inputData, schema, (error) => {
+          if (error) {
+            return resPonse.errorMessage(res, 400, (error.details[0].message));
+          } const token = createToken(payload);
+          res.header('Authorization', token);
+          res.set('Content-Type', 'text/plain');
+          const userExists = newUser.findUser(data);
+          if (userExists) {
+            return resPonse.errorMessage(res, 403, 'User with the same email exists');
+          }
+          newUser.createNewUser(data);
+          resPonse.successUser(res, 200, payload, token);
         });
       }
 
-      // console.log(newUser.userdb);
+      // console.log(newUserData);
     });
 };
 
