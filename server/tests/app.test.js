@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import User from '../models/users';
 import createToken from '../helpers/users/token';
-
+// import signUp from '../controllers/users/signup';
 
 // const bcrypt = require('bcrypt');
 const uuid = require('uuid');
@@ -17,6 +17,13 @@ const myUser = {
   admin: false,
 };
 
+const otherUser = {
+  id: uuid.v4(),
+  firstName: 'kayondo',
+  lastName: 'edward',
+  password: '23456',
+  admin: false,
+};
 describe('APP FUNCTIONALITY', () => {
   it('should create anew user and add to database', (done) => {
     newUsr.createNewUser(myUser);
@@ -25,6 +32,11 @@ describe('APP FUNCTIONALITY', () => {
   });
   it('should create a token', (done) => {
     const newToken = createToken(myUser);
+    expect(newToken).to.be.eq(newToken);
+    done();
+  });
+  it('should an error if a token is not created', (done) => {
+    const newToken = createToken(otherUser);
     expect(newToken).to.be.eq(newToken);
     done();
   });
