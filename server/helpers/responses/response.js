@@ -3,7 +3,7 @@ const resPonse = {
   errorMessage(res, statusCode, message) {
     return res.status(statusCode).json({
       status: statusCode,
-      message,
+      error: message,
     });
   },
   successUser(res, statusCode, neededData, token) {

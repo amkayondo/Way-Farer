@@ -2,21 +2,32 @@ import chai, { expect } from 'chai';
 import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
-// import createToken from '../helpers/users/token';
 
 const uuid = require('uuid');
 
-
 chai.use(chaiHttp);
+
 const newUser = {
-  id: uuid.v4(),
-  firstName: 'kayondo',
-  lastName: 'edward',
+  first_name: 'kayondo',
+  last_name: 'edward',
   email: 'kayondo@open.co',
   password: '23456',
-  admin: false,
 };
 
+const siginUser = {
+  email: 'kayondo@open.co',
+  password: '23456',
+};
+
+const invalidUser = {
+  email: 'tom@open.co',
+  password: '23s456',
+};
+
+const invalidPassword = {
+  email: 'kayondo@open.co',
+  password: '23dsdd456',
+}
 // const newToken = createToken(newUser);
 
 describe('API', () => {
@@ -34,14 +45,40 @@ describe('API', () => {
       .send(newUser)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
       });
     done();
   });
-  it('should return and error is user with the same email exists', (done) => {
+  it('should return erron if email exists on create an account', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(newUser)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+      });
+    done();
+  });
+  it('should login user', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(siginUser)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+      });
+    done();
+  });
+  it('should return error if user doesnt exist on login', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(invalidUser)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+      });
+    done();
+  });
+  it('should return error if password is invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(invalidPassword)
       .end((err, res) => {
         expect(res).to.have.status(400);
       });
@@ -60,10 +97,19 @@ describe('API', () => {
       .send(noEmail)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        // expect(res.body).to.have({
-        //   status: 400,
-        //   message: '"email" is required',
-        // });
+      });
+    done();
+  });
+  it('should return an error when fields not given', (done) => {
+    const noEmail = {
+      password: '23456',
+      admin: false,
+    };
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(noEmail)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
       });
     done();
   });
