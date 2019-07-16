@@ -4,6 +4,7 @@
   "description": "[![Maintainability](https://api.codeclimate.com/v1/badges/7c3f8da2d189be616172/maintainability)](https://codeclimate.com/github/amkayondo/Way-Farer/maintainability)",
   "main": "index.js",
   "dependencies": {
+    "@babel/cli": "^7.5.0",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
