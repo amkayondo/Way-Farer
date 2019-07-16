@@ -16,9 +16,9 @@ const signUp = (req, res) => {
     // eslint-disable-next-line consistent-return
     (err, hash) => {
       if (err) {
-        res.status(500).json(
+        res.status(400).json(
           {
-            error: err,
+            error: 'A field is missing!',
           },
         );
       } else {
@@ -43,7 +43,8 @@ const signUp = (req, res) => {
           first_name: Joi.string().min(3).alphanum().required(),
           last_name: Joi.string().min(3).alphanum().required(),
           email: Joi.string().email().required(),
-          password: Joi.string().min(3).alphanum().required(),
+          // fix this
+          password: Joi.string().required(),
         });
         // Validate
         Joi.validate(inputData, schema, (error) => {
@@ -51,10 +52,10 @@ const signUp = (req, res) => {
             return resPonse.errorMessage(res, 400, (error.details[0].message));
           } const token = createToken(payload);
           res.header('Authorization', token);
-          res.set('Content-Type', 'text/plain');
+          // res.set('Content-Type', 'text/plain');
           const userExists = newUser.findUser(data);
           if (userExists) {
-            return resPonse.errorMessage(res, 403, 'User with the same email exists');
+            return resPonse.errorMessage(res, 400, 'User with the same email exists');
           }
           newUser.createNewUser(data);
           resPonse.successUser(res, 200, payload, token);
