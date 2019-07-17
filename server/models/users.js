@@ -1,6 +1,5 @@
 // User Database
 const userDataBase = [];
-
 // User Model
 const User = {
   userDataBase,
@@ -9,13 +8,15 @@ const User = {
     firstName,
     lastName,
     email,
-    password) {
+    password,
+    isAdmin) {
     return {
       id,
       firstName,
       lastName,
       email,
       password,
+      isAdmin,
     };
   },
 
@@ -32,12 +33,10 @@ const User = {
       userInfo.lastName,
       userInfo.email,
       userInfo.password,
+      userInfo.isAdmin,
     );
     userDataBase.push(data);
   },
-
-  // Find user by Id
-  // findUserById()
 };
 
 module.exports = User;
