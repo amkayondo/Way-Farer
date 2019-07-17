@@ -2,6 +2,7 @@ import Joi from '@hapi/joi';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
+import signUpSchema from '../../helpers/schema/signup';
 import payLoad from './payload';
 
 const uuid = require('uuid');
@@ -20,12 +21,8 @@ const signUp = (req, res) => {
   const payload = data;
 
   const inputData = req.body;
-  const schema = Joi.object().keys({
-    first_name: Joi.string().min(3).alphanum().required(),
-    last_name: Joi.string().min(3).alphanum().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-  });
+  const schema = signUpSchema(Joi);
+
   Joi.validate(inputData, schema, (error) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
