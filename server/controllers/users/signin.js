@@ -7,17 +7,16 @@ import payLoad from './payload';
 
 const newUser = User;
 const signIn = (req, res) => {
-  const { email, password } = req.body;
   const schema = signInSchema(Joi);
   Joi.validate(req.body, schema, (error) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
     }
-    const userExists = newUser.findUser(email.trim());
+    const userExists = newUser.findUser(req.body.email.trim());
     if (!userExists) {
       return resPonse.errorMessage(res, 400, 'Incorrect email');
     }
-    const isUser = userExists.password === password.trim();
+    const isUser = userExists.password === req.body.password.trim();
     const payld = payLoad(
       userExists.id,
       userExists.firstName,
