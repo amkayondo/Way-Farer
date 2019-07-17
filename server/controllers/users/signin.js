@@ -9,21 +9,12 @@ const newUser = User;
 const signIn = (req, res) => {
   const schema = signInSchema(Joi);
   Joi.validate(req.body, schema, (error) => {
-    if (error) {
-      return resPonse.errorMessage(res, 400, (error.details[0].message));
-    }
+    if (error) { return resPonse.errorMessage(res, 400, (error.details[0].message)); }
     const userExists = newUser.findUser(req.body.email.trim());
-    if (!userExists) {
-      return resPonse.errorMessage(res, 400, 'Incorrect email');
-    }
-    const isUser = userExists.password === req.body.password.trim();
+    if (!userExists) { return resPonse.errorMessage(res, 400, 'Incorrect email'); }
     const payld = payLoad(
-      userExists.id,
-      userExists.firstName,
-      userExists.lastName,
-      userExists.email,
-      userExists.password,
-      userExists.isAdmin,
+      userExists.id, userExists.firstName, userExists.lastName,
+      userExists.email, userExists.password, userExists.isAdmin,
     );
     const data = {
       id: `${payld.id}`,
@@ -33,7 +24,7 @@ const signIn = (req, res) => {
       isAdmin: `${payld.isAdmin}`,
     };
     const token = createToken(payld);
-    if (!isUser) return resPonse.errorMessage(res, 400, 'Incorrect Password');
+    if (!(userExists.password === req.body.password.trim())) return resPonse.errorMessage(res, 400, 'Incorrect Password');
     res.header('Authorization', token);
     return resPonse.successUser(res, 200, data, token);
   });
