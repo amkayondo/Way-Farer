@@ -2,15 +2,13 @@ import Joi from '@hapi/joi';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
+import signInSchema from '../../helpers/schema/sigin';
 import payLoad from './payload';
 
 const newUser = User;
 const signIn = (req, res) => {
   const { email, password } = req.body;
-  const schema = Joi.object().keys({
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-  });
+  const schema = signInSchema(Joi);
   Joi.validate(req.body, schema, (error) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
