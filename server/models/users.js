@@ -1,5 +1,16 @@
+import uuid from 'uuid';
+
 // User Database
-const userDataBase = [];
+const userDataBase = [
+  {
+    id: uuid.v4(),
+    firstName: 'I am',
+    lastName: 'admin',
+    email: 'admin@app.com',
+    password: 'admin123',
+    isAdmin: true,
+  },
+];
 // User Model
 const User = {
   userDataBase,

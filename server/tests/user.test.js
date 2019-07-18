@@ -27,10 +27,10 @@ const invalidUser = {
 const invalidPassword = {
   email: 'kayondo@open.co',
   password: '23dsdd456',
-}
+};
 // const newToken = createToken(newUser);
 
-describe('API', () => {
+describe('USERS TESTS', () => {
   it('should return a string', (done) => {
     chai.request(app)
       .get('/')

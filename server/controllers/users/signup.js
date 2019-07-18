@@ -28,12 +28,15 @@ const signUp = (req, res) => {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
     } const token = createToken(payload);
     res.header('Authorization', token);
+    // console.log(req.headers.authorization);
+    // console.log(newUser.userDataBase);
     const userExists = newUser.findUser(data.email);
     if (userExists) {
       return resPonse.errorMessage(res, 400, 'User with the same email exists');
     }
     newUser.createNewUser(data);
     resPonse.successUser(res, 200, payload, token);
+    return true;
   });
 };
 
