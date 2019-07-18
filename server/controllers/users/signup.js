@@ -1,5 +1,4 @@
 import Joi from '@hapi/joi';
-import jwt from 'jsonwebtoken';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
