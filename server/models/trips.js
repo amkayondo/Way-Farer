@@ -28,6 +28,9 @@ const Trip = {
   creatAtrip(tripData) {
     return tripDataBase.push(tripData);
   },
+  findTrip(tripInput) {
+    return tripDataBase.find(x => x.id === tripInput);
+  },
 
 };
 

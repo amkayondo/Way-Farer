@@ -10,7 +10,7 @@ const createTrip = (req, res) => {
   const data = Trip.tripData(
     uuid.v4(), req.body.seatingCapacity, req.body.busLicenseNumber,
     req.body.origin, req.body.destination, req.body.tripDate,
-    req.body.fare, req.body.status,
+    req.body.fare, 'active',
   );
   const schema = tripSchema(Joi);
   Joi.validate(inputData, schema, (error) => {

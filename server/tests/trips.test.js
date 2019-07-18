@@ -10,6 +10,8 @@ const user = {
 
 let userToken;
 let notAdminToken;
+let tripId;
+
 const tripData = {
   seatingCapacity: 50,
   busLicenseNumber: 'UGX HD',
@@ -52,6 +54,7 @@ describe('TRIPS TESTS', () => {
       .set('Authorization', userToken)
       .send(tripData)
       .end((err, res) => {
+        tripId = res.body.data.id;
         expect(res).to.have.status(201);
         done();
       });
@@ -100,6 +103,22 @@ describe('TRIPS TESTS', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
+        done();
+      });
+  });
+  it('should return error if trip not found', (done) => {
+    chai.request(app)
+      .get(`/api/v1/trips/${2323232}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
+  it('should return trip if found', (done) => {
+    chai.request(app)
+      .get(`/api/v1/trips/${tripId}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         done();
       });
   });
