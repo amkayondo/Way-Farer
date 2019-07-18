@@ -4,6 +4,7 @@ import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
 import signInSchema from '../../helpers/schema/sigin';
 import payLoad from './payload';
+import showData from '../../helpers/util/showData';
 
 const newUser = User;
 const signIn = (req, res) => {
@@ -16,13 +17,7 @@ const signIn = (req, res) => {
       userExists.id, userExists.firstName, userExists.lastName,
       userExists.email, userExists.password, userExists.isAdmin,
     );
-    const data = {
-      id: `${payld.id}`,
-      firstName: `${payld.firstName}`,
-      lastName: `${payld.lastName}`,
-      email: `${payld.email}`,
-      isAdmin: `${payld.isAdmin}`,
-    };
+    const data = showData(payld);
     const token = createToken(payld);
     if (!(userExists.password === req.body.password.trim())) return resPonse.errorMessage(res, 400, 'Incorrect Password');
     res.header('Authorization', token);
