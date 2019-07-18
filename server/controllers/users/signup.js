@@ -1,4 +1,5 @@
 import Joi from '@hapi/joi';
+import jwt from 'jsonwebtoken';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
@@ -33,7 +34,15 @@ const signUp = (req, res) => {
       return resPonse.errorMessage(res, 400, 'User with the same email exists');
     }
     newUser.createNewUser(data);
-    resPonse.successUser(res, 200, payload, token);
+    const userAcct = {
+      id: `${data.id}}`,
+      firstName: `${data.firstName}`,
+      lastName: `${data.lastName}`,
+      email: `${data.email}`,
+      isAdmin: `${data.isAdmin}`,
+    };
+    resPonse.successUser(res, 'Account succesfully created', 200, userAcct, token);
+    return true;
   });
 };
 

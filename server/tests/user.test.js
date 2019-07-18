@@ -11,26 +11,26 @@ const newUser = {
   first_name: 'kayondo',
   last_name: 'edward',
   email: 'kayondo@open.co',
-  password: '23456',
+  password: 'vbcbcbcb',
 };
 
 const siginUser = {
   email: 'kayondo@open.co',
-  password: '23456',
+  password: 'vbcbcbcb',
 };
 
 const invalidUser = {
   email: 'tom@open.co',
-  password: '23s456',
+  password: 'vbcbcbcb',
 };
 
 const invalidPassword = {
   email: 'kayondo@open.co',
   password: '23dsdd456',
-}
+};
 // const newToken = createToken(newUser);
 
-describe('API', () => {
+describe('USERS TESTS', () => {
   it('should return a string', (done) => {
     chai.request(app)
       .get('/')
@@ -48,7 +48,7 @@ describe('API', () => {
       });
     done();
   });
-  it('should return erron if email exists on create an account', (done) => {
+  it('should return error if email exists on create an account', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(newUser)
