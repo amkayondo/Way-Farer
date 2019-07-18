@@ -7,9 +7,8 @@ const isAdmin = (req, res, next) => {
     const x = jwt.decode(header, { complete: true });
     if (!x.payload.isAdmin === true) { return resPonse.errorMessage(res, 401, 'Unauthorized access'); }
     next();
-  } catch (error) {
-    resPonse.errorMessage(res, 400, 'You not an admin');
-  }
+  // eslint-disable-next-line no-empty
+  } catch (error) {}
   return true;
 };
 

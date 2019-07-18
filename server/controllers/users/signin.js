@@ -1,5 +1,4 @@
 import Joi from '@hapi/joi';
-import jwt from 'jsonwebtoken';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
@@ -27,8 +26,7 @@ const signIn = (req, res) => {
     const token = createToken(payld);
     if (!(userExists.password === req.body.password.trim())) return resPonse.errorMessage(res, 400, 'Incorrect Password');
     res.header('Authorization', token);
-    
-    return resPonse.successUser(res, 200, data, token);
+    return resPonse.successUser(res, 'Loggedin successfully', 200, data, token);
   });
 };
 

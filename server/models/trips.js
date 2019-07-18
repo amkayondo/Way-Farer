@@ -1,9 +1,9 @@
 // Tips database
-const trip = [];
+const tripDataBase = [];
 
 // Trips Model
 const Trip = {
-  trip,
+  tripDataBase,
   tripData(
     id, // Integer
     seatingCapacity,
@@ -24,6 +24,9 @@ const Trip = {
       fare,
       status,
     };
+  },
+  creatAtrip(tripData) {
+    return tripDataBase.push(tripData);
   },
 
 };
