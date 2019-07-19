@@ -47,6 +47,14 @@ before((done) => {
       done();
     });
 });
+before((done) => {
+  chai.request(app)
+    .get('/api/v1/trips')
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+    });
+  done();
+});
 describe('TRIPS TESTS', () => {
   it('should create a trip', (done) => {
     chai.request(app)
@@ -117,6 +125,14 @@ describe('TRIPS TESTS', () => {
   it('should return trip if found', (done) => {
     chai.request(app)
       .get(`/api/v1/trips/${tripId}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+  it('should return all trips', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips')
       .end((err, res) => {
         expect(res).to.have.status(200);
         done();
