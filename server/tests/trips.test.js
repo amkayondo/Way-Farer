@@ -14,12 +14,11 @@ let tripId;
 
 const tripData = {
   seatingCapacity: 50,
-  busLicenseNumber: 'UGX HD',
+  busLicenseNumber: 'UGXHD',
   origin: 'Kampala',
-  destination: 'Kigali',
-  tripDate: '2.2.2019',
+  destination: 'kigali',
+  tripDate: '2019-12-23',
   fare: 20000,
-  status: 'active',
 };
 chai.use(chaiHttp);
 before((done) => {
@@ -111,6 +110,23 @@ describe('TRIPS TESTS', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
+        done();
+      });
+  });
+  it('should return all trips', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+  it('should return trips by destination', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips')
+      .query({ destination: 'kigali' })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         done();
       });
   });

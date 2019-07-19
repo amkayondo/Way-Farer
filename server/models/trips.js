@@ -1,6 +1,5 @@
 // Tips database
 const tripDataBase = [];
-
 // Trips Model
 const Trip = {
   tripDataBase,
@@ -30,6 +29,10 @@ const Trip = {
   },
   findTrip(tripInput) {
     return tripDataBase.find(x => x.id === tripInput);
+  },
+  findQueryByDestination(query) {
+    const item = tripDataBase.filter(x => x.destination === query);
+    return item;
   },
 
 };
