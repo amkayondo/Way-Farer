@@ -15,7 +15,7 @@ let tripId;
 const tripData = {
   seatingCapacity: 50,
   busLicenseNumber: 'UGXHD',
-  origin: 'Kampala',
+  origin: 'kampala',
   destination: 'kigali',
   tripDate: '2019-12-23',
   fare: 20000,
@@ -104,9 +104,7 @@ describe('TRIPS TESTS', () => {
       .set('Authorization', userToken)
       .send({
         seatingCapacity: 50,
-        busLicenseNumber: 'UGX HD',
         fare: 20000,
-        status: 'active',
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -125,6 +123,15 @@ describe('TRIPS TESTS', () => {
     chai.request(app)
       .get('/api/v1/trips')
       .query({ destination: 'kigali' })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+  it('should return trips by origin', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips')
+      .query({ origin: 'kampala' })
       .end((err, res) => {
         expect(res).to.have.status(200);
         done();

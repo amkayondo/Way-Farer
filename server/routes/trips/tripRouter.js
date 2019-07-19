@@ -10,7 +10,5 @@ const tripRouter = express.Router();
 tripRouter.get('/trips/:tripId', getTripbyId);
 tripRouter.post('/trips', appAuth, isAdmin, createTrip);
 tripRouter.get('/trips', queryTrips, getAllTrips);
-// tripRouter.get('/trips', queryTrips);
-// tripRouter.get('/trips?*', queryTrips);
 
 module.exports = tripRouter;

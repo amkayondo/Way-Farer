@@ -34,6 +34,10 @@ const Trip = {
     const item = tripDataBase.filter(x => x.destination === query);
     return item;
   },
+  findQueryByOrigin(oquery) {
+    const item = tripDataBase.filter(x => x.origin === oquery);
+    return item;
+  },
 
 };
 
