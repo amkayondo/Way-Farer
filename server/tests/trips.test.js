@@ -161,4 +161,22 @@ describe('TRIPS TESTS', () => {
         done();
       });
   });
+  it('should cancel a trip', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/trips/${tripId}/cancel`)
+      .set('Authorization', userToken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+  it('should return error if the to be cancelled trip doesnt exist', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/trips/${87324628482}/cancel`)
+      .set('Authorization', userToken)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
 });
