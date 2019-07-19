@@ -5,7 +5,7 @@ const getTripbyId = (req, res) => {
   const inpuT = req.params.tripId;
   const foundTrip = Trip.findTrip(inpuT);
   if (foundTrip) {
-    return resPonse.successData(res, 'Trip successfully found', 200, foundTrip);
+    return resPonse.successData(res, 200, foundTrip);
   } resPonse.errorMessage(res, 400, `Not Trip found with Id ${inpuT}`);
   return true;
 };

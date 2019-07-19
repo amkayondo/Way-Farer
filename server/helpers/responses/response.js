@@ -6,18 +6,16 @@ const resPonse = {
       error: message,
     });
   },
-  successUser(res, message, statusCode, neededData, token) {
+  successUser(res, statusCode, neededData, token) {
     return res.status(statusCode).json({
       status: statusCode,
-      message,
       data: neededData,
       token,
     });
   },
-  successData(res, message, statusCode, data) {
+  successData(res, statusCode, data) {
     return res.status(statusCode).json({
       status: statusCode,
-      message,
       data,
     });
   },
