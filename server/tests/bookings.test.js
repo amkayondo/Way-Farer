@@ -8,6 +8,7 @@ chai.use(chaiHttp);
 const bookingData = {
   busLicenseNumber: 'UAG34',
   tripDate: '23-12-2019',
+  numberOfSeats: 3,
 };
 
 const user = {
@@ -74,6 +75,7 @@ describe('BOOKINGS TESTS', () => {
       .send({
         busLicenseNumber: 'UAG34223',
         tripDate: '23-12-2019',
+        numberOfSeats: 3,
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -99,6 +101,7 @@ describe('BOOKINGS TESTS', () => {
       .send({
         busLicenseNumber: 'UAG34',
         tripDate: '13-12-2019',
+        numberOfSeats: 3,
       })
       .end((err, res) => {
         expect(res).to.have.status(400);

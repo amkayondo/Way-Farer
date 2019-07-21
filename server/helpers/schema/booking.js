@@ -6,6 +6,8 @@ const JoiD = BaseJoi.extend(Extension);
 const bookingSchema = Joi => Joi.object().keys({
   busLicenseNumber: Joi.string().alphanum().min(3).max(30)
     .required(),
+  numberOfSeats: Joi.number().min(1).max(30)
+    .required(),
   tripDate: JoiD.date().format('MM-MM-YYYY').required(),
 });
 

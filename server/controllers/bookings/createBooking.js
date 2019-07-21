@@ -12,11 +12,12 @@ const createBooking = (req, res) => {
  - match the user with token
 */
   const getUser = jwt.decode(req.headers.authorization);
-  const { busLicenseNumber, tripDate } = req.body;
+  const { busLicenseNumber, tripDate, numberOfSeats } = req.body;
   const bookData = Book.bookindModel(
     uuid.v4(),
     busLicenseNumber,
     tripDate,
+    numberOfSeats,
     getUser.firstName,
     getUser.lastName,
     getUser.email,
