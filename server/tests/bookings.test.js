@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 const bookingData = {
   busLicenseNumber: 'UAG34',
-  tripDate: '2019-12-23',
+  tripDate: '23-12-2019',
 };
 
 const user = {
@@ -22,7 +22,7 @@ const tripData = {
   busLicenseNumber: 'UAG34',
   origin: 'kampala',
   destination: 'kigali',
-  tripDate: '2019-12-23',
+  tripDate: '23-12-2019',
   fare: 20000,
 };
 
@@ -73,7 +73,19 @@ describe('BOOKINGS TESTS', () => {
       .set('Authorization', userToken)
       .send({
         busLicenseNumber: 'UAG34223',
-        tripDate: '2019-12-23',
+        tripDate: '23-12-2019',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
+  it('should return error if a field is missing', (done) => {
+    chai.request(app)
+      .post('/api/v1/bookings')
+      .set('Authorization', userToken)
+      .send({
+        busLicenseNumber: 'UAG34223',
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -86,7 +98,7 @@ describe('BOOKINGS TESTS', () => {
       .set('Authorization', userToken)
       .send({
         busLicenseNumber: 'UAG34',
-        tripDate: '2019-12-01',
+        tripDate: '13-12-2019',
       })
       .end((err, res) => {
         expect(res).to.have.status(400);

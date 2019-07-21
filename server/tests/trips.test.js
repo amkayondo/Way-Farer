@@ -26,7 +26,7 @@ const tripData = {
   busLicenseNumber: 'UGXHD',
   origin: 'kampala',
   destination: 'kigali',
-  tripDate: '2019-12-23',
+  tripDate: '23-12-2019',
   fare: 20000,
 };
 before((done) => {
