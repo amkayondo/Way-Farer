@@ -3,6 +3,8 @@ import { describe, it, before } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
 
+chai.use(chaiHttp);
+
 const user = {
   email: 'admin@app.com',
   password: 'admin123',
@@ -11,7 +13,14 @@ const user = {
 let userToken;
 let notAdminToken;
 let tripId;
-
+before((done) => {
+  chai.request(app)
+    .get('/api/v1/trips')
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+    });
+  done();
+});
 const tripData = {
   seatingCapacity: 50,
   busLicenseNumber: 'UGXHD',
@@ -20,7 +29,6 @@ const tripData = {
   tripDate: '2019-12-23',
   fare: 20000,
 };
-chai.use(chaiHttp);
 before((done) => {
   chai.request(app)
     .post('/api/v1/auth/signin')
@@ -46,6 +54,7 @@ before((done) => {
       done();
     });
 });
+
 before((done) => {
   chai.request(app)
     .get('/api/v1/trips')
@@ -65,6 +74,14 @@ describe('TRIPS TESTS', () => {
         expect(res).to.have.status(201);
         done();
       });
+  });
+  it('should return all trips created ', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+      });
+    done();
   });
   it('should return error if token is Invalid', (done) => {
     chai.request(app)

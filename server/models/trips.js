@@ -30,13 +30,17 @@ const Trip = {
   findTrip(tripInput) {
     return tripDataBase.find(x => x.id === tripInput);
   },
+  findbusLicenseNumber(LicenceInput) {
+    return tripDataBase.find(x => x.busLicenseNumber === LicenceInput);
+  },
+  findTripDate(inputTripDate) {
+    return tripDataBase.find(x => x.tripDate === inputTripDate);
+  },
   findQueryByDestination(query) {
-    const item = tripDataBase.filter(x => x.destination === query);
-    return item;
+    return tripDataBase.filter(x => x.destination === query);
   },
   findQueryByOrigin(oquery) {
-    const item = tripDataBase.filter(x => x.origin === oquery);
-    return item;
+    return tripDataBase.filter(x => x.origin === oquery);
   },
 
 };
