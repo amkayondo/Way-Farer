@@ -10,7 +10,7 @@ const trip = () => Joi => Joi.object().keys({
   origin: Joi.string().alphanum().required()
     .regex(/^[a-zA-Z0-9!@#$%&*]{3,25}$/),
   destination: Joi.string().alphanum().required(),
-  tripDate: JoiD.date().format('YYYY-MM-DD'),
+  tripDate: JoiD.date().format('MM-MM-YYYY'),
   fare: Joi.number().min(5).required(),
 });
 
