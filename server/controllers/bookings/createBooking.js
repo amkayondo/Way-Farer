@@ -5,7 +5,6 @@ import resPonse from '../../helpers/responses/response';
 import Book from '../../models/bookings';
 import bookingSchema from '../../helpers/schema/booking';
 
-
 const createBooking = (req, res) => {
   const getUser = jwt.decode(req.headers.authorization);
   const { busLicenseNumber, tripDate, numberOfSeats } = req.body;
