@@ -94,10 +94,37 @@ before((done) => {
       done();
     });
 });
+before((done) => {
+  chai.request(app)
+    .get('/api/v1/bookings')
+    .set('Authorization', otherUserToken)
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      done();
+    });
+});
+before((done) => {
+  chai.request(app)
+    .get('/api/v1/bookings')
+    .set('Authorization', userToken)
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      done();
+    });
+});
 describe('BOOKINGS TESTS', () => {
   it('should delete a booking', (done) => {
     chai.request(app)
       .delete(`/api/v1/bookings/${bookingId}`)
+      .set('Authorization', userToken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+  it('should return an array of bookings', (done) => {
+    chai.request(app)
+      .get('/api/v1/bookings')
       .set('Authorization', userToken)
       .end((err, res) => {
         expect(res).to.have.status(200);

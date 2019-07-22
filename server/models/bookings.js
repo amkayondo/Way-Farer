@@ -2,7 +2,6 @@ import Trip from './trips';
 
 const bookingDatabase = [];
 const newTrip = Trip;
-
 const Book = {
   bookingDatabase,
   bookindModel(bookingId, userId, busLicenseNumber,
@@ -39,6 +38,9 @@ const Book = {
   },
   checkBookingUser(userid) {
     return bookingDatabase.find(x => x.userId === userid);
+  },
+  getUserBookings(userid) {
+    return bookingDatabase.filter(x => x.userId === userid);
   },
   findBooking(bookid) {
     return bookingDatabase.find(x => x.bookingId === bookid);
