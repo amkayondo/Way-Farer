@@ -7,14 +7,11 @@ import bookingSchema from '../../helpers/schema/booking';
 
 
 const createBooking = (req, res) => {
-/*
- getting user info
- - match the user with token
-*/
   const getUser = jwt.decode(req.headers.authorization);
   const { busLicenseNumber, tripDate, numberOfSeats } = req.body;
   const bookData = Book.bookindModel(
     uuid.v4(),
+    getUser.id,
     busLicenseNumber,
     tripDate,
     numberOfSeats,
@@ -34,7 +31,7 @@ const createBooking = (req, res) => {
       if (foundDate) {
         Book.createNewBooking(bookData);
         const data = bookData;
-        return resPonse.successData(res, 201, data);
+        return resPonse.successData(res, 200, data);
       } resPonse.errorMessage(res, 400, `No trip is available on this date ${tripDate}`);
     } else {
       return resPonse.errorMessage(res, 400, `Bus license number ${busLicenseNumber} doesnt exist`);
