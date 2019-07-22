@@ -5,11 +5,14 @@ const newTrip = Trip;
 
 const Book = {
   bookingDatabase,
-  bookindModel(bookingId, busLicenseNumber, tripDate, firstName, lastName, email) {
+  bookindModel(bookingId, userId, busLicenseNumber,
+    tripDate, numberOfSeats, firstName, lastName, email) {
     return {
       bookingId,
+      userId,
       busLicenseNumber,
       tripDate,
+      numberOfSeats,
       firstName,
       lastName,
       email,
@@ -18,8 +21,10 @@ const Book = {
   createNewBooking(bookingData) {
     const booking = this.bookindModel(
       bookingData.bookingId,
+      bookingData.userId,
       bookingData.busLicenseNumber,
       bookingData.tripDate,
+      bookingData.numberOfSeats,
       bookingData.firstName,
       bookingData.lastName,
       bookingData.email,
@@ -31,6 +36,12 @@ const Book = {
   },
   checkIfTripDateIsValid(Date) {
     return newTrip.findTripDate(Date);
+  },
+  checkBookingUser(userid) {
+    return bookingDatabase.find(x => x.userId === userid);
+  },
+  findBooking(bookid) {
+    return bookingDatabase.find(x => x.bookingId === bookid);
   },
 };
 
