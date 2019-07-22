@@ -10,7 +10,6 @@ before_script:
   - ./cc-test-reporter before-build
 install:
   - npm install
-  - bundle exec rspec
 script:
   - npm run test
 after_success:
