@@ -60,15 +60,15 @@ WayFarer is a public bus transportation booking service.
 
 `- PATCH /trips/<:trip-id>/cancel - Cancel a trip`
 
+`- GET /trips?origin=kigali -Filter trips based on origin.`
+
+`- GET /trips?destination=kampala -Filter trips based on destination.`
+
 `- POST /bookings - Book a seat on a trip`
 
 `- GET /bookings - View all bookings`
 
 `- DELETE /bookings/<:booking-id> - Delete a booking`
-
-`- GET /car?origin=kigali -Filter trips based on origin.`
-
-`- GET /car?destination=kampala -Filter trips based on destination.`
 
 
 ## **Pivotal Tracker Stories**
