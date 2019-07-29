@@ -19,6 +19,12 @@ const resPonse = {
       data,
     });
   },
+  successWithNoData(res, statusCode, message) {
+    return res.status(statusCode).json({
+      status: statusCode,
+      message,
+    });
+  },
 
 };
 module.exports = resPonse;

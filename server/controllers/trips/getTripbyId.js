@@ -6,7 +6,7 @@ const getTripbyId = (req, res) => {
   const foundTrip = Trip.findTrip(inpuT);
   if (foundTrip) {
     return resPonse.successData(res, 200, foundTrip);
-  } resPonse.errorMessage(res, 400, `Not Trip found with Id ${inpuT}`);
+  } resPonse.errorMessage(res, 400, `No Trip found with Id ${inpuT}`);
   return true;
 };
 module.exports = getTripbyId;
