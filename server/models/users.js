@@ -11,23 +11,34 @@ const userDataBase = [
     isAdmin: true,
   },
 ];
+// let firstName;
+// let lastName;
+// let email;
+// let password;
+// let isAdmin;
 // User Model
 const User = {
   userDataBase,
+  // userMeta() {
+  //   return {
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     password,
+  //     isAdmin,
+  //   };
+  // },
   // User data structure
-  userData(id,
-    firstName,
+  userData(id, firstName,
     lastName,
     email,
-    password,
-    isAdmin) {
+    password) {
     return {
       id,
       firstName,
       lastName,
       email,
       password,
-      isAdmin,
     };
   },
 

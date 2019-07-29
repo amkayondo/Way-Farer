@@ -1,817 +1,417 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0",
-      "title": "Way-Farer",
-      "description": "WayFarer is a public bus transportation booking service.",
-      "license": {
-        "name": "ISC",
-        "url": "https://github.com/amkayondo/Way-Farer/"
-      }
-    },
-    "basePath": "/api/v1",
-    "tags": [
-      {
-        "name": "Users",
-        "description": "API for users operation"
-      },
-      {
-        "name": "Cars",
-        "description": "API for Cars"
-      },
-      {
-        "name": "Orders",
-        "description": "API for orders"
-      }
-    ],
-    "schemes": [
-      "https",
-      "http"
-    ],
-    "consumes": [
-      "application/json"
-    ],
-    "produces": [
-      "application/json"
-    ],
-    "paths": {
-      "/auth/signup": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "summary": "Signup a new user",
-          "description": "Create a new user",
-          "parameters": [
-            {
-              "name": "users",
-              "in": "body",
-              "description": "User to be created",
-              "schema": {
-                "$ref": "#/definitions/signup"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "201": {
-              "description": "success: successfully created"
-            },
-            "400": {
-              "description": "Error: invalid input"
-            },
-            "500": {
-              "description": "Server Error"
-            }
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "WayFarer is a public bus transportation booking service.",
+    "version" : "1.0.0",
+    "title" : "Way-Farer",
+    "license" : {
+      "name" : "ISC",
+      "url" : "https://github.com/amkayondo/Way-Farer"
+    }
+  },
+  "host" : "way-fare.herokuapp.com",
+  "basePath" : "/api/v1",
+  "tags" : [ {
+    "name" : "Users",
+    "description" : "API for users operation"
+  }, {
+    "name" : "Trips",
+    "description" : "API for Trips"
+  }, {
+    "name" : "Bookings",
+    "description" : "API for Bookings"
+  } ],
+  "schemes" : [ "https", "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/auth/signup" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Signup a new user",
+        "description" : "Create a new user",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "users",
+          "description" : "User to be created",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/signup"
           }
-        }
-      },
-      "/auth/signin": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "summary": "Login a user",
-          "description": "Login a user",
-          "parameters": [
-            {
-              "name": "users",
-              "in": "body",
-              "description": "User to be signed In",
-              "schema": {
-                "$ref": "#/definitions/signin"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "201": {
-              "description": "success: successfully loged in"
-            },
-            "400": {
-              "description": "Error: invalid input"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/car": {
-        "post": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "Post a car sale ad",
-          "description": "User(seller) can Post a new car",
-          "consumes": [
-            "multipart/form-data"
-          ],
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-  
-            },
-            {
-              "name": "manufacture",
-              "in": "formData",
-              "type": "string",
-              "description": "manufacturer"
-            },
-            {
-              "name": "model",
-              "in": "formData",
-              "type": "string",
-              "description": "model"
-            },
-            {
-              "name": "price",
-              "in": "formData",
-              "type": "integer",
-              "description": "price"
-            },
-            {
-              "name": "state",
-              "in": "formData",
-              "type": "string",
-              "description": "state"
-            },
-            {
-              "name": "body_type",
-              "in": "formData",
-              "type": "string",
-              "description": "body_type"
-            },
-            {
-              "name": "description",
-              "in": "formData",
-              "type": "string",
-              "description": "descriptions"
-            },
-            {
-              "name": "picture",
-              "in": "formData",
-              "type": "file",
-              "description": "file to upload"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "201": {
-              "description": "success: A new car is sucessfully posted"
-            },
-            "400": {
-              "description": "Error: invalid value"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        },
-        "get": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "View cars with the option of available cars within given price range",
-          "description": "User can view cars with the option of available cars within given price range",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":false
-  
-            },
-            {
-              "name": "status",
-              "in": "query",
-              "description": " query parameters",
-              "required":false,
-              "type":"string"
-            },
-            {
-              "name": "min_price",
-              "in": "query",
-              "description": " query parameters",
-              "required":false,
-              "type":"integer"
-            },
-            {
-              "name": "max_price",
-              "in": "query",
-              "description": " query parameters",
-              "required":false,
-              "type":"integer"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-                "description": "success: Successfully retrieve a cars"
-              },
-              "403": {
-                "description": "Error: Forbidden"
-              },
-              "404": {
-                "description": "Error: Car not found"
-              },
-              "500": {
-                "description": "Server Error"
-              }
-          }
-        }
-      },
-      "/car/{id}": {
-        "get": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "View a specific car",
-          "description": "User can view a specific car",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": " Car Id",
-              "required":true,
-              "type":"integer"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-                "description": "success: Successfully retrieve a car"
-              },
-              "403": {
-                "description": "Error: Forbidden"
-              },
-              "404": {
-                "description": "Error: Car not found"
-              },
-              "500": {
-                "description": "Server Error"
-              }
-          }
-        },
-        "delete": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "Delete a specific car",
-          "description": "Admin can delete a specific car",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-              
-            },
-            {
-              "name": "id",
-              "in": "path",
-              "description": " Car Id",
-              "required":true,
-              "type":"integer"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-                "description": "success: Ad Successfully deleted"
-              },
-              "403": {
-                "description": "Error: Forbidden"
-              },
-              "404": {
-                "description": "Error: Car not found"
-              },
-              "500": {
-                "description": "Server Error"
-              }
-          }
-        }
-      },
-      "/car/{id}/status": {
-        "patch": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "mark a posted car ad as sold",
-          "description": "seller can mark a posted ad as sold",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-              
-            },
-            {
-              "name":"id",
-              "in": "path",
-              "description" :"car id",
-              "required":true,
-              "type":"integer"  
-            },
-            {
-              "name": "new status of car posted",
-              "in": "body",
-              "schema": {
-                "$ref": "#/definitions/markAsSold"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "success: car succesfully marked as sold"
-            },
-            "400": {
-              "description": "Error: invalid value"
-            },
-            "403": {
-              "description": "Error: Forbidden"
-            },
-            "404": {
-              "description": "Error: car not found"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/car/{id}/price": {
-        "patch": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "Update the price of posted car Ad",
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-  
-            },
-            {
-              "name": "id",
-              "in": "path",
-              "description": "car id",
-              "required":true,
-              "type":"integer"
-            },
-            {
-              "name": "new status of car posted",
-              "in": "body",
-              "schema": {
-                "$ref": "#/definitions/updatePrice"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "success: Successfully car price updated"
-            },
-            "404": {
-              "description": "Error: Car not found"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "403": {
-              "description": "Error: Forbidden"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/car/flag": {
-        "post": {
-          "tags": [
-            "Cars"
-          ],
-          "summary": "Report a car",
-          "description": "User can be able to report a car",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-  
-            },
-            {
-              "name": "Report a car",
-              "in": "body",
-              "description": "Report a car as fraud",
-              "schema": {
-                "$ref": "#/definitions/fraud"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "201": {
-              "description": "success: Order created Successfully"
-            },
-            "400": {
-              "description": "Error: invalid value"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/order": {
-        "post": {
-          "tags": [
-            "Orders"
-          ],
-          "summary": "Make an order",
-          "description": "Buyer can make purchase order",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-            },
-            {
-              "name": "purchase order",
-              "in": "body",
-              "description": "Details of a purchase order",
-              "schema": {
-                "$ref": "#/definitions/order"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "201": {
-              "description": "success: Order created Successfully"
-            },
-            "400": {
-              "description": "Error: invalid value"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "403": {
-              "description": "Error: Forbidden"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/order/{id}/price": {
-        "patch": {
-          "tags": [
-            "Orders"
-          ],
-          "summary": "update the price of purchase order",
-          "description": "Buyer can update the price of purchase order",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-            },
-            {
-              "name": "id",
-              "in": "path",
-              "description": "order id",
-              "required":true,
-              "type":"integer"
-            },
-            {
-              "name": "new price offered",
-              "in": "body",
-              "schema": {
-                "$ref": "#/definitions/updateOrder"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "success: Order price is sucessfully updated"
-            },
-            "400": {
-              "description": "Error: invalid value"
-            },
-            "404": {
-              "description": "Error: order not found"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "403": {
-              "description": "Error: Forbidden"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/auth/admin": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "summary": "Admin craete other new admin",
-          "description": "Create a new Admin",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The admin token",
-              "required":true
-            },
-            {
-              "name": "users",
-              "in": "body",
-              "description": "admin to be created",
-              "schema": {
-                "$ref": "#/definitions/signup"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "201": {
-              "description": "success: successfully created"
-            },
-            "400": {
-              "description": "Error: invalid input"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "403": {
-              "description": "Error: Forbidden"
-            },
-            "500": {
-              "description": "Server Error"
-            }
-          }
-        }
-      },
-      "/auth/{email}/resetpassword": {
-        "put": {
-          "tags": [
-            "Users"
-          ],
-          "summary": "Reset the password",
-          "description": "User should reset password",
-          "parameters": [
-            {
-              "name":"Authorization",
-              "in": "header",
-              "description" :"The user token",
-              "required":true
-            },
-            {
-              "name":"email",
-              "in": "path",
-              "description" :"your email",
-              "required":true,
-              "type":"string"  
-            },
-            {
-              "name": "New Password",
-              "in": "body",
-              "schema": {
-                "$ref": "#/definitions/resetPassword"
-              }
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "success: Order price is sucessfully updated"
-            },
-            "400": {
-              "description": "Error: invalid value"
-            },
-            "404": {
-              "description": "Error: order not found"
-            },
-            "401": {
-              "description": "Error: Authentication failed"
-            },
-            "403": {
-              "description": "Error: Forbidden"
-            },
-            "500": {
-              "description": "Server Error"
-            }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: successfully created"
+          },
+          "400" : {
+            "description" : "Error: invalid input"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
       }
     },
-    
-    
-    "definitions": {
-      "signup": {
-        "required": [
-          "first_name",
-          "last_name",
-          "email",
-          "password",
-          "address"
-        ],
-        "type": "object",
-        "properties": {
-          "first_name": {
-            "type": "string"
+    "/auth/signin" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Login a user",
+        "description" : "Login a user",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "users",
+          "description" : "User to be signed In",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/signin"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: successfully loged in"
           },
-          "last_name": {
-            "type": "string"
+          "400" : {
+            "description" : "Error: invalid input"
           },
-          "email": {
-            "type": "string"
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/trips" : {
+      "get" : {
+        "tags" : [ "Trips" ],
+        "summary" : "View trips with the option of available trips within given price range",
+        "description" : "User can view trips by origin",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "origin",
+          "in" : "query",
+          "description" : " query parameters",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "destination",
+          "in" : "query",
+          "description" : " query parameters",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: Successfully retrieve a trips"
           },
-          "password": {
-            "type": "string"
+          "403" : {
+            "description" : "Error: Forbidden"
           },
-          "address": {
-            "type": "string"
+          "404" : {
+            "description" : "Error: Trip not found"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
       },
-      "signin": {
-        "required": [
-          "email",
-          "password"
-        ],
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
+      "post" : {
+        "tags" : [ "Trips" ],
+        "summary" : "Post a trip sale ad",
+        "description" : "User(seller) can Post a new trip",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "seatingCapacity",
+          "in" : "formData",
+          "description" : "seatingCapacity",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "busLicenseNumber",
+          "in" : "formData",
+          "description" : "busLicenseNumber",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "origin",
+          "in" : "formData",
+          "description" : "origin",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "destination",
+          "in" : "formData",
+          "description" : "destination",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fare",
+          "in" : "formData",
+          "description" : "fare",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "tripDate",
+          "in" : "formData",
+          "description" : "tripDate",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: A new trip is sucessfully posted"
           },
-          "password": {
-            "type": "string"
+          "400" : {
+            "description" : "Error: invalid value"
+          },
+          "401" : {
+            "description" : "Error: Authentication failed"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
-      },
-      "resetPassword": {
-        "required": [
-          "password"
-        ],
-        "properties": {
-          "password": {
-            "type": "string"
+      }
+    },
+    "/trips/{TripId}" : {
+      "get" : {
+        "tags" : [ "Trips" ],
+        "summary" : "View a specific trip",
+        "description" : "User can view a specific trip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "TripId",
+          "in" : "path",
+          "description" : "Trip Id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: Successfully retrieve a trip"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "404" : {
+            "description" : "Error: Trip not found"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
-      },
-      "carData": {
-        "required": [
-          "owner",
-          "manufacture",
-          "model",
-          "price",
-          "state",
-          "body_type",
-          "descriptions"
-        ],
-        "type": "object",
-        "properties": {
-          "owner": {
-            "type": "integer"
+      }
+    },
+    "/trips/{TripId}/cancel" : {
+      "patch" : {
+        "tags" : [ "Trips" ],
+        "summary" : "cancel a giben trip by Id",
+        "description" : "admin can cancel a trip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TripId",
+          "in" : "path",
+          "description" : "TripId",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: trip succesfully marked as sold"
           },
-          "manufacture": {
-            "type": "string"
+          "400" : {
+            "description" : "Error: invalid value"
           },
-          "model": {
-            "type": "string"
+          "401" : {
+            "description" : "Error: Authentication failed"
           },
-          "price": {
-            "type": "integer"
+          "403" : {
+            "description" : "Error: Forbidden"
           },
-          "state": {
-            "type": "string"
+          "404" : {
+            "description" : "Error: trip not found"
           },
-          "body_type": {
-            "type": "string"
-          },
-          "descriptions": {
-            "type": "string"
+          "500" : {
+            "description" : "Server Error"
           }
         }
-      },
-      "order": {
-        "required": [
-          "car_id",
-          "amount"
-        ],
-        "type": "object",
-        "properties": {
-          "car_id": {
-            "type": "integer"
+      }
+    },
+    "/bookings" : {
+      "post" : {
+        "tags" : [ "Bookings" ],
+        "summary" : "Make an bookings",
+        "description" : "Buyer can make purchase bookings",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "busLicenseNumber",
+          "in" : "formData",
+          "description" : "busLicenseNumber",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tripDate",
+          "in" : "formData",
+          "description" : "tripDate",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numberOfSeats",
+          "in" : "formData",
+          "description" : "numberOfSeats",
+          "required" : false,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: Order created Successfully"
           },
-          "amount": {
-            "type": "integer"
-          }
-        }
-      },
-      "fraud": {
-        "required": [
-          "car_id",
-          "reason",
-          "description"
-        ],
-        "type": "object",
-        "properties": {
-          "car_id": {
-            "type": "integer"
+          "400" : {
+            "description" : "Error: invalid value"
           },
-          "reason": {
-            "type": "string"
+          "401" : {
+            "description" : "Error: Authentication failed"
           },
-          "description": {
-            "type": "string"
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
-      },
-      "updateOrder": {
-        "required": [
-          "price"
-        ],
-        "properties": {
-          "price": {
-            "type": "integer"
-          }
-        }
-      },
-      "markAsSold": {
-        "required": [
-          "status"
-        ],
-        "properties": {
-          "status": {
-            "type": "string"
-          }
-        }
-      },
-      "updatePrice": {
-        "required": [
-          "price"
-        ],
-        "properties": {
-          "price": {
-            "type": "integer"
+      }
+    },
+    "/bookings/{bookingId}" : {
+      "delete" : {
+        "tags" : [ "Bookings" ],
+        "summary" : "update the price of purchase bookings",
+        "description" : "user can delete a booking",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bookingId",
+          "in" : "path",
+          "description" : "Booking id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: Order  sucessfully deleted"
+          },
+          "400" : {
+            "description" : "Error: invalid value"
+          },
+          "401" : {
+            "description" : "Error: Authentication failed"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "404" : {
+            "description" : "Error: booking not found"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
       }
     }
+  },
+  "definitions" : {
+    "signup" : {
+      "type" : "object",
+      "required" : [ "email", "first_name", "last_name", "password" ],
+      "properties" : {
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "signin" : {
+      "type" : "object",
+      "required" : [ "email", "password" ],
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "tripData" : {
+      "type" : "object",
+      "required" : [ "busLicenseNumber", "destination", "fare", "origin", "seatingCapacity", "tripDate" ],
+      "properties" : {
+        "seatingCapacity" : {
+          "type" : "integer"
+        },
+        "busLicenseNumber" : {
+          "type" : "string"
+        },
+        "origin" : {
+          "type" : "string"
+        },
+        "destination" : {
+          "type" : "integer"
+        },
+        "fare" : {
+          "type" : "string"
+        },
+        "tripDate" : {
+          "type" : "string"
+        }
+      }
+    },
+    "bookings" : {
+      "type" : "object",
+      "required" : [ "busLicenseNumber", "numberOfSeats", "tripDate" ],
+      "properties" : {
+        "busLicenseNumber" : {
+          "type" : "string"
+        },
+        "tripDate" : {
+          "type" : "integer"
+        },
+        "numberOfSeats" : {
+          "type" : "integer"
+        }
+      }
+    }
   }
-  
+}
