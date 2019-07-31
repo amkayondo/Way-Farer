@@ -1,0 +1,417 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "WayFarer is a public bus transportation booking service.",
+    "version" : "1.0.0",
+    "title" : "Way-Farer",
+    "license" : {
+      "name" : "ISC",
+      "url" : "https://github.com/amkayondo/Way-Farer"
+    }
+  },
+  "host" : "way-fare.herokuapp.com",
+  "basePath" : "/api/v1",
+  "tags" : [ {
+    "name" : "Users",
+    "description" : "API for users operation"
+  }, {
+    "name" : "Trips",
+    "description" : "API for Trips"
+  }, {
+    "name" : "Bookings",
+    "description" : "API for Bookings"
+  } ],
+  "schemes" : [ "https", "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/auth/signup" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Signup a new user",
+        "description" : "Create a new user",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "users",
+          "description" : "User to be created",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/signup"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: successfully created"
+          },
+          "400" : {
+            "description" : "Error: invalid input"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/auth/signin" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Login a user",
+        "description" : "Login a user",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "users",
+          "description" : "User to be signed In",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/signin"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: successfully loged in"
+          },
+          "400" : {
+            "description" : "Error: invalid input"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/trips" : {
+      "get" : {
+        "tags" : [ "Trips" ],
+        "summary" : "View trips with the option of available trips within given price range",
+        "description" : "User can view trips by origin",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "origin",
+          "in" : "query",
+          "description" : " query parameters",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "destination",
+          "in" : "query",
+          "description" : " query parameters",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: Successfully retrieve a trips"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "404" : {
+            "description" : "Error: Trip not found"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Trips" ],
+        "summary" : "Post a trip sale ad",
+        "description" : "User(seller) can Post a new trip",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "seatingCapacity",
+          "in" : "formData",
+          "description" : "seatingCapacity",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "busLicenseNumber",
+          "in" : "formData",
+          "description" : "busLicenseNumber",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "origin",
+          "in" : "formData",
+          "description" : "origin",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "destination",
+          "in" : "formData",
+          "description" : "destination",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fare",
+          "in" : "formData",
+          "description" : "fare",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "tripDate",
+          "in" : "formData",
+          "description" : "tripDate",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: A new trip is sucessfully posted"
+          },
+          "400" : {
+            "description" : "Error: invalid value"
+          },
+          "401" : {
+            "description" : "Error: Authentication failed"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/trips/{TripId}" : {
+      "get" : {
+        "tags" : [ "Trips" ],
+        "summary" : "View a specific trip",
+        "description" : "User can view a specific trip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "TripId",
+          "in" : "path",
+          "description" : "Trip Id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: Successfully retrieve a trip"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "404" : {
+            "description" : "Error: Trip not found"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/trips/{TripId}/cancel" : {
+      "patch" : {
+        "tags" : [ "Trips" ],
+        "summary" : "cancel a giben trip by Id",
+        "description" : "admin can cancel a trip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TripId",
+          "in" : "path",
+          "description" : "TripId",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: trip succesfully marked as sold"
+          },
+          "400" : {
+            "description" : "Error: invalid value"
+          },
+          "401" : {
+            "description" : "Error: Authentication failed"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "404" : {
+            "description" : "Error: trip not found"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/bookings" : {
+      "post" : {
+        "tags" : [ "Bookings" ],
+        "summary" : "Make an bookings",
+        "description" : "Buyer can make purchase bookings",
+        "consumes" : [ "application/x-www-form-urlencoded" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "busLicenseNumber",
+          "in" : "formData",
+          "description" : "busLicenseNumber",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tripDate",
+          "in" : "formData",
+          "description" : "tripDate",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numberOfSeats",
+          "in" : "formData",
+          "description" : "numberOfSeats",
+          "required" : false,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success: Order created Successfully"
+          },
+          "400" : {
+            "description" : "Error: invalid value"
+          },
+          "401" : {
+            "description" : "Error: Authentication failed"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/bookings/{bookingId}" : {
+      "delete" : {
+        "tags" : [ "Bookings" ],
+        "summary" : "update the price of purchase bookings",
+        "description" : "user can delete a booking",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "The user token",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "bookingId",
+          "in" : "path",
+          "description" : "Booking id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "success: Order  sucessfully deleted"
+          },
+          "400" : {
+            "description" : "Error: invalid value"
+          },
+          "401" : {
+            "description" : "Error: Authentication failed"
+          },
+          "403" : {
+            "description" : "Error: Forbidden"
+          },
+          "404" : {
+            "description" : "Error: booking not found"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "signup" : {
+      "type" : "object",
+      "required" : [ "email", "first_name", "last_name", "password" ],
+      "properties" : {
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "signin" : {
+      "type" : "object",
+      "required" : [ "email", "password" ],
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "tripData" : {
+      "type" : "object",
+      "required" : [ "busLicenseNumber", "destination", "fare", "origin", "seatingCapacity", "tripDate" ],
+      "properties" : {
+        "seatingCapacity" : {
+          "type" : "integer"
+        },
+        "busLicenseNumber" : {
+          "type" : "string"
+        },
+        "origin" : {
+          "type" : "string"
+        },
+        "destination" : {
+          "type" : "integer"
+        },
+        "fare" : {
+          "type" : "string"
+        },
+        "tripDate" : {
+          "type" : "string"
+        }
+      }
+    },
+    "bookings" : {
+      "type" : "object",
+      "required" : [ "busLicenseNumber", "numberOfSeats", "tripDate" ],
+      "properties" : {
+        "busLicenseNumber" : {
+          "type" : "string"
+        },
+        "tripDate" : {
+          "type" : "integer"
+        },
+        "numberOfSeats" : {
+          "type" : "integer"
+        }
+      }
+    }
+  }
+}

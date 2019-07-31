@@ -45,3 +45,14 @@ a {
     font-size: 21px;
     font-weight: 900;
 }
+.nxbtn {
+    background: #efefef;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 10px;
+    text-decoration: none;
+    padding-left: 18px;
+    padding-right: 18px;
+    color: black;
+    font-weight: 900;
+}
