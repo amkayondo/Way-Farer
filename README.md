@@ -87,9 +87,9 @@ WayFarer is a public bus transportation booking service.
 
 [https://amkayondo.github.io/Way-Farer/UI/](https://amkayondo.github.io/Way-Farer/UI/)
 
-## **API link**
+## **API DICUMENTATON**
 
-[https://way-fare.herokuapp.com/](https://way-fare.herokuapp.com/)
+[https://way-fare.herokuapp.com/docs](https://way-fare.herokuapp.com/docs)
 
 # **Author**
 
