@@ -27,7 +27,7 @@ const tripData = {
   origin: 'kampala',
   destination: 'kigali',
   tripDate: '23-12-2019',
-  fare: 20000,
+  fare: 30000,
 };
 before((done) => {
   chai.request(app)

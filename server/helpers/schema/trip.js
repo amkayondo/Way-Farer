@@ -13,7 +13,7 @@ const trip = () => Joi => Joi.object().keys({
     .regex(/^[a-zA-Z0-9!@#$%&*]{3,25}$/),
   destination: Joi.string().alphanum().required(),
   tripDate: JoiD.date().format('MM-MM-YYYY'),
-  fare: Joi.number().min(35000).max(70000).required(),
+  fare: Joi.number().min(30000).max(70000).required(),
 });
 
 const tripSchema = trip();
