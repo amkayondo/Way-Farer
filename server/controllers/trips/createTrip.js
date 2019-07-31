@@ -17,6 +17,7 @@ const createTrip = (req, res) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
     }
+    
     Trip.creatAtrip(data);
     resPonse.successData(res, 201, data);
     return true;
