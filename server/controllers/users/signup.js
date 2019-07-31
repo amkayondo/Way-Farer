@@ -18,12 +18,9 @@ const signUp = (req, res) => {
     req.body.password,
     false,
   );
-
   const payload = data;
-
   const inputData = req.body;
   const schema = signUpSchema(Joi);
-
   Joi.validate(inputData, schema, (error) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));

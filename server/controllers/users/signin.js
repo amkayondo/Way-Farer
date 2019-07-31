@@ -16,12 +16,15 @@ const signIn = (req, res) => {
     const payld = payLoad(
       userExists.id, userExists.firstName, userExists.lastName,
       userExists.email, userExists.password, userExists.isAdmin,
+      userExists.isLoggedin,
     );
     const data = showData(payld);
     const token = createToken(payld);
     if (!(userExists.password === req.body.password.trim())) return resPonse.errorMessage(res, 400, 'Incorrect Password');
     res.header('Authorization', token);
-    return resPonse.successUser(res, 200, data, token);
+    return (
+      resPonse.successUser(res, 200, data, token)
+    );
   });
 };
 
