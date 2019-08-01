@@ -14,7 +14,7 @@ logedIn.innerHTML = `
 </div>
 <div id="uspdd">
     <div class="ksfnk">
-        <a href="#" class="a--urc"><div class="sght">Item</div></a>
+        <a href="./admin" class="a--urc"><div class="sght">Admin Dashboard</div></a>
         <a href="./index.html" class="a--urc"><div class="sght">Logout</div></a>
 </div>
 </div>

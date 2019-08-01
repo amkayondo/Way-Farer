@@ -1,0 +1,18 @@
+div#mbadctn {
+    margin-top: 123px;
+}
+
+.dvg {
+    background: #00ff68;
+    margin-top: 13px;
+    height: 82px;
+    text-align: center;
+    font-size: 33px;
+    font-weight: 900;
+    padding-top: 29px;
+    width: 100%;
+}
+
+.dvg.ntps {
+    background: gainsboro;
+}

@@ -61,3 +61,5 @@ typings/
 .next
 
 # User defined
+.vscode/
+dev/
