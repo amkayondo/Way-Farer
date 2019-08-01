@@ -8,7 +8,7 @@ const loggedIn = (_div) => {
 // Not loggedin nav
 notLogedin.innerHTML = `
 <a href="index.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
-<div class="nltt">Way-Farer</div>
+<div class="nltt">Way Farer</div>
 </a>
 <ul class="ncv">
 <li class="sjd"><a href="#" class="nv-a active">Trips available</a></li>
