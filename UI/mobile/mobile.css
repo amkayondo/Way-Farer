@@ -2,13 +2,14 @@
 
     --responsive: calc((var(--min-font) * 1px) + (var(--max-font) - var(--min-font)) * ((100vw - 420px) / (1200 - 420))); 
     
-    }
+}
     .mblnv {
         background: #ffffff;
         height: 102px;
         position: fixed;
         width: 100%;
         box-shadow: 0 0 4px #828282;
+        top: 0;
     }
     
     .mbtp {
@@ -182,12 +183,12 @@ img.mbusrda-img {
     margin-right: 8px;
 }
 .dshes {
-    top: 145px;
+    top: 216px;
     position: absolute;
     margin-left: 2px;
     border: 0;
     border-left: 1px dashed #000000;
-    padding-bottom: 19%;
+    padding-bottom: 26%;
     margin-bottom: -192%;
     float: left;
     width: 2%;
@@ -213,14 +214,14 @@ img.mbusrda-img {
 }
 .oh {
     overflow: hidden;
-    height: 86px;
+    height: 87px;
 }
 
 .mbbd--ctn {
     background: #00ffa161;
     width: -webkit-fill-available;
     padding: 10px;
-    margin-top: 14px;
+    margin-top: 25px;
     height: 142px;
 }
 
@@ -265,4 +266,47 @@ div#faaremb {
     padding-left: 19px;
     padding-right: 30px;
     padding: 7px;
+}
+
+.mbset--lb {
+    margin-left: 8px;
+    margin-top: 21px;
+}
+
+button.btn.--mbbk.cnl {
+    background: red;
+    color: #fff;
+}
+
+.mbftp {
+    z-index: -1;
+    display: block;
+    margin: 10.2em auto;
+}
+
+.inypt {
+    display: block;
+    margin: 1.2em auto;
+}
+
+.inypt {border-radius: 18px;}
+
+input.btn.inypt {
+    width: 298px;
+}
+
+input.inypt {
+    padding-left: 16px;
+    text-transform: lowercase;
+}
+
+button.btn.inypt {
+    width: 295px;
+    margin-top: 22px;
+}
+
+.tpjg {
+    font-size: 41px;
+    font-weight: 900;
+    margin-left: 32px;
 }
