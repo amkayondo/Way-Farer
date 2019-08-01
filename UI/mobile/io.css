@@ -1,0 +1,30 @@
+#ontuop {
+    background: #7171714f;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.nfdsd {
+    width: -webkit-fill-available;
+    height: 32%;
+    background: #fff;
+    border-radius: 40px;
+    position: absolute;
+    bottom: 12px;
+    padding-top: 14px;
+    box-shadow: 0 0 1px #4e4d4d;
+}
+
+.ert {
+    display: block;
+    margin: 1.2em auto;
+    text-align: center;
+    padding-top: 13px;
+    border-radius: 12px;
+}
+
+a.btn.ert.canl {
+    background: #9e9e9e;
+    color: #fff;
+}
