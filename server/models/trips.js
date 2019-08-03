@@ -1,27 +1,13 @@
+/* eslint-disable object-property-newline */
 // Tips database
 const tripDataBase = [];
 // Trips Model
 const Trip = {
   tripDataBase,
-  tripData(
-    id, // Integer
-    seatingCapacity,
-    busLicenseNumber,
-    origin, // starting location
-    destination,
-    tripDate,
-    fare,
-    status, // active, cancelled - default is active
-  ) {
+  tripData(id, seatingCapacity, busLicenseNumber, origin, destination, tripDate, fare, status) {
     return {
-      id,
-      seatingCapacity,
-      busLicenseNumber,
-      origin,
-      destination,
-      tripDate,
-      fare,
-      status,
+      id, seatingCapacity, busLicenseNumber,
+      origin, destination, tripDate, fare, status,
     };
   },
   creatAtrip(tripData) {

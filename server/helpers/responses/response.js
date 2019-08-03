@@ -1,9 +1,9 @@
 // Responses
 const resPonse = {
-  errorMessage(res, statusCode, message) {
+  errorMessage(res, statusCode, error) {
     return res.status(statusCode).json({
       status: statusCode,
-      error: message,
+      error,
     });
   },
   successUser(res, statusCode, neededData, token) {
