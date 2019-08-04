@@ -75,8 +75,7 @@ button.btn.sig.in {
 button.btn.sig.up {
     background: #84f788;
 }
-.hmpbg{
-}
+
 
 .hmpbg {
     height: 244px;
@@ -122,7 +121,7 @@ tr#tp--itm {
 .tps--lst {
     width: fit-content;
     margin-left: 107px;
-    margin-top: 20px;
+    margin-top: -8px;
 }
 
 button.bk--st {
@@ -148,11 +147,6 @@ td.t--dt {
     padding-top: 14px;
 }
 
-#ntp--cnt {
-    padding: 12px;
-    border: 1px solid;
-    border-radius: 9px;
-}
 
 .fil--tp {
     position: absolute;
@@ -705,7 +699,8 @@ button#ldmore {
 }
 
 button.bk--st.ksd {
-    background: #dddddd;
+    background:
+     #dddddd;
     border: 0px;
 }
 
@@ -805,4 +800,57 @@ div#admsbr {
 .admsdbrms {
     margin-top: 120px;
     margin-left: 14px;
+}
+.tpodf {
+    margin-left: 30px;
+    margin-top: 18px;
+}
+.tpodf {
+    background: white;
+    width: 206px;
+    height: 218px;
+    padding: 14px;
+    border-radius: 11px;
+    box-shadow: 0 0 4px dimgrey;
+    padding-bottom: 16px;
+}
+
+.busbim {
+    background: #11d484;
+    height: 168px;
+    width: auto;
+    border-radius: 6px;
+}
+
+div#tpod {
+    margin-top: 4px;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+div#dte {
+    margin-top: 5px;
+    font-weight: 900;
+    background-color: #6bff8a;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#ntp--cnt {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    width: fit-content;
+}
+
+.tpodf:hover {
+    background: #f5ecec;
+}
+
+.busbim {
+    background: url(../images/tpv.gif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

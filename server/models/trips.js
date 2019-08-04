@@ -1,4 +1,3 @@
-/* eslint-disable object-property-newline */
 // Tips database
 const tripDataBase = [];
 // Trips Model
@@ -6,8 +5,14 @@ const Trip = {
   tripDataBase,
   tripData(id, seatingCapacity, busLicenseNumber, origin, destination, tripDate, fare, status) {
     return {
-      id, seatingCapacity, busLicenseNumber,
-      origin, destination, tripDate, fare, status,
+      id,
+      seatingCapacity,
+      busLicenseNumber,
+      origin,
+      destination,
+      tripDate,
+      fare,
+      status,
     };
   },
   creatAtrip(tripData) {

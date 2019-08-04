@@ -14,10 +14,10 @@ const createBooking = (req, res) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
     }
-    if (!(Book.checkIfTripExists(bookData.busLicenseNumber))) {
+    if (!(Book.checkIfTripExists(busLicenseNumber))) {
       return resPonse.errorMessage(res, 400, `Bus license number ${busLicenseNumber} doesnt exist`);
     }
-    if (Book.checkIfTripDateIsValid(bookData.tripDate)) {
+    if (Book.checkIfTripDateIsValid(tripDate)) {
       Book.createNewBooking(bookData); return resPonse.successData(res, 200, bookData);
     } resPonse.errorMessage(res, 400, `No trip is available on this date ${tripDate}`);
     return true;
