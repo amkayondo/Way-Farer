@@ -29,26 +29,12 @@ const tpst = `    <td class="t--hd">Bus</td>
 <td class="t--hd">Book seats</td>
 </tr>`
 
-const trpsx = `<tr id="tp--itm">
-<td class="t--dt"><a href="./trip.html">UG 203FT</a></td>
-<td class="t--dt">Kampala</td>
-<td class="t--dt">Kigali</td>
-<td class="t--dt">3 Sept, 2019</td>
-<td class="t--dt">UGX 40000</td>
-<td class="t--dt">active</td>
-<td class="t--dt">
- <a href="./signin.html">
-     <button class="bk--st">BOOK SEATS</button>
- </a></td>
-</tr>`
+const dta = ` <a href="./login.html"><div class="tpodf">
+<div class="busbim"></div>
+<div id="tpod">Kigali to Kampala</div>
+<div id="dte">Sat 23/Sept/2019</div>
+</div></a>`
 
 notLtrips.innerHTML = `
-<table class="tp--lst">
-               <tr class="tp--thd">
-            ${tpst}
-               <!-- Not logged in trips -->
-            ${trpsx}
-            ${trpsx}
-            ${trpsx}
-           </table>
+        ${dta}${dta}${dta}${dta}${dta}${dta}
 `
