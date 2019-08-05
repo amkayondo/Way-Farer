@@ -26,11 +26,11 @@ img.si-img {
 
 form#su-f {
     width: 648px;
-    position: absolute;
     left: 50%;
-    margin-left: -346px;
+    margin-left: auto;
     margin-top: 5px;
     padding: 13px;
+    margin-right: auto;
 }
 
 .su-ti {
@@ -42,9 +42,8 @@ form#su-f {
 }
 
 a.a-su {
-    margin-left: -154px;
-    position: fixed;
-    margin-top: 231px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input#snup {
@@ -84,7 +83,7 @@ input#password {
 
 input#snup {
     margin-top: 13px;
-    margin-left: 35px;
+    margin-left: auto;
     width: 327px;
     border-radius: 7px;
 }
@@ -96,4 +95,12 @@ button.btn {
 
 .sgtp {
     margin-top: 33px;
+}
+
+input#snup:hover {
+    background: #0aefab;
+}
+
+button.btn:hover {
+    background: white;
 }

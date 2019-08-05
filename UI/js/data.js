@@ -21,7 +21,7 @@ singtrip.innerHTML = `
 <td class="t--dt">UGX 40000</td>
 <td class="t--dt">active</td>
 <td class="t--dt">
- <a href="./signin.html">
+ <a href="./book.html">
      <button class="bk--st">BOOK SEATS</button>
  </a></td>
 </tr>

@@ -29,7 +29,7 @@ const tpst = `    <td class="t--hd">Bus</td>
 <td class="t--hd">Book seats</td>
 </tr>`
 
-const dta = ` <a href="./login.html"><div class="tpodf">
+const dta = ` <a href="./signin.html"><div class="tpodf">
 <div class="busbim"></div>
 <div id="tpod">Kigali to Kampala</div>
 <div id="dte">Sat 23/Sept/2019</div>
