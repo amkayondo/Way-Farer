@@ -118,7 +118,7 @@ span.-jks {
     text-align: center;
 }
 
-tr.tp--thd {font-size: 23px;font-family: app_font;font-weight: 900;}
+tr.tp--thd {font-size: 16px;font-family: app_font;font-weight: 900;}
 
 tr#tp--itm {
     font-size: 23px;
@@ -153,8 +153,11 @@ td.t--hd {
 }
 
 td.t--dt {
-    padding-left: 22px;
+    padding-left: 20px;
     padding-top: 14px;
+    padding-right: 20px;
+    padding-bottom: 13px;
+    background: #e0dfdf;
 }
 
 
@@ -689,7 +692,7 @@ button.-bth {
 
 .nksd {
     margin-top: 87px;
-    margin-left: auto;
+    margin-left: 149px;
     margin-right: auto;
 }
 
@@ -721,8 +724,7 @@ button#ldmore {
 }
 
 button.bk--st.ksd {
-    background:
-     #dddddd;
+    background: #fff;
     border: 0px;
 }
 
@@ -772,11 +774,14 @@ button.bk--st.ksd {
     position: fixed;
     border-right: 1px solid #808080c2;
     top: 0;
+    background: #fff;
+    z-index: 1;
 }
 
 .tp--ntl {
     margin-left: auto;
     margin-top: -117px;
+    padding-bottom: 13px;
 }
 
 .crth.slfk {
@@ -886,7 +891,7 @@ button:hover {
 }
 
 .tofds.skdfad {
-    width: 852px;
+    width: 959px;
     margin-left: auto;
     margin-top: 20px;
     margin-right: auto;
@@ -901,4 +906,26 @@ button.bk--st.ksd:hover {
 
 button#flt--btn:hover {
     background: #6bff8a;
+}
+
+div#ksdajd {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    width: fit-content;
+}
+
+table.tp--lst {
+    background: #fff;
+}
+
+.dktpft {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding-top: 12px;
+    height: 56px;
+    bottom: 0;
+    font-size: 20px;
+    font-weight: 900;
 }

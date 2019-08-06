@@ -16,7 +16,7 @@ adminNav.innerHTML = `
 <div id="uspdd">
       <div class="ksfnk">
         <a href="#" class="a--urc"><div class="sght">Item</div></a>
-        <a href="../index.html" class="a--urc"><div class="sght">Logout</div></a>
+        <a href="./adminSignin.html" class="a--urc"><div class="sght">Logout</div></a>
     </div>
 </div>
 </div>

@@ -18,7 +18,7 @@ const createBooking = (req, res) => {
       return resPonse.errorMessage(res, 400, `Bus license number ${busLicenseNumber} doesnt exist`);
     }
     if (Book.checkIfTripDateIsValid(tripDate)) {
-      Book.createNewBooking(bookData); return resPonse.successData(res, 200, bookData);
+      Book.createNewBooking(bookData); return resPonse.successData(res, 201, bookData);
     } resPonse.errorMessage(res, 400, `No trip is available on this date ${tripDate}`);
     return true;
   });

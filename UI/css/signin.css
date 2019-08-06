@@ -38,6 +38,8 @@ img.lg-img {
     font-family: app_font;
     font-weight: 900;
     color: #fff;
+    width: 100%;
+    margin-left: -10px;
 }
 
 a.a-lg {
@@ -69,18 +71,18 @@ input#lgn {
 
 input#email {
     margin-top: 13px;
-    width: 318px;
+    width: 343px;
 }
 
 input#password {
     margin-top: 13px;
     margin-left: 1px;
-    width: 319px;
+    width: 343px;
 }
 
 input#lgn {
     margin-top: 13px;
-    width: 321px;
+    width: 343px;
 }
 
 
@@ -94,11 +96,10 @@ input#lgn:hover {
     border: 1px solid;
 }
 
-button.btn {}
 
 button.btn {
     background: azure;
-    width: 324px;
-    margin-top: 13px;
-    margin-left: -9px;
+    width: 343px;
+    margin-top: auto;
+    margin-left: -18px;
 }
