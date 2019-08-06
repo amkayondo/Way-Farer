@@ -79,6 +79,7 @@ button.btn.sig.up {
 
 .hmpbg {
     height: 244px;
+    margin-top: -45px;
 }
 
 .bgtp {
@@ -88,9 +89,11 @@ button.btn.sig.up {
     font-family: app_font;
     color: #000;
     position: absolute;
-    left: 50%;
-    margin-left: -200px;
-    margin-top: 94px;
+    margin-left: auto;
+    left: 0;
+    margin-top: -53px;
+    width: 100%;
+    text-align: center;
 }
 
 a.jsdf.fins {
@@ -106,8 +109,13 @@ span.-jks {
 }
 
 .ntl--hd {
-    margin-left: 108px;
-    margin-top: 19px;
+    margin-left: auto;
+    margin-top: auto;
+    margin-right: auto;
+    /* position: absolute; */
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
 
 tr.tp--thd {font-size: 23px;font-family: app_font;font-weight: 900;}
@@ -120,8 +128,10 @@ tr#tp--itm {
 
 .tps--lst {
     width: fit-content;
-    margin-left: 107px;
-    margin-top: -8px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 48px;
+    /* position: absolute; */
 }
 
 button.bk--st {
@@ -149,14 +159,16 @@ td.t--dt {
 
 
 .fil--tp {
-    position: absolute;
-    margin-top: 148px;
+    margin-top: 195px;
     left: 313px;
     background: white;
     width: 678px;
     padding: 11px;
+    margin-left: auto;
     border-radius: 20px;
     box-shadow: 0 0 4px 2px #949494;
+    margin-right: auto;
+    height: 77px;
 }
 
 .f-fo {
@@ -189,10 +201,10 @@ label.fl-lb {
 button#flt--btn {
     height: 46px;
     width: 144px;
-    background-color: #ffffff;
+    background: #ffffff;
     color: #000;
-    font-size: 14px;
-    border-radius: 35px;
+    font-size: 17px;
+    border-radius: 14px;
     border: 1px solid black;
     font-family: app_font;
     font-weight: 900 !important;
@@ -223,7 +235,9 @@ button {
     font-size: 43px;
     font-family: app_font;
     font-weight: 900;
-    margin-left: 124px;
+    margin-left: auto;
+    width: 100%;
+    text-align: center;
 }
 
 div#tpdata {
@@ -234,8 +248,9 @@ div#tpdata {
 
 div#tpdata {
     width: fit-content;
-    margin-left: 107px;
+    margin-left: auto;
     margin-top: 20px;
+    margin-right: auto;
 }
 
 div#adm-nav {
@@ -486,10 +501,10 @@ div#uspdd {
     background: #cecece;
     padding: 14px;
     width: 230px;
-    margin-left: 1013px;
-    margin-top: 13px;
+    margin-top: 71px;
     border-radius: 10px;
     height: fit-content;
+    box-shadow: 0 0 0px 3px #c3c3c3;
 }
 
 .ksfnk {
@@ -514,7 +529,9 @@ div#uspdd {
     font-size: 38px;
     font-weight: 900;
     margin-top: 71px;
-    margin-left: 268px;
+    margin-left: auto;
+    width: 100%;
+    text-align: center;
 }
 
 .bpDpAddr {
@@ -601,8 +618,9 @@ div#uspdd {
     background: white;
     width: 656px;
     padding: 10px;
-    margin-left: 259px;
+    margin-left: auto;
     margin-top: 14px;
+    margin-right: auto;
 }
 
 .sdgfs {
@@ -671,18 +689,22 @@ button.-bth {
 
 .nksd {
     margin-top: 87px;
-    margin-left: 169px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .blshd {
     font-size: 38px;
-    margin-left: 61px;
+    margin-left: auto;
     font-weight: 900;
+    width: 100%;
+    text-align: center;
 }
 
 .tofds.skdfad {
     margin-top: 47px;
-    margin-left: 36px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .kznc {
@@ -749,10 +771,12 @@ button.bk--st.ksd {
     width: 227px;
     position: fixed;
     border-right: 1px solid #808080c2;
+    top: 0;
 }
 
 .tp--ntl {
-    margin-left: 150px;
+    margin-left: auto;
+    margin-top: -117px;
 }
 
 .crth.slfk {
@@ -774,7 +798,7 @@ button.bk--st.ksd {
 
 .shlr {
     background: #dddddd;
-    width: fit-content;
+    width: 126px;
     padding: 6px;
     margin-top: 10px;
     padding-left: 28px;
@@ -786,11 +810,6 @@ button.bk--st.ksd {
 .shlr:hover {
     background-color: #ffeb00;
     color: black;
-}
-
-.sibar.lektr {
-    margin-top: -84px;
-    width: 203px;
 }
 
 div#admsbr {
@@ -853,4 +872,33 @@ div#dte {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+button:hover {
+    background: #84f788;
+    color: #000;
+    border: 1px solid black;
+}
+
+.bksdfg {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tofds.skdfad {
+    width: 852px;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-right: auto;
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 13px;
+}
+
+button.bk--st.ksd:hover {
+    background: aquamarine;
+}
+
+button#flt--btn:hover {
+    background: #6bff8a;
 }

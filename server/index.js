@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(doc));
 
-
 app.get('/', (req, res) => res.status(200).json({ message: 'navigate to /api/v1' }));
 app.use('/api/v1', userRouter, tripRouter, createBooking);
 

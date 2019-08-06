@@ -32,7 +32,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
+    "test": "nyc --reporter=html --= text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
     "dev": "nodemon --exec babel-node server/index.js",
     "start": "node dist/index.js",
     "coverage": "nyc --reporter=lcov npm run test",
