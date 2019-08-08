@@ -13,7 +13,7 @@ notLogedin.innerHTML = `
 <ul class="ncv">
 <li class="sjd"><a href="#" class="nv-a active">Trips available</a></li>
 </ul>
-<div class="rghtnvm">
+<div class="rghtnvm fddhtr">
 <a href="./signup.html" class="jsdf fins">Create account</a>
 <a href="./signin.html" class="jsdf"><button class="btn sig in">SIGNIN</button></a>
 </div>

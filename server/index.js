@@ -15,7 +15,12 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(doc));
 
 app.get('/', (req, res) => res.status(200).json({ message: 'navigate to /api/v1' }));
 app.use('/api/v1', userRouter, tripRouter, createBooking);
-
+app.use('*', (req, res) => {
+  res.status(404).json({
+    status: 404,
+    message: 'resource not found',
+  });
+});
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`RUNNING ON PORT ${PORT}`));
 

@@ -30,6 +30,14 @@ const Book = {
     );
     bookingDatabase.push(booking);
   },
+  decreaseNumberOfSeats(findTrip, seats) {
+    // eslint-disable-next-line radix
+    return parseInt(findTrip - seats);
+  },
+  increaseNumberOfSeats(findTrip, seats) {
+    // eslint-disable-next-line radix
+    return parseInt(findTrip + seats);
+  },
   checkIfTripExists(busLicense) {
     return newTrip.findbusLicenseNumber(busLicense);
   },

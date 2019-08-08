@@ -87,7 +87,7 @@ input#lgn {
 
 
 button.btn:hover {
-    background: #2be297;
+    background: #ffffff;
 }
 
 
@@ -98,7 +98,7 @@ input#lgn:hover {
 
 
 button.btn {
-    background: azure;
+    background: #49ff00;
     width: 343px;
     margin-top: auto;
     margin-left: -18px;

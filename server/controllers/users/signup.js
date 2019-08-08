@@ -32,7 +32,7 @@ const signUp = (req, res) => {
     }
     newUser.createNewUser(data);
     const userAcct = showData(data);
-    resPonse.successUser(res, 200, userAcct, token);
+    resPonse.successUser(res, 201, userAcct, token);
     return true;
   });
 };
