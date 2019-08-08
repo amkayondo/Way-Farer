@@ -4,7 +4,7 @@ import Trip from '../../models/trips';
 const trips = Trip.tripDataBase;
 const getAllTrips = (req, res, next) => {
   const { destination, origin } = req.query;
-  if (trips.length === 0) { return resPonse.successWithNoData(res, 200, 'No trips available'); }
+  if (trips.length === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }
   try {
     const foundDestination = Trip.findQueryByDestination(destination);
     const foundOrigin = Trip.findQueryByOrigin(origin);

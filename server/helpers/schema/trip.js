@@ -11,7 +11,7 @@ const trip = () => Joi => Joi.object().keys({
   origin: Joi.string().alphanum().required(),
   destination: Joi.string().alphanum().required(),
   tripDate: JoiD.date().format('DD-MM-YYYY').required(),
-  fare: Joi.string().trim().regex(/^[0-9]{2,5}$/)
+  fare: Joi.string().trim().regex(/^[0-9]{2,5}$/).label('Invalid Input')
     .required(),
 });
 

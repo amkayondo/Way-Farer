@@ -5,14 +5,41 @@ import app from '../index';
 
 chai.use(chaiHttp);
 
-const user = {
-  email: 'admin@app.com',
-  password: 'admin123',
-};
-
 let userToken;
 let notAdminToken;
 let tripId;
+
+// signUp Non Admin
+before('signup non admin', (done) => {
+  chai.request(app)
+    .post('/api/v1/auth/signup')
+    .send({
+      first_name: 'kayondo',
+      last_name: 'edward',
+      email: 'kayondo@amtomd.co',
+      password: '38e3olsdjf',
+    })
+    .end((err, res) => {
+      if (err) done(err);
+      notAdminToken = res.body.data.token;
+      done();
+    });
+});
+
+// Signin Admin
+before('signup admin', (done) => {
+  chai.request(app)
+    .post('/api/v1/auth/signin')
+    .send({
+      email: 'admin@app.com',
+      password: 'admin123',
+    })
+    .end((err, res) => {
+      if (err) done(err);
+      userToken = res.body.data.token;
+      done();
+    });
+});
 before((done) => {
   chai.request(app)
     .get('/api/v1/trips')
@@ -22,38 +49,13 @@ before((done) => {
   done();
 });
 const tripData = {
-  seatingCapacity: 50,
+  seatingCapacity: '50',
   busLicenseNumber: 'UGXHD',
   origin: 'kampala',
   destination: 'kigali',
   tripDate: '23-12-2019',
-  fare: 30000,
+  fare: '30000',
 };
-before((done) => {
-  chai.request(app)
-    .post('/api/v1/auth/signin')
-    .send(user)
-    .end((err, res) => {
-      if (err) done(err);
-      userToken = res.body.token;
-      done();
-    });
-});
-before((done) => {
-  chai.request(app)
-    .post('/api/v1/auth/signup')
-    .send({
-      first_name: 'kayondo',
-      last_name: 'edward',
-      email: 'kayondo@amkayondo.co',
-      password: 'vbcbcbcb',
-    })
-    .end((err, res) => {
-      if (err) done(err);
-      notAdminToken = res.body.token;
-      done();
-    });
-});
 
 before((done) => {
   chai.request(app)
@@ -64,6 +66,14 @@ before((done) => {
   done();
 });
 describe('TRIPS TESTS', () => {
+  it('should retun 404 if route not found', (done) => {
+    chai.request(app)
+      .post('/amInvalid')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
   it('should create a trip', (done) => {
     chai.request(app)
       .post('/api/v1/trips')
