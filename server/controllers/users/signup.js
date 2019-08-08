@@ -4,7 +4,6 @@ import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
 import signUpSchema from '../../helpers/schema/signup';
 import payLoad from './payload';
-import showData from '../../helpers/util/showData';
 
 const uuid = require('uuid');
 
@@ -31,8 +30,7 @@ const signUp = (req, res) => {
       return resPonse.errorMessage(res, 400, 'User with the same email exists');
     }
     newUser.createNewUser(data);
-    const userAcct = showData(data);
-    resPonse.successUser(res, 200, userAcct, token);
+    resPonse.successUser(res, 201, 'Account successfully created', token);
     return true;
   });
 };

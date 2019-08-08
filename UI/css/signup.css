@@ -104,3 +104,11 @@ input#snup:hover {
 button.btn:hover {
     background: white;
 }
+
+input#email {
+    margin-left: 1px;
+}
+
+input#phone {
+    width: 320px;
+}

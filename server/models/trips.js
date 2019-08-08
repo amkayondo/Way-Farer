@@ -3,10 +3,12 @@ const tripDataBase = [];
 // Trips Model
 const Trip = {
   tripDataBase,
-  tripData(id, seatingCapacity, busLicenseNumber, origin, destination, tripDate, fare, status) {
+  tripData(id, seatingCapacity, availableSeats,
+    busLicenseNumber, origin, destination, tripDate, fare, status) {
     return {
       id,
       seatingCapacity,
+      availableSeats,
       busLicenseNumber,
       origin,
       destination,

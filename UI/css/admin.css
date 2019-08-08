@@ -1,0 +1,32 @@
+div#uspdd {
+    margin-top: 25px;
+}
+
+div#usdds {
+    top: 0 !important;
+    right: -35px;
+}
+
+div#nvbls {
+    top: 7px;
+}
+
+button#cantptw {
+    background: red;
+    color: #fff;
+}
+
+button#cantptw:hover {
+    background: #ffffffdb;
+    color: black;
+}
+
+button#cantp:hover {
+    background: black;
+    color: #fff;
+    
+}
+
+.dktpft {
+    bottom: 0 !important;
+}

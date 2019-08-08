@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import Joi from '@hapi/joi';
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
@@ -7,20 +8,30 @@ const uuid = require('uuid');
 
 const createTrip = (req, res) => {
   const inputData = req.body;
+  const {
+    seatingCapacity, busLicenseNumber, origin, destination, tripDate, fare,
+  } = req.body;
+  const avSeats = seatingCapacity;
   const data = Trip.tripData(
-    uuid.v4(), req.body.seatingCapacity, req.body.busLicenseNumber,
-    req.body.origin, req.body.destination, req.body.tripDate,
-    req.body.fare, 'active',
+    uuid.v4(), parseInt(seatingCapacity), parseInt(avSeats), busLicenseNumber,
+    origin, destination, tripDate,
+    parseInt(fare), 'active',
   );
   const schema = tripSchema(Joi);
   Joi.validate(inputData, schema, (error) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
     }
-    
+    const busBooked = Trip.tripDataBase.find(x => x.tripDate === tripDate);
+    const isBus = Trip.tripDataBase.find(x => x.busLicenseNumber === busLicenseNumber);
+    if (isBus) {
+      return resPonse.errorMessage(
+        res, 400,
+        `A bus with License Number ${busLicenseNumber} is already booked on ${busBooked.tripDate}`,
+      );
+    }
     Trip.creatAtrip(data);
-    resPonse.successData(res, 201, data);
-    return true;
+    return resPonse.successData(res, 201, data);
   });
 };
 module.exports = createTrip;
