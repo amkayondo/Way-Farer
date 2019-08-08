@@ -22,14 +22,14 @@ const createTrip = (req, res) => {
     if (error) {
       return resPonse.errorMessage(res, 400, (error.details[0].message));
     }
-    const busBooked = Trip.tripDataBase.find(x => x.tripDate === tripDate);
     const isBus = Trip.tripDataBase.find(x => x.busLicenseNumber === busLicenseNumber);
     if (isBus) {
       return resPonse.errorMessage(
         res, 400,
-        `A bus with License Number ${busLicenseNumber} is already booked on ${busBooked.tripDate}`,
+        `A bus with License Number ${busLicenseNumber} is already booked`,
       );
     }
+
     Trip.creatAtrip(data);
     return resPonse.successData(res, 201, data);
   });
