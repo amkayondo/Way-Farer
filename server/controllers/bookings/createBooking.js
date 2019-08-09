@@ -8,18 +8,23 @@ import bookDataUtil from '../../helpers/util/bookingUtil';
 
 const createBooking = (req, res) => {
   const getUser = jwt.decode(req.headers.authorization);
-  const { busLicenseNumber, tripDate, numberOfSeats } = req.body;
-  const bookData = bookDataUtil(req, getUser);
+
+  const { tripId, tripDate, numberOfSeats } = req.body;
+
   const schema = bookingSchema(Joi);
   Joi.validate(req.body, schema, (error) => {
     if (error) {
-      return resPonse.errorMessage(res, 400, (error.details[0].message));
+      return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`));
     }
-    const foundTrip = Book.checkIfTripExists(busLicenseNumber);
+    const foundTrip = Book.checkIfTripExists(tripId);
     if (!(foundTrip)) {
-      return resPonse.errorMessage(res, 400, `Bus license number ${busLicenseNumber} doesnt exist`);
+      return resPonse.errorMessage(res, 400, `Trip with ID ${tripId} doesnt exist`);
     }
+    const bookData = bookDataUtil(req, getUser, foundTrip);
     if (foundTrip.tripDate === tripDate) {
+      if (!(foundTrip.status === 'active')) {
+        return resPonse.errorMessage(res, 403, 'Booking was unseccessful because the trip was cancelled');
+      }
       if (foundTrip.availableSeats === 0) {
         return resPonse.errorMessage(res, 404, 'No seats available for booking on this trip');
       }
@@ -29,8 +34,8 @@ const createBooking = (req, res) => {
       foundTrip.availableSeats = Book.decreaseNumberOfSeats(foundTrip.availableSeats,
         parseInt(numberOfSeats));
       Book.createNewBooking(bookData); return resPonse.successData(res, 201, bookData);
-    } resPonse.errorMessage(res, 400, `No trip is available on this date ${tripDate}`);
-    return true;
+    } return resPonse.errorMessage(res, 400, `No trip is available on this date ${tripDate}`);
+    // return true;
   });
   return true;
 };

@@ -1,11 +1,9 @@
-import jwt from 'jsonwebtoken';
 import resPonse from '../helpers/responses/response';
+import isAdminController from '../helpers/util/isAdmin';
 // Check if User is an Admin
 const isAdmin = (req, res, next) => {
   try {
-    const header = req.headers.authorization;
-    const x = jwt.decode(header, { complete: true });
-    if (!x.payload.isAdmin === true) { return resPonse.errorMessage(res, 401, 'Unauthorized access'); }
+    isAdminController(req, resPonse, res);
     next();
   // eslint-disable-next-line no-empty
   } catch (error) {}

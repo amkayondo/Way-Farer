@@ -23,7 +23,10 @@ const Trip = {
   findTrip(tripInput) {
     return tripDataBase.find(x => x.id === tripInput);
   },
-  findbusLicenseNumber(LicenceInput) {
+  findTripById(tripid) {
+    return tripDataBase.find(x => x.id === tripid);
+  },
+  findTripByLicence(LicenceInput) {
     return tripDataBase.find(x => x.busLicenseNumber === LicenceInput);
   },
   findTripDate(inputTripDate) {

@@ -19,19 +19,23 @@ const createTrip = (req, res) => {
   );
   const schema = tripSchema(Joi);
   Joi.validate(inputData, schema, (error) => {
-    if (error) {
-      return resPonse.errorMessage(res, 400, (error.details[0].message));
-    }
-    const isBus = Trip.tripDataBase.find(x => x.busLicenseNumber === busLicenseNumber);
-    if (isBus) {
-      return resPonse.errorMessage(
-        res, 400,
-        `A bus with License Number ${busLicenseNumber} is already booked`,
-      );
-    }
+    try {
+      if (error) {
+        return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`));
+      }
+      const isBus = Trip.tripDataBase.find(x => x.busLicenseNumber === busLicenseNumber);
+      if (isBus) {
+        return resPonse.errorMessage(
+          res, 400,
+          `A bus with License Number ${busLicenseNumber} is already booked`,
+        );
+      }
 
-    Trip.creatAtrip(data);
-    return resPonse.successData(res, 201, data);
+      Trip.creatAtrip(data);
+      return resPonse.successData(res, 201, data);
+    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line no-empty
+    } catch (err) {}
   });
 };
 module.exports = createTrip;

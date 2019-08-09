@@ -22,7 +22,7 @@ const signUp = (req, res) => {
   const schema = signUpSchema(Joi);
   Joi.validate(inputData, schema, (error) => {
     if (error) {
-      return resPonse.errorMessage(res, 400, (error.details[0].message));
+      return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`));
     } const token = createToken(payload);
     res.header('Authorization', token);
     const userExists = newUser.findUser(data.email);
