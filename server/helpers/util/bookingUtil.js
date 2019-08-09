@@ -7,6 +7,7 @@ const bookDataUtil = (req, getUser) => {
 
   const bookData = Book.bookindModel(
     uuid.v4(),
+    getUser.id,
     busLicenseNumber,
     tripDate,
     parseInt(numberOfSeats),
