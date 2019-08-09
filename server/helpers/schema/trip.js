@@ -5,14 +5,20 @@ const JoiD = BaseJoi.extend(Extension);
 
 const trip = () => Joi => Joi.object().keys({
   seatingCapacity: Joi.string().trim().regex(/^[0-9]{2,5}$/)
-    .required(),
+    .required()
+    .label('Only Integers are allowed'),
   busLicenseNumber: Joi.string().trim().alphanum()
-    .required(),
-  origin: Joi.string().alphanum().required(),
-  destination: Joi.string().alphanum().required(),
-  tripDate: JoiD.date().format('DD-MM-YYYY').required(),
+    .required()
+    .label('Invalid Bus LicenseNumber'),
+  origin: Joi.string().alphanum().required()
+    .label('Invalid Origin Name'),
+  destination: Joi.string().alphanum().required()
+    .label('Invalid Destination Name'),
+  tripDate: JoiD.date().format('DD-MM-YYYY').required()
+    .label('Only [DD-MM-YYYY] Date format is allowed '),
   fare: Joi.string().trim().regex(/^[0-9]{2,5}$/).label('Invalid Input')
-    .required(),
+    .required()
+    .label('Fare should be an integer'),
 });
 
 const tripSchema = trip();

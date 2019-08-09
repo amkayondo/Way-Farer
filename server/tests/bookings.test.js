@@ -8,11 +8,6 @@ chai.use(chaiHttp);
 let bookingId;
 let otherUserToken;
 
-const bookingData = {
-  busLicenseNumber: 'UUBE345',
-  tripDate: '23-12-2019',
-  numberOfSeats: '3',
-};
 
 const user = {
   email: 'admin@app.com',
@@ -20,6 +15,8 @@ const user = {
 };
 
 let userToken;
+let tripId;
+let tripIdT;
 
 const tripData = {
   seatingCapacity: '40',
@@ -40,13 +37,13 @@ before('user signs in', (done) => {
       done();
     });
 });
-before('user signs in', (done) => {
+before('NEW USER SIGN UP', (done) => {
   chai.request(app)
     .post('/api/v1/auth/signup')
     .send({
       first_name: 'kayondo',
       last_name: 'edward',
-      email: 'amkayondoed@open.co',
+      email: 'amkayondoedtom@open.co',
       password: 'vbcbcbcb',
     })
     .end((err, res) => {
@@ -54,6 +51,25 @@ before('user signs in', (done) => {
       otherUserToken = res.body.data.token;
       done();
     });
+});
+
+before('Admin should create new trip', (done) => {
+  chai.request(app)
+    .post('/api/v1/trips')
+    .set('Authorization', userToken)
+    .send({
+      seatingCapacity: '30',
+      busLicenseNumber: 'UGX23',
+      origin: 'kampala',
+      destination: 'kigali',
+      tripDate: '23-12-2019',
+      fare: '30000',
+    })
+    .end((err, res) => {
+      tripId = res.body.data.id;
+      expect(res).to.have.status(201);
+    });
+  done();
 });
 before('Admin should create new trip', (done) => {
   chai.request(app)
@@ -79,6 +95,7 @@ before('Admin should create another new trip', (done) => {
       fare: '30000',
     })
     .end((err, res) => {
+      tripIdT = res.body.data.id;
       expect(res).to.have.status(201);
     });
   done();
@@ -87,9 +104,9 @@ before('Admin should create another new trip', (done) => {
 before('should return no array of bookings if he has none', (done) => {
   chai.request(app)
     .get('/api/v1/bookings')
-    .set('Authorization', userToken)
+    .set('Authorization', otherUserToken)
     .end((err, res) => {
-      expect(res).to.have.status(404);
+      expect(res).to.have.status(200);
     });
   done();
 });
@@ -118,7 +135,11 @@ describe('BOOKINGS TESTS', () => {
     chai.request(app)
       .post('/api/v1/bookings')
       .set('Authorization', otherUserToken)
-      .send(bookingData)
+      .send({
+        tripId: `${tripId}`,
+        tripDate: '23-12-2019',
+        numberOfSeats: '3',
+      })
       .end((err, res) => {
         // eslint-disable-next-line prefer-destructuring
         bookingId = res.body.data.bookingId;
@@ -131,9 +152,9 @@ describe('BOOKINGS TESTS', () => {
       .post('/api/v1/bookings')
       .set('Authorization', userToken)
       .send({
-        busLicenseNumber: 'UUBE345',
+        tripId: `${tripIdT}`,
         tripDate: '23-12-2019',
-        numberOfSeats: '60',
+        numberOfSeats: '47',
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
@@ -146,7 +167,7 @@ describe('BOOKINGS TESTS', () => {
       .post('/api/v1/bookings')
       .set('Authorization', userToken)
       .send({
-        busLicenseNumber: 'UGX13',
+        tripId: `${tripIdT}`,
         tripDate: '23-12-2019',
         numberOfSeats: '10',
       })
@@ -161,9 +182,24 @@ describe('BOOKINGS TESTS', () => {
       .post('/api/v1/bookings')
       .set('Authorization', userToken)
       .send({
-        busLicenseNumber: 'UGX13',
+        tripId: `${tripIdT}`,
         tripDate: '23-12-2019',
-        numberOfSeats: '5',
+        numberOfSeats: '10',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        if (err) done(err);
+        done();
+      });
+  });
+  it('should return error ifno seats available', (done) => {
+    chai.request(app)
+      .post('/api/v1/bookings')
+      .set('Authorization', userToken)
+      .send({
+        tripId: `${tripIdT}`,
+        tripDate: '23-12-2019',
+        numberOfSeats: '50',
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
@@ -176,7 +212,7 @@ describe('BOOKINGS TESTS', () => {
       .delete(`/api/v1/bookings/${bookingId}`)
       .set('Authorization', userToken)
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(200);
         done();
       });
   });

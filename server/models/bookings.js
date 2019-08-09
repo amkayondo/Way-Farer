@@ -38,8 +38,11 @@ const Book = {
     // eslint-disable-next-line radix
     return parseInt(findTrip + seats);
   },
-  checkIfTripExists(busLicense) {
-    return newTrip.findbusLicenseNumber(busLicense);
+  checkIfTripExists(busLicenseNumber) {
+    return newTrip.findTripById(busLicenseNumber);
+  },
+  checkForLicence(busLicenseNumber) {
+    return newTrip.findTripByLicence(busLicenseNumber);
   },
   checkIfTripDateIsValid(Date) {
     return newTrip.findTripDate(Date);
