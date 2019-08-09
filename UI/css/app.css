@@ -54,10 +54,14 @@ a.nv-a.active {
     padding-bottom: 11px;
 }
 
+.rghtnvm.lgdin {
+    width: 279px;
+    right: 100px;
+}
 .rghtnvm {
     position: fixed;
     right: 35px;
-    top: 9px;
+    top: 74px;
 }
 
 button.btn.sig {
@@ -75,11 +79,11 @@ button.btn.sig.in {
 button.btn.sig.up {
     background: #84f788;
 }
-.hmpbg{
-}
+
 
 .hmpbg {
     height: 244px;
+    margin-top: -45px;
 }
 
 .bgtp {
@@ -89,9 +93,11 @@ button.btn.sig.up {
     font-family: app_font;
     color: #000;
     position: absolute;
-    left: 50%;
-    margin-left: -200px;
-    margin-top: 94px;
+    margin-left: auto;
+    left: 0;
+    margin-top: -53px;
+    width: 100%;
+    text-align: center;
 }
 
 a.jsdf.fins {
@@ -107,11 +113,16 @@ span.-jks {
 }
 
 .ntl--hd {
-    margin-left: 108px;
-    margin-top: 19px;
+    margin-left: auto;
+    margin-top: auto;
+    margin-right: auto;
+    /* position: absolute; */
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
 
-tr.tp--thd {font-size: 23px;font-family: app_font;font-weight: 900;}
+tr.tp--thd {font-size: 16px;font-family: app_font;font-weight: 900;}
 
 tr#tp--itm {
     font-size: 23px;
@@ -121,8 +132,10 @@ tr#tp--itm {
 
 .tps--lst {
     width: fit-content;
-    margin-left: 107px;
-    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -15px;
+    /* position: absolute; */
 }
 
 button.bk--st {
@@ -144,25 +157,25 @@ td.t--hd {
 }
 
 td.t--dt {
-    padding-left: 22px;
+    padding-left: 20px;
     padding-top: 14px;
+    padding-right: 20px;
+    padding-bottom: 13px;
+    background: #e0dfdf;
 }
 
-#ntp--cnt {
-    padding: 12px;
-    border: 1px solid;
-    border-radius: 9px;
-}
 
 .fil--tp {
-    position: absolute;
-    margin-top: 148px;
+    margin-top: 195px;
     left: 313px;
     background: white;
     width: 678px;
     padding: 11px;
+    margin-left: auto;
     border-radius: 20px;
     box-shadow: 0 0 4px 2px #949494;
+    margin-right: auto;
+    height: 77px;
 }
 
 .f-fo {
@@ -195,10 +208,10 @@ label.fl-lb {
 button#flt--btn {
     height: 46px;
     width: 144px;
-    background-color: #ffffff;
+    background: #ffffff;
     color: #000;
-    font-size: 14px;
-    border-radius: 35px;
+    font-size: 17px;
+    border-radius: 14px;
     border: 1px solid black;
     font-family: app_font;
     font-weight: 900 !important;
@@ -229,7 +242,9 @@ button {
     font-size: 43px;
     font-family: app_font;
     font-weight: 900;
-    margin-left: 124px;
+    margin-left: auto;
+    width: 100%;
+    text-align: center;
 }
 
 div#tpdata {
@@ -240,8 +255,9 @@ div#tpdata {
 
 div#tpdata {
     width: fit-content;
-    margin-left: 107px;
+    margin-left: auto;
     margin-top: 20px;
+    margin-right: auto;
 }
 
 div#adm-nav {
@@ -368,7 +384,7 @@ div#nav-login {background: white;height: 62px;box-shadow: 0 0 5px #888888;z-inde
     box-sizing: border-box;
     height: 53px;
     padding: 4px 6px 4px 9px;
-    width: 528px !important;
+    width: 604px !important;
     width: 298px;
     color: #181717;
     border-radius: 7px;
@@ -386,7 +402,7 @@ div#nav-login {background: white;height: 62px;box-shadow: 0 0 5px #888888;z-inde
     background: white;
     width: 569px;
     padding: 13px;
-    margin-left: 55px;
+    margin-left: 15px;
 }
 
 .trpax {
@@ -461,7 +477,7 @@ button#undo {
     font-weight: 900;
     font-size: 16px;
     border: 1px solid;
-    background: #b3b1b1;
+    background: #fffdfd;
 }
 
 .dlet {
@@ -476,26 +492,25 @@ img.usrda-img {
     border-radius: 50%;
 }
 
-.rghtnvm.lgdin {
-    width: 279px;
-    right: 100px;
-}
 
 div#usdds {
     float: right;
-    margin-right: 21px;
+    margin-right: 73px;
     width: fit-content;
     cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: -66px;
 }
 
 div#uspdd {
     background: #cecece;
     padding: 14px;
     width: 230px;
-    margin-left: 1013px;
-    margin-top: 13px;
+    margin-top: 71px;
     border-radius: 10px;
     height: fit-content;
+    box-shadow: 0 0 0px 3px #c3c3c3;
 }
 
 .ksfnk {
@@ -520,7 +535,9 @@ div#uspdd {
     font-size: 38px;
     font-weight: 900;
     margin-top: 71px;
-    margin-left: 268px;
+    margin-left: auto;
+    width: 100%;
+    text-align: center;
 }
 
 .bpDpAddr {
@@ -607,8 +624,9 @@ div#uspdd {
     background: white;
     width: 656px;
     padding: 10px;
-    margin-left: 259px;
+    margin-left: auto;
     margin-top: 14px;
+    margin-right: auto;
 }
 
 .sdgfs {
@@ -677,18 +695,22 @@ button.-bth {
 
 .nksd {
     margin-top: 87px;
-    margin-left: 169px;
+    margin-left: 149px;
+    margin-right: auto;
 }
 
 .blshd {
     font-size: 38px;
-    margin-left: 61px;
+    margin-left: auto;
     font-weight: 900;
+    width: 100%;
+    text-align: center;
 }
 
 .tofds.skdfad {
     margin-top: 47px;
-    margin-left: 36px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .kznc {
@@ -705,7 +727,7 @@ button#ldmore {
 }
 
 button.bk--st.ksd {
-    background: #dddddd;
+    background: #fff;
     border: 0px;
 }
 
@@ -754,10 +776,15 @@ button.bk--st.ksd {
     width: 227px;
     position: fixed;
     border-right: 1px solid #808080c2;
+    top: 0;
+    background: #fff;
+    z-index: 1;
 }
 
 .tp--ntl {
-    margin-left: 150px;
+    margin-left: auto;
+    margin-top: -117px;
+    padding-bottom: 13px;
 }
 
 .crth.slfk {
@@ -778,8 +805,8 @@ button.bk--st.ksd {
 }
 
 .shlr {
-    background: #908f8f;
-    width: fit-content;
+    background: #dddddd;
+    width: 126px;
     padding: 6px;
     margin-top: 10px;
     padding-left: 28px;
@@ -793,11 +820,6 @@ button.bk--st.ksd {
     color: black;
 }
 
-.sibar.lektr {
-    margin-top: -84px;
-    width: 203px;
-}
-
 div#admsbr {
     z-index: -4;
 }
@@ -805,4 +827,141 @@ div#admsbr {
 .admsdbrms {
     margin-top: 120px;
     margin-left: 14px;
+}
+.tpodf {
+    margin-left: 30px;
+    margin-top: 18px;
+}
+.tpodf {
+    background: white;
+    width: 206px;
+    height: 218px;
+    padding: 14px;
+    border-radius: 11px;
+    box-shadow: 0 0 4px dimgrey;
+    padding-bottom: 16px;
+}
+
+.busbim {
+    background: #11d484;
+    height: 168px;
+    width: auto;
+    border-radius: 6px;
+}
+
+div#tpod {
+    margin-top: 4px;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+div#dte {
+    margin-top: 5px;
+    font-weight: 900;
+    background-color: #6bff8a;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#ntp--cnt {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    width: fit-content;
+}
+
+.tpodf:hover {
+    background: #f5ecec;
+}
+
+.busbim {
+    background: url(../images/tpv.gif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+button:hover {
+    background: #84f788;
+    color: #000;
+    border: 1px solid black;
+}
+
+.bksdfg {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tofds.skdfad {
+    width: 959px;
+    margin-left: auto;
+    margin-top: 20px;
+    margin-right: auto;
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 13px;
+}
+
+button.bk--st.ksd:hover {
+    background: aquamarine;
+}
+
+button#flt--btn:hover {
+    background: #6bff8a;
+}
+
+div#ksdajd {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    width: fit-content;
+}
+
+table.tp--lst {
+    background: #fff;
+}
+
+.dktpft {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 13px;
+    font-size: 20px;
+    font-weight: 900;
+    display: inline-block;
+}
+
+div#uspdd {
+    float: right;
+    margin-right: 73px;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+div#modl {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: fixed;
+}
+
+.rghtnvm.fddhtr {
+    top: 10px;
+}
+
+button#undo:hover {
+    background: #b3b1b1;
+}
+
+.nxbdy {
+    /* background: aquamarine; */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
 }

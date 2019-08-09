@@ -7,6 +7,8 @@
     <title>Way Farer | Trip</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="./css/beResponsive.css">
+    <link rel="stylesheet" href="./css/mobile.css">
     <style>
     a.nv-a {
    display: none;
@@ -14,13 +16,18 @@
     </style>
 </head>
 <body>
-<div id="nav-no-login"></div>
+<div id="nav-login"></div>
+<div class="mblnv" id="nvglin"></div>
 <div class="sgsf">
 <div class="sg--hd">Trip</div>
 <div id="tpdata"></div>
 </div>
-<script src="js/index.js"></script>
+<div class="tpsmctn" id="tripData"></div>
+<div class="dktpft"> Copyright © Way-Farer 2019</div>
+<script src="./js/loggedin.js"></script>
 <script src="js/data.js"></script>
 <script src="./js/menu.js"></script>
+<script src="./js/mobile/mobileLoggedInNav.js"></script>
+<script src="./js/mobile/tripData.js"></script>
 </body>
 </html>

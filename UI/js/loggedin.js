@@ -7,48 +7,27 @@ logedIn.innerHTML = `
 <a href="./home.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
 <div class="nltt">Way-Farer</div>
 </a>
-<div class="rghtnvm lgdin">
+<div id="modl"></div>
+<div class="rghtnvm lgdin" id="nvbls">
 <div id="usdds">
     <img src="./images/user.png" alt="Way Farer user" class="usrda-img">
 </div>
-</div>
+<div class="fjlwf">
 <div id="uspdd">
     <div class="ksfnk">
-        <a href="#" class="a--urc"><div class="sght">Item</div></a>
         <a href="./index.html" class="a--urc"><div class="sght">Logout</div></a>
+</div></div>
 </div>
+
 </div>
 `
-// trips, not logged in
-const xtyo = `    <td class="t--hd">Bus</td>
-<td class="t--hd">Origin</td>
-<td class="t--hd">Destination</td>
-<td class="t--hd">Date</td>
-<td class="t--hd">Fare</td>
-<td class="t--hd">Status</td>
-<td class="t--hd">Book seats</td>
-</tr>`
 
-const sdfre = `<tr id="tp--itm">
-<td class="t--dt"><a href="./trip.html">UG 203FT</a></td>
-<td class="t--dt">Kampala</td>
-<td class="t--dt">Kigali</td>
-<td class="t--dt">3 Sept, 2019</td>
-<td class="t--dt">UGX 40000</td>
-<td class="t--dt">active</td>
-
-<td class="t--dt">
- <a href="./book.html">
-     <button class="bk--st">BOOK SEATS</button>
- </a></td>
-</tr>`
+const dta = ` <a href="./trip.html"><div class="tpodf">
+<div class="busbim"></div>
+<div id="tpod">Kigali to Kampala</div>
+<div id="dte">Sat 23/Sept/2019</div>
+</div></a>`
 
 Ltrips.innerHTML = `
-<table class="tp--lst">
-               <tr class="tp--thd">
-            ${xtyo}
-            ${sdfre}
-            ${sdfre}
-            ${sdfre}
-           </table>`
-
+        ${dta}${dta}${dta}${dta}${dta}${dta}
+`

@@ -25,7 +25,7 @@ updateTrip.innerHTML = `<div class="tpcr--ctn">
             </div>
             <div class="ctbtny">
             <a href="./trip.html">
-                <button id="cretp">UPDATE TRIP</button>
+                <button id="cretp" class="svcxdds">UPDATE TRIP</button>
             </a>
                 <button id="cantp">CANCEL</button>
             </div>

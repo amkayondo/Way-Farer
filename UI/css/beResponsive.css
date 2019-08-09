@@ -1,0 +1,40 @@
+/* Before*/
+#mbNvNlI{
+    display: none;
+}
+.tpsmctn{
+    display: none;
+}
+.mblnv{
+    display: none;
+}
+.mbhnbg{
+    display: none;
+}
+@media screen and (max-width: 800px) {
+    .sgsf{
+        display: none;
+    }
+    #nav-no-login{
+        display: none;
+    }
+    #nav-login{
+        display: none;
+    }
+    #mbNvNlI{
+        display: block;
+    
+    }
+    .tpsmctn{
+        display: block;
+    }
+    .dsktp{
+        display: none;
+    }
+    .mblnv{
+        display: block;
+    }
+    .djsn{
+        display: none;
+    }
+}

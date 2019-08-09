@@ -8,12 +8,12 @@ const loggedIn = (_div) => {
 // Not loggedin nav
 notLogedin.innerHTML = `
 <a href="index.html"><div class="ntlg"><img src="./images/logo2.png" alt="Way Farer logo" class="ntlg-img">
-<div class="nltt">Way-Farer</div>
+<div class="nltt">Way Farer</div>
 </a>
 <ul class="ncv">
 <li class="sjd"><a href="#" class="nv-a active">Trips available</a></li>
 </ul>
-<div class="rghtnvm">
+<div class="rghtnvm fddhtr">
 <a href="./signup.html" class="jsdf fins">Create account</a>
 <a href="./signin.html" class="jsdf"><button class="btn sig in">SIGNIN</button></a>
 </div>
@@ -29,26 +29,12 @@ const tpst = `    <td class="t--hd">Bus</td>
 <td class="t--hd">Book seats</td>
 </tr>`
 
-const trpsx = `<tr id="tp--itm">
-<td class="t--dt"><a href="./trip.html">UG 203FT</a></td>
-<td class="t--dt">Kampala</td>
-<td class="t--dt">Kigali</td>
-<td class="t--dt">3 Sept, 2019</td>
-<td class="t--dt">UGX 40000</td>
-<td class="t--dt">active</td>
-<td class="t--dt">
- <a href="./signin.html">
-     <button class="bk--st">BOOK SEATS</button>
- </a></td>
-</tr>`
+const dta = ` <a href="./signin.html"><div class="tpodf">
+<div class="busbim"></div>
+<div id="tpod">Kigali to Kampala</div>
+<div id="dte">Sat 23/Sept/2019</div>
+</div></a>`
 
 notLtrips.innerHTML = `
-<table class="tp--lst">
-               <tr class="tp--thd">
-            ${tpst}
-               <!-- Not logged in trips -->
-            ${trpsx}
-            ${trpsx}
-            ${trpsx}
-           </table>
+        ${dta}${dta}${dta}${dta}${dta}${dta}
 `

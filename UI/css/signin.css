@@ -38,6 +38,8 @@ img.lg-img {
     font-family: app_font;
     font-weight: 900;
     color: #fff;
+    width: 100%;
+    margin-left: -10px;
 }
 
 a.a-lg {
@@ -50,7 +52,7 @@ input#lgn {
     font-family: app_font;
     outline: none;
     cursor: pointer;
-    background-color: #07ffb8;
+    background-color: #fdca01;
     border: 0;
     box-shadow: none;
     box-sizing: border-box;
@@ -69,23 +71,35 @@ input#lgn {
 
 input#email {
     margin-top: 13px;
-    width: 318px;
+    width: 343px;
 }
 
 input#password {
     margin-top: 13px;
     margin-left: 1px;
-    width: 319px;
+    width: 343px;
 }
 
 input#lgn {
     margin-top: 13px;
-    width: 321px;
+    width: 343px;
+}
+
+
+button.btn:hover {
+    background: #ffffff;
+}
+
+
+input#lgn:hover {
+    background: #ffffff;
+    border: 1px solid;
 }
 
 
 button.btn {
-    width: 324px;
-    margin-top: 13px;
-    margin-left: -9px;
+    background: #49ff00;
+    width: 343px;
+    margin-top: auto;
+    margin-left: -18px;
 }
