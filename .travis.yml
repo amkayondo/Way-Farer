@@ -3,6 +3,12 @@ node_js:
   - node
 install:
   - npm install
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database WayFareTestDb;' -U postgres
+
 script:
   - npm run test
 after_success:
