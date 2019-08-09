@@ -13,7 +13,7 @@ notLogedin.innerHTML = `
 <ul class="ncv">
 <li class="sjd"><a href="#" class="nv-a active">Trips available</a></li>
 </ul>
-<div class="rghtnvm">
+<div class="rghtnvm fddhtr">
 <a href="./signup.html" class="jsdf fins">Create account</a>
 <a href="./signin.html" class="jsdf"><button class="btn sig in">SIGNIN</button></a>
 </div>
@@ -29,7 +29,7 @@ const tpst = `    <td class="t--hd">Bus</td>
 <td class="t--hd">Book seats</td>
 </tr>`
 
-const dta = ` <a href="./login.html"><div class="tpodf">
+const dta = ` <a href="./signin.html"><div class="tpodf">
 <div class="busbim"></div>
 <div id="tpod">Kigali to Kampala</div>
 <div id="dte">Sat 23/Sept/2019</div>

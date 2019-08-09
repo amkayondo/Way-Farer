@@ -8,7 +8,7 @@ const getAllBookings = (req, res) => {
     if (getUser.isAdmin === true) {
       const allBookings = Book.bookingDatabase;
       if (allBookings.length === 0) {
-        return resPonse.errorMessage(res, 200, 'No bookings made at the moment');
+        return resPonse.errorMessage(res, 404, 'No bookings made at the moment');
       } resPonse.successData(res, 200, allBookings);
     }
     const forUser = Book.getUserBookings(getUser.id);

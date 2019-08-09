@@ -30,8 +30,19 @@ const Book = {
     );
     bookingDatabase.push(booking);
   },
-  checkIfTripExists(busLicense) {
-    return newTrip.findbusLicenseNumber(busLicense);
+  decreaseNumberOfSeats(findTrip, seats) {
+    // eslint-disable-next-line radix
+    return parseInt(findTrip - seats);
+  },
+  increaseNumberOfSeats(findTrip, seats) {
+    // eslint-disable-next-line radix
+    return parseInt(findTrip + seats);
+  },
+  checkIfTripExists(busLicenseNumber) {
+    return newTrip.findTripById(busLicenseNumber);
+  },
+  checkForLicence(busLicenseNumber) {
+    return newTrip.findTripByLicence(busLicenseNumber);
   },
   checkIfTripDateIsValid(Date) {
     return newTrip.findTripDate(Date);

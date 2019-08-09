@@ -1,15 +1,16 @@
+/* eslint-disable radix */
 import uuid from 'uuid';
 import Book from '../../models/bookings';
 
-const bookDataUtil = (req, getUser) => {
-  const { busLicenseNumber, tripDate, numberOfSeats } = req.body;
+const bookDataUtil = (req, getUser, trip) => {
+  const { tripDate, numberOfSeats } = req.body;
 
   const bookData = Book.bookindModel(
     uuid.v4(),
     getUser.id,
-    busLicenseNumber,
+    trip.busLicenseNumber,
     tripDate,
-    numberOfSeats,
+    parseInt(numberOfSeats),
     getUser.firstName,
     getUser.lastName,
     getUser.email,
