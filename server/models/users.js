@@ -1,3 +1,6 @@
+/* eslint-disable no-empty */
+/* eslint-disable consistent-return */
+/* eslint-disable space-before-blocks */
 import Database from './wayFareDb';
 
 const db = new Database();
@@ -32,9 +35,11 @@ const User = {
 
   // FInd User
   async findUser(data_) {
-    const user = await db.getUserByEmail(data_);
-    const result = user.rows[0];
-    return result;
+    try {
+      const user = await db.getUserByEmail(data_);
+      const result = user.rows[0];
+      return result;
+    } catch (err){}
   },
 
   // create new user

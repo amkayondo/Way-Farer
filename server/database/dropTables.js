@@ -6,9 +6,10 @@ dotenv.config();
 
 const dropTables = () => {
   const result = Pool.query(`
-    DROP TABLE IF EXISTS users; 
-    DROP TABLE IF EXISTS trips;
-    DROP TABLE IF EXISTS bookings;`);
+  DROP TABLE users CASCADE;
+  DROP TABLE trips CASCADE;
+  DROP TABLE bookings CASCADE;
+  `);
   return result;
 };
 module.exports = dropTables;

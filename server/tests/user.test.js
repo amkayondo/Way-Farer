@@ -8,20 +8,22 @@ const uuid = require('uuid');
 chai.use(chaiHttp);
 
 const newUser = {
-  first_name: 'kayondo',
-  last_name: 'edward',
+  firstname: 'kayondo',
+  lastname: 'edward',
   email: 'kayondo@open.co',
   password: 'vbcbcbcb',
+  address: 'kampala',
+  phone: '0781295406',
 };
 
 const siginUser = {
   email: 'kayondo@open.co',
-  password: 'vbcbcbcb',
+  password: 'vbcbcbcb6367289',
 };
 
 const invalidUser = {
   email: 'tom@open.co',
-  password: 'vbcbcbcb',
+  password: 'vbcbcbcb6367289',
 };
 
 const invalidPassword = {
@@ -62,7 +64,7 @@ describe('USERS TESTS', () => {
       .post('/api/v1/auth/signin')
       .send(siginUser)
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(400);
       });
     done();
   });
@@ -87,8 +89,8 @@ describe('USERS TESTS', () => {
   it('should return an error when email not given', (done) => {
     const noEmail = {
       id: uuid.v4(),
-      firstName: 'kayondo',
-      lastName: 'edward',
+      firstname: 'kayondo',
+      lastname: 'edward',
       password: '23456',
       admin: false,
     };

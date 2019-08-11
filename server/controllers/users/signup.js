@@ -11,27 +11,35 @@ const signUp = async (req, res) => {
   const {
     firstname, lastname, phone, address, email, password,
   } = req.body;
-  const data = payLoad(
+
+  const xc = false;
+  const newData = {
     firstname,
     lastname,
+    phone,
+    address,
     email,
     password,
-    address,
-    phone,
-    false,
-  );
-  const payload = data;
+    xc,
+  };
+
   const result = Joi.validate(req.body, signUpSchema);
   if (result.error) {
     return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
   }
-  const token = createToken(payload);
-  res.header('Authorization', token);
   const userExists = await newUser.findUser(req.body.email);
   if (userExists) {
     return resPonse.errorMessage(res, 400, 'User with the same email exists');
   }
-  newUser.createNewUser(data);
+  newUser.createNewUser(newData);
+  const foundUser = await newUser.findUser(req.body.email);
+  const data = payLoad(
+    foundUser.userid,
+    foundUser.isadmin,
+  );
+  const payload = data;
+  const token = createToken(payload);
+  res.header('Authorization', token);
   resPonse.successUser(res, 201, 'Account successfully created', token);
 };
 
