@@ -35,7 +35,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test npm run testdb && && npm run addadmin && nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
+    "test": "cross-env NODE_ENV=test npm run testdb && npm run addadmin && nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
     "dev1": "cross-env NODE_ENV=development npm run devdb && npm run addadmin && nodemon --exec babel-node server/index.js",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/index.js",
     "start": "cross-env NODE_ENV=production npm run proddb && npm run addadmin && ./node_modules/.bin/babel-node ./server/index.js",
