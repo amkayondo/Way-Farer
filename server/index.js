@@ -10,7 +10,6 @@ import createBooking from './routes/bookings/bookingRouter';
 const app = express();
 
 app.use(express.json());
-
 app.use(express.urlencoded());
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(doc));
 

@@ -146,6 +146,14 @@ describe('TRIPS TESTS', () => {
         done();
       });
   });
+  it('should return error if trip doesnt exist', (done) => {
+    chai.request(app)
+      .get('/api/v1/trips/kkdndiksdmfdm')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
   it('should return trips by destination', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
@@ -168,7 +176,7 @@ describe('TRIPS TESTS', () => {
     chai.request(app)
       .get(`/api/v1/trips/${2323232}`)
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(404);
         done();
       });
   });
@@ -190,7 +198,7 @@ describe('TRIPS TESTS', () => {
   });
   it('should cancel a trip', (done) => {
     chai.request(app)
-      .patch(`/api/v1/trips/${tripId}/cancel`)
+      .patch(`/api/v1/trips/${tripId}`)
       .set('Authorization', userToken)
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -199,10 +207,10 @@ describe('TRIPS TESTS', () => {
   });
   it('should return error if the to be cancelled trip doesnt exist', (done) => {
     chai.request(app)
-      .patch(`/api/v1/trips/${87324628482}/cancel`)
+      .patch(`/api/v1/trips/${87324628482}`)
       .set('Authorization', userToken)
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(404);
         done();
       });
   });

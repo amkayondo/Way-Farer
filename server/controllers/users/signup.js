@@ -5,34 +5,34 @@ import resPonse from '../../helpers/responses/response';
 import signUpSchema from '../../helpers/schema/signup';
 import payLoad from './payload';
 
-const uuid = require('uuid');
-
 const newUser = User;
-const signUp = (req, res) => {
+// eslint-disable-next-line consistent-return
+const signUp = async (req, res) => {
+  const {
+    firstname, lastname, phone, address, email, password,
+  } = req.body;
   const data = payLoad(
-    uuid.v4(),
-    req.body.first_name,
-    req.body.last_name,
-    req.body.email,
-    req.body.password,
+    firstname,
+    lastname,
+    email,
+    password,
+    address,
+    phone,
     false,
   );
   const payload = data;
-  const inputData = req.body;
-  const schema = signUpSchema(Joi);
-  Joi.validate(inputData, schema, (error) => {
-    if (error) {
-      return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`));
-    } const token = createToken(payload);
-    res.header('Authorization', token);
-    const userExists = newUser.findUser(data.email);
-    if (userExists) {
-      return resPonse.errorMessage(res, 400, 'User with the same email exists');
-    }
-    newUser.createNewUser(data);
-    resPonse.successUser(res, 201, 'Account successfully created', token);
-    return true;
-  });
+  const result = Joi.validate(req.body, signUpSchema);
+  if (result.error) {
+    return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+  }
+  const token = createToken(payload);
+  res.header('Authorization', token);
+  const userExists = await newUser.findUser(req.body.email);
+  if (userExists) {
+    return resPonse.errorMessage(res, 400, 'User with the same email exists');
+  }
+  newUser.createNewUser(data);
+  resPonse.successUser(res, 201, 'Account successfully created', token);
 };
 
 module.exports = signUp;

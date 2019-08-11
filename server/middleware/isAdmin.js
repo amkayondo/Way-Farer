@@ -1,5 +1,5 @@
 import resPonse from '../helpers/responses/response';
-import isAdminController from '../helpers/util/isAdmin';
+import isAdminController from '../util/isAdmin';
 // Check if User is an Admin
 const isAdmin = (req, res, next) => {
   try {

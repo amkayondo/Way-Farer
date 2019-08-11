@@ -8,7 +8,6 @@ chai.use(chaiHttp);
 let bookingId;
 let otherUserToken;
 
-
 const user = {
   email: 'admin@app.com',
   password: 'admin123',
@@ -16,6 +15,9 @@ const user = {
 
 let userToken;
 let tripId;
+let bookingId2;
+let bookingId3;
+let otherUserToken2;
 let tripIdT;
 
 const tripData = {
@@ -49,6 +51,21 @@ before('NEW USER SIGN UP', (done) => {
     .end((err, res) => {
       if (err) done(err);
       otherUserToken = res.body.data.token;
+      done();
+    });
+});
+before('NEW USER 2 SIGN UP', (done) => {
+  chai.request(app)
+    .post('/api/v1/auth/signup')
+    .send({
+      first_name: 'kayondo',
+      last_name: 'edward',
+      email: 'tomboya@open.co',
+      password: 'vbcbcbcb',
+    })
+    .end((err, res) => {
+      if (err) done(err);
+      otherUserToken2 = res.body.data.token;
       done();
     });
 });
@@ -147,6 +164,38 @@ describe('BOOKINGS TESTS', () => {
         done();
       });
   });
+  it('should post new bookings', (done) => {
+    chai.request(app)
+      .post('/api/v1/bookings')
+      .set('Authorization', userToken)
+      .send({
+        tripId: `${tripId}`,
+        tripDate: '23-12-2019',
+        numberOfSeats: '3',
+      })
+      .end((err, res) => {
+        // eslint-disable-next-line prefer-destructuring
+        bookingId2 = res.body.data.bookingId;
+        if (err) done(err);
+        done();
+      });
+  });
+  it('should post new bookings', (done) => {
+    chai.request(app)
+      .post('/api/v1/bookings')
+      .set('Authorization', otherUserToken)
+      .send({
+        tripId: `${tripId}`,
+        tripDate: '23-12-2019',
+        numberOfSeats: '3',
+      })
+      .end((err, res) => {
+        // eslint-disable-next-line prefer-destructuring
+        bookingId3 = res.body.data.bookingId;
+        if (err) done(err);
+        done();
+      });
+  });
   it('should return error if seats are more than', (done) => {
     chai.request(app)
       .post('/api/v1/bookings')
@@ -236,10 +285,19 @@ describe('BOOKINGS TESTS', () => {
   });
   it('should return error on delete a booking if not the owner', (done) => {
     chai.request(app)
-      .delete(`/api/v1/bookings/${bookingId}`)
-      .set('Authorization', userToken)
+      .delete(`/api/v1/bookings/${bookingId2}`)
+      .set('Authorization', otherUserToken2)
       .end((err, res) => {
         expect(res).to.have.status(400);
+        done();
+      });
+  });
+  it('should delete a booking if admin', (done) => {
+    chai.request(app)
+      .delete(`/api/v1/bookings/${bookingId3}`)
+      .set('Authorization', userToken)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         done();
       });
   });

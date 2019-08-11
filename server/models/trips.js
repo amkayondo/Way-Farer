@@ -1,42 +1,31 @@
-// Tips database
-const tripDataBase = [];
+import Databse from './wayFareDb';
+
+const db = new Databse();
+
+
 // Trips Model
 const Trip = {
-  tripDataBase,
-  tripData(id, seatingCapacity, availableSeats,
-    busLicenseNumber, origin, destination, tripDate, fare, status) {
+  tripData(seatingcapacity, availableSeats,
+    buslicensenumber, origin, destination, tripdate, fare, status) {
     return {
-      id,
-      seatingCapacity,
+      seatingcapacity,
       availableSeats,
-      busLicenseNumber,
+      buslicensenumber,
       origin,
       destination,
-      tripDate,
+      tripdate,
       fare,
       status,
     };
   },
   creatAtrip(tripData) {
-    return tripDataBase.push(tripData);
+    return db.addNewTrip(tripData);
   },
   findTrip(tripInput) {
-    return tripDataBase.find(x => x.id === tripInput);
+    return db.selectItemById('trips', tripInput);
   },
-  findTripById(tripid) {
-    return tripDataBase.find(x => x.id === tripid);
-  },
-  findTripByLicence(LicenceInput) {
-    return tripDataBase.find(x => x.busLicenseNumber === LicenceInput);
-  },
-  findTripDate(inputTripDate) {
-    return tripDataBase.find(x => x.tripDate === inputTripDate);
-  },
-  findQueryByDestination(query) {
-    return tripDataBase.filter(x => x.destination === query);
-  },
-  findQueryByOrigin(oquery) {
-    return tripDataBase.filter(x => x.origin === oquery);
+  getAllTrips() {
+    return db.getAllItems('trips');
   },
 
 };
