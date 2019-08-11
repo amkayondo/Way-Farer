@@ -1,6 +1,6 @@
 /* eslint-disable radix */
 import uuid from 'uuid';
-import Book from '../../models/bookings';
+import Book from '../models/bookings';
 
 const bookDataUtil = (req, getUser, trip) => {
   const { tripDate, numberOfSeats } = req.body;

@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import resPonse from '../../helpers/responses/response';
 import Book from '../../models/bookings';
 
+// eslint-disable-next-line consistent-return
 const deleteBooking = (req, res) => {
   const { bookingId } = req.params;
   const getUser = jwt.decode(req.headers.authorization);

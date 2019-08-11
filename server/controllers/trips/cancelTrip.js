@@ -8,7 +8,7 @@ const cancelTrip = (req, res) => {
     foundTrip.status = 'cancelled';
     const cancelResponse = { message: 'Trip cancelled successfully' };
     return resPonse.successData(res, 200, cancelResponse);
-  } resPonse.errorMessage(res, 400, `Not Trip found with Id ${tripId}`);
+  } resPonse.errorMessage(res, 404, `Not Trip found with Id ${tripId}`);
   return true;
 };
 

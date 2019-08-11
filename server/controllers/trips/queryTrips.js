@@ -2,6 +2,7 @@ import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 
 const trips = Trip.tripDataBase;
+// eslint-disable-next-line consistent-return
 const getAllTrips = (req, res, next) => {
   const { destination, origin } = req.query;
   if (trips.length === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }
@@ -13,6 +14,5 @@ const getAllTrips = (req, res, next) => {
     next();
   // eslint-disable-next-line no-empty
   } catch (error) {}
-  return true;
 };
 module.exports = getAllTrips;

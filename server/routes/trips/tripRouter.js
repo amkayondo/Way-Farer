@@ -11,6 +11,6 @@ const tripRouter = express.Router();
 tripRouter.get('/trips/:tripId', getTripbyId);
 tripRouter.post('/trips', appAuth, isAdmin, createTrip);
 tripRouter.get('/trips', queryTrips, getAllTrips);
-tripRouter.patch('/trips/:tripId/cancel', appAuth, isAdmin, cancelTrip);
+tripRouter.patch('/trips/:tripId', appAuth, isAdmin, cancelTrip);
 
 module.exports = tripRouter;

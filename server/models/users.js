@@ -1,36 +1,68 @@
-import uuid from 'uuid';
+/* eslint-disable no-empty */
+/* eslint-disable consistent-return */
+/* eslint-disable space-before-blocks */
+import Database from './wayFareDb';
 
-// User Database
+const db = new Database();
 const userDataBase = [
   {
-    id: uuid.v4(),
-    firstName: 'I am',
-    lastName: 'admin',
+    firstname: 'I am',
+    lastname: 'admin',
     email: 'admin@app.com',
+    phone: '0781295406',
+    address: 'kampala',
     password: 'admin123',
     isAdmin: true,
   },
 ];
 const User = {
   userDataBase,
-  userData(id, firstName, lastName, email, password) {
+  userData(firstname,
+    lastname,
+    email,
+    password,
+    address,
+    phone) {
     return {
-      id, firstName, lastName, email, password,
+      firstname,
+      lastname,
+      email,
+      password,
+      address,
+      phone,
     };
   },
 
   // FInd User
-  findUser(data_) {
-    return userDataBase.find(x => x.email === data_);
+  async findUser(data_) {
+    try {
+      const user = await db.getUserByEmail(data_);
+      const result = user.rows[0];
+      return result;
+    } catch (err){}
   },
 
   // create new user
   createNewUser(userInfo) {
     const data = this.userData(
-      userInfo.id, userInfo.firstName, userInfo.lastName,
-      userInfo.email, userInfo.password, userInfo.isAdmin,
+      userInfo.firstname,
+      userInfo.lastname,
+      userInfo.email,
+      userInfo.password,
+      userInfo.address,
+      userInfo.phone,
+      userInfo.isAdmin,
     );
-    userDataBase.push(data);
+    const userData = [
+      data.firstname,
+      data.lastname,
+      data.email,
+      data.password,
+      data.address,
+      data.phone,
+      false,
+    ];
+    db.addNewUser(userData);
   },
 };
 

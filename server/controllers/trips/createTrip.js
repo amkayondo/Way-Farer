@@ -4,38 +4,38 @@ import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 import tripSchema from '../../helpers/schema/trip';
 
-const uuid = require('uuid');
-
 const createTrip = (req, res) => {
-  const inputData = req.body;
+  // const inputData = req.body;
   const {
-    seatingCapacity, busLicenseNumber, origin, destination, tripDate, fare,
+    seatingcapacity, busLicensenumber, origin, destination, tripDate, fare,
   } = req.body;
-  const avSeats = seatingCapacity;
+  const avSeats = seatingcapacity;
   const data = Trip.tripData(
-    uuid.v4(), parseInt(seatingCapacity), parseInt(avSeats), busLicenseNumber,
+    parseInt(seatingcapacity), parseInt(avSeats), busLicensenumber,
     origin, destination, tripDate,
     parseInt(fare), 'active',
   );
-  const schema = tripSchema(Joi);
-  Joi.validate(inputData, schema, (error) => {
-    try {
-      if (error) {
-        return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`));
-      }
-      const isBus = Trip.tripDataBase.find(x => x.busLicenseNumber === busLicenseNumber);
-      if (isBus) {
-        return resPonse.errorMessage(
-          res, 400,
-          `A bus with License Number ${busLicenseNumber} is already booked`,
-        );
-      }
+  // seatingcapacity, buslicensenumber, origin,
+  //       fare, destination, tripdate, status
+  const newTrip = [
+    data.seatingcapacity,
+    data.availableSeats,
+    data.buslicensenumber,
+    data.origin,
+    data.destination,
+    data.tripdate,
+    data.fare,
+    data.status,
+  ];
+  // const isBus = Trip.getTripBylicence(busLicensenumber);
+  // if (isBus) {
+  //   return resPonse.errorMessage(
+  //     res, 400,
+  //     `A bus with License Number ${busLicensenumber} is already booked`,
+  //   );
+  // }
 
-      Trip.creatAtrip(data);
-      return resPonse.successData(res, 201, data);
-    // eslint-disable-next-line no-shadow
-    // eslint-disable-next-line no-empty
-    } catch (err) {}
-  });
+  Trip.creatAtrip(newTrip);
+  return resPonse.successData(res, 201, data);
 };
 module.exports = createTrip;
