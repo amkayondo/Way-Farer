@@ -36,7 +36,6 @@ const signUp = async (req, res) => {
     newData.isadmin,
   );
   const token = createToken(payload);
-  console.log(req.body);
   res.header('Authorization', token);
   newUser.createNewUser(newData);
   resPonse.successUser(res, 201, 'Account successfully created', token);

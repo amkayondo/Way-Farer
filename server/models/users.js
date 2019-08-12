@@ -26,7 +26,6 @@ const User = {
   async findUser(data_) {
     // try {
     const user = await db.getUserByEmail(data_);
-    console.log(user);
     const result = user.rows[0];
     return result;
     // } catch (err){}
