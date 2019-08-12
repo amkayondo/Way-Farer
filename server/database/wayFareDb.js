@@ -2,13 +2,13 @@
 /* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 import dotenv from 'dotenv';
-import pool from '../config/dbEnv';
+import Pool from '../config/dbEnv';
 
 
 dotenv.config();
 
 class Database {
-  queryDatabySelect(table, key, data) {
+  async queryDatabySelect(table, key, data) {
     const result = (`SELECT * FROM ${table} WHERE ${key}=${data};`);
     return result;
   }
@@ -16,7 +16,7 @@ class Database {
   // Get Item By Id
   async selectItemById(table, id) {
     try {
-      const result = await pool.query(`SELECT * FROM ${table} WHERE id=${id};`);
+      const result = await Pool.query(`SELECT * FROM ${table} WHERE id='${id}';`);
       return result;
     } catch (err) {}
   }
@@ -24,7 +24,7 @@ class Database {
   // Get Item By Id
   async getTripBylicence(table, buslicensenumber) {
     try {
-      const result = await pool.query(this.queryDatabySelect(table, 'buslicensenumber', buslicensenumber));
+      const result = await Pool.query(this.queryDatabySelect(table, 'buslicensenumber', buslicensenumber));
       return result;
     } catch (err) {}
   }
@@ -32,7 +32,7 @@ class Database {
   // Add new user
   async addNewUser(data) {
     try {
-      const result = await pool.query(`INSERT INTO users(
+      const result = await Pool.query(`INSERT INTO users(
         firstname, lastname, email, password, phone, address, 
         isadmin)
         VALUES ($1, $2, $3, $4, $5, $6, $7);`, data);
@@ -42,19 +42,19 @@ class Database {
 
   // Add new user
   async addNewTrip(data) {
-    try {
-      const result = await pool.query(`INSERT INTO trips(
-        seatingcapacity, buslicensenumber, origin,
-        fare, destination, tripdate, status)
-      VALUES ($1, $2, $3, $4, $5, $6, $7);`, data);
-      return result;
-    } catch (err) {}
+    // try {
+    const result = await Pool.query(`INSERT INTO trips(
+        seatingcapacity, availableSeats, buslicensenumber,
+        origin, destination, fare, tripdate, status)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, data);
+    return result;
+    // } catch (err) {}
   }
 
-  // get all trips
+  // get all items
   async getAllItems(tableName) {
     try {
-      const result = await pool.query(`SELECT * FROM ${tableName}`);
+      const result = await Pool.query(`SELECT * FROM ${tableName}`);
       return result;
     } catch (err) {
       return err;
@@ -63,8 +63,12 @@ class Database {
 
   // Login User
   async getUserByEmail(email) {
-    const data = await pool.query(`SELECT * FROM users WHERE email='${email}';`);
-    return data;
+    try {
+      const data = await Pool.query(`SELECT * FROM users WHERE email='${email}';`);
+      return data;
+    } catch (err) {
+      return err;
+    }
   }
 }
 

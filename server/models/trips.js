@@ -1,4 +1,4 @@
-import Databse from './wayFareDb';
+import Databse from '../database/wayFareDb';
 
 const db = new Databse();
 
@@ -18,14 +18,17 @@ const Trip = {
       status,
     };
   },
-  creatAtrip(tripData) {
-    return db.addNewTrip(tripData);
+  async creatAtrip(tripData) {
+    const result = await db.addNewTrip(tripData);
+    return result;
   },
-  findTrip(tripInput) {
-    return db.selectItemById('trips', tripInput);
+  async findTrip(tripInput) {
+    const result = await db.selectItemById('trips', tripInput);
+    return result;
   },
-  getAllTrips() {
-    return db.getAllItems('trips');
+  async getAllTrips() {
+    const result = await db.getAllItems('trips');
+    return result;
   },
 
 };

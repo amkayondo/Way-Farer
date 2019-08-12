@@ -1,45 +1,47 @@
-// import chai, { expect } from 'chai';
-// import { describe, it, before } from 'mocha';
-// import chaiHttp from 'chai-http';
-// import app from '../index';
+import chai, { expect } from 'chai';
+import { describe, it, before } from 'mocha';
+import chaiHttp from 'chai-http';
+import app from '../index';
 
-// chai.use(chaiHttp);
+chai.use(chaiHttp);
 
-// let userToken;
-// let notAdminToken;
-// let tripId;
+let userToken;
+let notAdminToken;
+let tripId;
 
-// // signUp Non Admin
-// before('signup non admin', (done) => {
-//   chai.request(app)
-//     .post('/api/v1/auth/signup')
-//     .send({
-//       first_name: 'kayondo',
-//       last_name: 'edward',
-//       email: 'kayondo@amtomd.co',
-//       password: '38e3olsdjf',
-//     })
-//     .end((err, res) => {
-//       if (err) done(err);
-//       notAdminToken = res.body.data.token;
-//       done();
-//     });
-// });
+// signUp Non Admin
+before('signup non admin', (done) => {
+  chai.request(app)
+    .post('/api/v1/auth/signup')
+    .send({
+      firstname: 'kayondo',
+      lastname: 'edward',
+      email: 'qwjnkdnkdf@amtomd.co',
+      password: '38e3olsdjf',
+      phone: '0781295406',
+      address: 'kawempe',
+    })
+    .end((err, res) => {
+      if (err) done(err);
+      notAdminToken = res.body.data.token;
+      done();
+    });
+});
 
-// // Signin Admin
-// before('signup admin', (done) => {
-//   chai.request(app)
-//     .post('/api/v1/auth/signin')
-//     .send({
-//       email: 'admin@app.com',
-//       password: 'admin123',
-//     })
-//     .end((err, res) => {
-//       if (err) done(err);
-//       userToken = res.body.data.token;
-//       done();
-//     });
-// });
+// Signin Admin
+before('signup admin', (done) => {
+  chai.request(app)
+    .post('/api/v1/auth/signin')
+    .send({ // admin@app.com
+      email: 'admin@app.com',
+      password: 'admin123',
+    })
+    .end((err, res) => {
+      if (err) done(err);
+      userToken = res.body.data.token;
+      done();
+    });
+});
 // before((done) => {
 //   chai.request(app)
 //     .get('/api/v1/trips')
@@ -48,14 +50,14 @@
 //     });
 //   done();
 // });
-// const tripData = {
-//   seatingCapacity: '50',
-//   busLicenseNumber: 'UGXHD',
-//   origin: 'kampala',
-//   destination: 'kigali',
-//   tripDate: '23-12-2019',
-//   fare: '30000',
-// };
+const tripData = {
+  seatingcapacity: '50',
+  buslicensenumber: 'UGXHD',
+  origin: 'kampala',
+  destination: 'kigali',
+  tripdate: '23-12-2019',
+  fare: '30000',
+};
 
 // before((done) => {
 //   chai.request(app)
@@ -65,26 +67,26 @@
 //     });
 //   done();
 // });
-// describe('TRIPS TESTS', () => {
-//   it('should retun 404 if route not found', (done) => {
-//     chai.request(app)
-//       .post('/amInvalid')
-//       .end((err, res) => {
-//         expect(res).to.have.status(404);
-//         done();
-//       });
-//   });
-//   it('should create a trip', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/trips')
-//       .set('Authorization', userToken)
-//       .send(tripData)
-//       .end((err, res) => {
-//         tripId = res.body.data.id;
-//         expect(res).to.have.status(201);
-//         done();
-//       });
-//   });
+describe('TRIPS TESTS', () => {
+  it('should retun 404 if route not found', (done) => {
+    chai.request(app)
+      .post('/amInvalid')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
+  it('should create a trip', (done) => {
+    chai.request(app)
+      .post('/api/v1/trips')
+      .set('Authorization', userToken)
+      .send(tripData)
+      .end((err, res) => {
+        tripId = res.body.data.id;
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
 //   it('should return all trips created ', (done) => {
 //     chai.request(app)
 //       .get('/api/v1/trips')
@@ -214,4 +216,4 @@
 //         done();
 //       });
 //   });
-// });
+});
