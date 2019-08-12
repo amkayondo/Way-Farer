@@ -14,11 +14,11 @@ class Database {
   }
 
   // Get Item By Id
-  async selectItemById(table, id) {
-    try {
-      const result = await Pool.query(`SELECT * FROM ${table} WHERE id='${id}';`);
-      return result;
-    } catch (err) {}
+  async selectItemById(table, colom, id) {
+    // try {
+    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}=${id};`);
+    return result;
+    // } catch (err) {}
   }
 
   // Get Item By Id

@@ -150,9 +150,9 @@ describe('TRIPS TESTS', () => {
   });
   it('should return error if trip doesnt exist', (done) => {
     chai.request(app)
-      .get('/api/v1/trips/kkdndiksdmfdm')
+      .get('/api/v1/trips/78978978')
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
   });
@@ -178,7 +178,7 @@ describe('TRIPS TESTS', () => {
     chai.request(app)
       .get(`/api/v1/trips/${2323232}`)
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
   });
@@ -186,7 +186,7 @@ describe('TRIPS TESTS', () => {
     chai.request(app)
       .get(`/api/v1/trips/${tripId}`)
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
   });

@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-empty */
 import Databse from '../database/wayFareDb';
 
 const db = new Databse();
@@ -19,16 +21,22 @@ const Trip = {
     };
   },
   async creatAtrip(tripData) {
-    const result = await db.addNewTrip(tripData);
-    return result;
+    try {
+      const result = await db.addNewTrip(tripData);
+      return result;
+    } catch (err) {}
   },
   async findTrip(tripInput) {
-    const result = await db.selectItemById('trips', tripInput);
-    return result;
+    try {
+      const result = await db.selectItemById('trips', 'tripid', tripInput);
+      return result;
+    } catch (err) {}
   },
   async getAllTrips() {
-    const result = await db.getAllItems('trips');
-    return result;
+    try {
+      const result = await db.getAllItems('trips');
+      return result;
+    } catch (err) {}
   },
 
 };

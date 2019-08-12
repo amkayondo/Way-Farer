@@ -33,8 +33,7 @@
     "nyc": "^14.1.1",
     "pg": "^7.12.1",
     "should": "^13.2.3",
-    "swagger-ui-express": "^4.0.7",
-    "uuid": "^3.3.2"
+    "swagger-ui-express": "^4.0.7"
   },
   "scripts": {
     "dev1": "cross-env NODE_ENV=development npm run devdb && npm run addadmin && nodemon --exec babel-node server/index.js",

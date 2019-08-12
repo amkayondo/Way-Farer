@@ -5,7 +5,10 @@ import Trip from '../../models/trips';
 import tripSchema from '../../helpers/schema/trip';
 
 const createTrip = (req, res) => {
-  // const inputData = req.body;
+  // const result = Joi.validate(req.body, tripSchema);
+  // if (result.error) {
+  //   return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+  // }
   const {
     seatingcapacity, buslicensenumber, origin, destination, tripdate, fare,
   } = req.body;
@@ -27,14 +30,6 @@ const createTrip = (req, res) => {
     data.tripdate,
     data.status,
   ];
-  // const isBus = Trip.getTripBylicence(buslicensenumber);
-  // if (isBus) {
-  //   return resPonse.errorMessage(
-  //     res, 400,
-  //     `A bus with License Number ${buslicensenumber} is already booked`,
-  //   );
-  // }
-  // console.log(newTrip);
   Trip.creatAtrip(newTrip);
   return resPonse.successData(res, 201, data);
 };

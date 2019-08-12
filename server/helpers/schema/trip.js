@@ -1,13 +1,13 @@
-const BaseJoi = require('@hapi/joi');
+const Joi = require('@hapi/joi');
 const Extension = require('@hapi/joi-date');
 
-const JoiD = BaseJoi.extend(Extension);
+const JoiD = Joi.extend(Extension);
 
-const trip = () => Joi => Joi.object().keys({
+const tripSchema = {
   seatingCapacity: Joi.string().trim().regex(/^[0-9]{2,5}$/)
     .required()
     .label('Only Integers are allowed'),
-  busLicenseNumber: Joi.string().trim().alphanum()
+  buslicenseNumber: Joi.string().trim().alphanum()
     .required()
     .label('Invalid Bus LicenseNumber'),
   origin: Joi.string().alphanum().required()
@@ -19,7 +19,6 @@ const trip = () => Joi => Joi.object().keys({
   fare: Joi.string().trim().regex(/^[0-9]{2,5}$/).label('Invalid Input')
     .required()
     .label('Fare should be an integer'),
-});
+};
 
-const tripSchema = trip();
 module.exports = tripSchema;

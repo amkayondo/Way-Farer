@@ -33,26 +33,28 @@ const User = {
 
   // create new user
   async createNewUser(userInfo) {
-    const data = this.userData(
-      userInfo.firstname,
-      userInfo.lastname,
-      userInfo.email,
-      userInfo.password,
-      userInfo.address,
-      userInfo.phone,
-      userInfo.isAdmin,
-    );
-    const userData = [
-      data.firstname,
-      data.lastname,
-      data.email,
-      data.password,
-      data.phone,
-      data.address,
-      false,
-    ];
-    const cret = await db.addNewUser(userData);
-    return cret;
+    try {
+      const data = this.userData(
+        userInfo.firstname,
+        userInfo.lastname,
+        userInfo.email,
+        userInfo.password,
+        userInfo.address,
+        userInfo.phone,
+        userInfo.isAdmin,
+      );
+      const userData = [
+        data.firstname,
+        data.lastname,
+        data.email,
+        data.password,
+        data.phone,
+        data.address,
+        false,
+      ];
+      const cret = await db.addNewUser(userData);
+      return cret;
+    } catch (err){}
   },
 };
 
