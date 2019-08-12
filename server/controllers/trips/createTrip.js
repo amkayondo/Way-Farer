@@ -34,7 +34,7 @@ const createTrip = (req, res) => {
   //     `A bus with License Number ${buslicensenumber} is already booked`,
   //   );
   // }
-  console.log(newTrip);
+  // console.log(newTrip);
   Trip.creatAtrip(newTrip);
   return resPonse.successData(res, 201, data);
 };
