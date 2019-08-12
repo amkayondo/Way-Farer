@@ -31,15 +31,14 @@ const signUp = async (req, res) => {
   if (userExists) {
     return resPonse.errorMessage(res, 400, 'User with the same email exists');
   }
-  newUser.createNewUser(newData);
-  const foundUser = await newUser.findUser(req.body.email);
-  const data = payLoad(
-    foundUser.userid,
-    foundUser.isadmin,
+  const payload = payLoad(
+    newData.userid,
+    newData.isadmin,
   );
-  const payload = data;
   const token = createToken(payload);
+  console.log(req.body);
   res.header('Authorization', token);
+  newUser.createNewUser(newData);
   resPonse.successUser(res, 201, 'Account successfully created', token);
 };
 

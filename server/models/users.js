@@ -4,19 +4,8 @@
 import Database from './wayFareDb';
 
 const db = new Database();
-const userDataBase = [
-  {
-    firstname: 'I am',
-    lastname: 'admin',
-    email: 'admin@app.com',
-    phone: '0781295406',
-    address: 'kampala',
-    password: 'admin123',
-    isAdmin: true,
-  },
-];
+
 const User = {
-  userDataBase,
   userData(firstname,
     lastname,
     email,
@@ -35,15 +24,16 @@ const User = {
 
   // FInd User
   async findUser(data_) {
-    try {
-      const user = await db.getUserByEmail(data_);
-      const result = user.rows[0];
-      return result;
-    } catch (err){}
+    // try {
+    const user = await db.getUserByEmail(data_);
+    console.log(user);
+    const result = user.rows[0];
+    return result;
+    // } catch (err){}
   },
 
   // create new user
-  createNewUser(userInfo) {
+  async createNewUser(userInfo) {
     const data = this.userData(
       userInfo.firstname,
       userInfo.lastname,
@@ -62,7 +52,8 @@ const User = {
       data.phone,
       false,
     ];
-    db.addNewUser(userData);
+    const cret = await db.addNewUser(userData);
+    return cret;
   },
 };
 
