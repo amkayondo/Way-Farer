@@ -1,18 +1,28 @@
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 
-const trips = Trip.tripDataBase;
+
 // eslint-disable-next-line consistent-return
-const getAllTrips = (req, res, next) => {
-  const { destination, origin } = req.query;
-  if (trips.length === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }
+const queryTrips = async (req, res, next) => {
   try {
-    const foundDestination = Trip.findQueryByDestination(destination);
-    const foundOrigin = Trip.findQueryByOrigin(origin);
-    if (foundDestination.length >= 1) { return resPonse.successData(res, 200, foundDestination); }
-    if (foundOrigin.length >= 1) { return resPonse.successData(res, 200, foundOrigin); }
+    const foundtrips = await Trip.getAllTrips();
+
+    const { destination, origin } = req.query;
+    if (foundtrips.rowcount === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }
+
+    const allTrips = foundtrips.rows;
+    const gotOrigin = allTrips.filter(x => x.origin === origin);
+    const gotDest = allTrips.filter(y => y.destination === destination);
+
+    if (gotOrigin.length > 0) {
+      return resPonse.successDatas(res, 200, gotOrigin.length, gotOrigin);
+    }
+
+    if (gotDest.length > 0) {
+      return resPonse.successDatas(res, 200, gotDest.length, gotDest);
+    }
     next();
   // eslint-disable-next-line no-empty
   } catch (error) {}
 };
-module.exports = getAllTrips;
+module.exports = queryTrips;
