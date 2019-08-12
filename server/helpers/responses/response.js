@@ -21,6 +21,15 @@ const resPonse = {
       data,
     });
   },
+  successDatas(res, statusCode, count, data) {
+    return res.status(statusCode).json({
+      status: statusCode,
+      data: {
+        'Number of trips': count,
+        data,
+      },
+    });
+  },
   successWithNoData(res, statusCode, message) {
     return res.status(statusCode).json({
       status: statusCode,

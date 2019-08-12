@@ -42,23 +42,23 @@ class Database {
 
   // Add new user
   async addNewTrip(data) {
-    // try {
-    const result = await Pool.query(`INSERT INTO trips(
+    try {
+      const result = await Pool.query(`INSERT INTO trips(
         seatingcapacity, availableSeats, buslicensenumber,
         origin, destination, fare, tripdate, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, data);
-    return result;
-    // } catch (err) {}
+      return result;
+    } catch (err) {}
   }
 
   // get all items
   async getAllItems(tableName) {
-    try {
-      const result = await Pool.query(`SELECT * FROM ${tableName}`);
-      return result;
-    } catch (err) {
-      return err;
-    }
+    // try {
+    const result = await Pool.query(`SELECT * FROM ${tableName}`);
+    return result;
+    // } catch (err) {
+    //   return err;
+    // }
   }
 
   // Login User
