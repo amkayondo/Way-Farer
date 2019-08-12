@@ -49,7 +49,7 @@
     "dropdbprod": "cross-env NODE_ENV=production node --require @babel/register ./server/database/dropTables.js",
     "prodadmin": "cross-env NODE_ENV=production node --require @babel/register ./server/database/createAdmin.js",
     "proddb": "cross-env NODE_ENV=production node --require @babel/register ./server/database/createTables.js",
-    "runprod": "node ./dist/server/index.js",
+    "runprod": "node ./dist/index.js",
     "start": "cross-env NODE_ENV=production npm run dropdbprod && npm run proddb && npm run prodadmin && npm run runprod",
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
