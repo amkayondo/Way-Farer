@@ -1,7 +1,7 @@
 /* eslint-disable no-empty */
 /* eslint-disable consistent-return */
 /* eslint-disable space-before-blocks */
-import Database from './wayFareDb';
+import Database from '../database/wayFareDb';
 
 const db = new Database();
 
@@ -24,11 +24,11 @@ const User = {
 
   // FInd User
   async findUser(data_) {
-    // try {
-    const user = await db.getUserByEmail(data_);
-    const result = user.rows[0];
-    return result;
-    // } catch (err){}
+    try {
+      const user = await db.getUserByEmail(data_);
+      const result = user.rows[0];
+      return result;
+    } catch (err){}
   },
 
   // create new user
@@ -47,8 +47,8 @@ const User = {
       data.lastname,
       data.email,
       data.password,
-      data.address,
       data.phone,
+      data.address,
       false,
     ];
     const cret = await db.addNewUser(userData);

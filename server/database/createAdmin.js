@@ -2,10 +2,6 @@ import '@babel/plugin-transform-regenerator';
 import '@babel/polyfill';
 import dotenv from 'dotenv';
 import Pool from '../config/dbEnv';
-import Database from '../models/wayFareDb';
-
-const db = new Database();
-
 
 dotenv.config();
 

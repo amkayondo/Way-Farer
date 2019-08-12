@@ -13,18 +13,19 @@ CREATE TABLE IF NOT EXISTS users (
     address VARCHAR(24) NOT NULL, isAdmin BOOLEAN NOT NULL DEFAULT false, PRIMARY KEY (userId));
     
     CREATE TABLE IF NOT EXISTS trips (
-    tripId SERIAL, seatingCapacity INTEGER,
-    create_on TIMESTAMP DEFAULT NOW(),
-    busLicenseNumber VARCHAR(30) NOT NULL,
+    tripId SERIAL, seatingcapacity INTEGER,
+    availableSeats INTEGER,
+    buslicenseNumber VARCHAR(30) NOT NULL,
     origin VARCHAR(30) NOT NULL,
-    fare FLOAT NOT NULL, 
     destination VARCHAR(30) NOT NULL,
-    tripDate VARCHAR(30) NOT NULL,
-    status VARCHAR(30) NOT NULL, PRIMARY KEY (tripId));
+    fare FLOAT NOT NULL, 
+    tripdate VARCHAR(30) NOT NULL,
+    status VARCHAR(30) NOT NULL,
+    create_on TIMESTAMP DEFAULT NOW(), PRIMARY KEY (tripId));
     
     CREATE TABLE IF NOT EXISTS bookings (
     bookingId SERIAL, userId INTEGER REFERENCES users(userId) ON DELETE CASCADE, amount INTEGER NOT NULL,
-    status VARCHAR(30) NOT NULL, PRIMARY KEY (bookingId));
+    status VARCHAR(30) NOT NULL, create_on TIMESTAMP DEFAULT NOW(), PRIMARY KEY (bookingId));
 `);
   return result;
 };
