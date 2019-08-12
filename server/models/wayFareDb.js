@@ -8,6 +8,11 @@ import pool from '../config/dbEnv';
 dotenv.config();
 
 class Database {
+  queryDatabySelect(table, key, data) {
+    const result = (`SELECT * FROM ${table} WHERE ${key}=${data};`);
+    return result;
+  }
+
   // Get Item By Id
   async selectItemById(table, id) {
     try {
@@ -19,7 +24,7 @@ class Database {
   // Get Item By Id
   async getTripBylicence(table, buslicensenumber) {
     try {
-      const result = await pool.query(`SELECT * FROM ${table} WHERE buslicensenumber=${buslicensenumber};`);
+      const result = await pool.query(this.queryDatabySelect(table, 'buslicensenumber', buslicensenumber));
       return result;
     } catch (err) {}
   }
@@ -51,15 +56,15 @@ class Database {
     try {
       const result = await pool.query(`SELECT * FROM ${tableName}`);
       return result;
-    } catch (err) {}
+    } catch (err) {
+      return err;
+    }
   }
 
   // Login User
   async getUserByEmail(email) {
-    try {
-      const data = await pool.query(`SELECT * FROM users WHERE email='${email}'`);
-      return data;
-    } catch (err) {}
+    const data = await pool.query(`SELECT * FROM users WHERE email='${email}';`);
+    return data;
   }
 }
 
