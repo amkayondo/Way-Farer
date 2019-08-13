@@ -8,22 +8,23 @@ const regeX2 = (/^[a-zA-Z0-9]{3,30}$/);
 const validateError = (res, result) => resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
 const JoiD = Joi.extend(Extension);
 const validate = (values, validations) => Joi.validate(values, validations);
+
 const Validator = {
   trip(req, res, next) {
     const result = validate(req.body, {
-      seatingcapacity: Joi.string().trim().regex(regeX)
+      seating_capacity: Joi.string().trim().regex(regeX)
         .required()
         .label('Only Integers are allowed'),
-      buslicensenumber: Joi.string().trim().alphanum()
+      bus_license_number: Joi.string().trim().alphanum()
         .required()
         .label('Invalid Bus LicenseNumber'),
       origin: Joi.string().alphanum().required()
         .label('Invalid Origin Name'),
       destination: Joi.string().alphanum().required()
         .label('Invalid Destination Name'),
-      tripdate: JoiD.date().format('DD-MM-YYYY').required()
+      trip_date: JoiD.date().format('DD-MM-YYYY').required()
         .label('Only [DD-MM-YYYY] Date format is allowed '),
-      fare: Joi.string().trim().regex(regeX).label('Invalid Input')
+      fare: Joi.string().trim().regex(regeX)
         .required()
         .label('Fare should be an integer'),
     });
@@ -34,10 +35,10 @@ const Validator = {
   },
   userSiginup(req, res, next){
     const result = validate(req.body, {
-      firstname: Joi.string().trim().alphanum()
+      first_name: Joi.string().trim().alphanum()
         .required()
         .label('First Name is invalid'),
-      lastname: Joi.string().trim().alphanum()
+      last_name: Joi.string().trim().alphanum()
         .required()
         .label('Last Name is invalid'),
       email: Joi.string().email().required()
@@ -69,13 +70,12 @@ const Validator = {
   },
   booking(req, res, next){
     const result = validate(req.body, {
-      tripId: Joi.string().trim().regex(regeX)
+      trip_id: Joi.string().trim().regex(regeX)
         .required()
         .label('trip id should be an integer'),
-      numberOfSeats: Joi.string().trim().regex(regeX).label('Invalid Input')
-        .required()
+      number_of_Seats: Joi.string().trim().regex(regeX).required()
         .label('Number of seats must be integers'),
-      tripDate: JoiD.date().format('MM-MM-YYYY').required()
+      trip_date: JoiD.date().format('MM-MM-YYYY').required()
         .label('Only [DD-MM-YYYY] Date format is allowed '),
     });
     if (result.error) {

@@ -7,13 +7,13 @@ const newUser = new User();
 const signUp = async (req, res) => {
   try {
     const {
-      firstname, lastname, phone, address, email, password,
+      first_name, last_name, phone, address, email, password,
     } = req.body;
 
     const xc = false;
     const newData = {
-      firstname,
-      lastname,
+      first_name,
+      last_name,
       phone,
       address,
       email,

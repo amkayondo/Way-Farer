@@ -15,7 +15,7 @@ const deleteBooking = (req, res) => {
     const firstB = foundTrip.availableSeats + foundBooking.numberOfSeats;
     foundTrip.availableSeats = firstB;
     Book.bookingDatabase.splice(bookingId, 1);
-    return resPonse.successData(res, 200, 'Booking successfully deleted');
+    return resPonse.successWithNoData(res, 200, 'Booking successfully deleted');
   } resPonse.errorMessage(res, 400, `You did not make this booking with id ${bookingId}`);
 };
 module.exports = deleteBooking;

@@ -5,13 +5,13 @@ const db = new Databse();
 export default class Trip {
   async creatAtrip(tripData) {
     const newData = [
-      tripData.seatingcapacity,
+      tripData.seating_capacity,
       tripData.availableseats,
-      tripData.buslicensenumber,
+      tripData.bus_license_number,
       tripData.origin,
       tripData.destination,
       tripData.fare,
-      tripData.tripdate,
+      tripData.trip_date,
       tripData.status,
     ];
     const result = await db.addNewTrip(newData);
@@ -19,7 +19,7 @@ export default class Trip {
   }
 
   async findTrip(tripInput) {
-    const result = await db.selectItemById('trips', 'tripid', tripInput);
+    const result = await db.selectItemById('trips', 'trip_id', tripInput);
     return result;
   }
 

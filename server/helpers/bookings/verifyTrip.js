@@ -10,10 +10,9 @@ const verifyTrip = (foundTrip, resPonse, res, numberOfSeats, Book, bookData) => 
   if (foundTrip.availableSeats < parseInt(numberOfSeats)) {
     return resPonse.errorMessage(res, 400, `Number of seats must be less than ${foundTrip.availableSeats}`);
   }
-  // eslint-disable-next-line no-param-reassign
   foundTrip.availableSeats = Book.decreaseNumberOfSeats(foundTrip.availableSeats,
     parseInt(numberOfSeats));
-  Book.createNewBooking(bookData); return resPonse.successData(res, 201, bookData);
+  Book.createNewBooking(bookData); return resPonse.successData(res, 201, 'New Booking successfully made', bookData);
 };
 
 module.exports = verifyTrip;

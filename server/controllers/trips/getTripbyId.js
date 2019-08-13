@@ -8,7 +8,7 @@ const getTripbyId = async (req, res) => {
     const foundTrip = await trip.findTrip(tripId);
     if (foundTrip.rows.length === 0) {
       return resPonse.errorMessage(res, 404, `No Trip found with Id ${tripId}`);
-    } resPonse.successData(res, 200, foundTrip.rows[0]);
+    } resPonse.successData(res, 200, 'Trip found', foundTrip.rows[0]);
   } catch (err) {}
 };
 module.exports = getTripbyId;

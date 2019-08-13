@@ -11,8 +11,8 @@ export default class User {
 
   async createNewUser(userInfo) {
     const userData = [
-      userInfo.firstname,
-      userInfo.lastname,
+      userInfo.first_name,
+      userInfo.last_name,
       userInfo.email,
       userInfo.password,
       userInfo.phone,

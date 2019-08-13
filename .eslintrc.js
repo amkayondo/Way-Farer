@@ -19,6 +19,9 @@ module.exports = {
     "class-methods-use-this": 0,
     "radix": 0,
     "eslint-disable-next-line no-console": 0,
-    "no-console": 0
+    "no-console": 0,
+    "camelcase": 0,
+    "prefer-destructuring": 0,
+    "no-param-reassign":0
   },
 };

@@ -9,8 +9,7 @@ const cancelTrip = async (req, res) => {
     const foundTrip = await trip.findTrip(tripId);
     if (foundTrip.rows.length > 0) {
       await trip.updateTripStatus(tripId, 'cancelled');
-      const cancelResponse = { message: 'Trip cancelled successfully' };
-      return resPonse.successData(res, 200, cancelResponse);
+      return resPonse.successWithNoData(res, 200, 'Trip cancelled successfully');
     } resPonse.errorMessage(res, 404, `Not Trip found with Id ${tripId}`);
   } catch (err){
     resPonse.errorMessage(res, 500, err.message);

@@ -9,7 +9,7 @@ const getAllBookings = (req, res) => {
       const allBookings = Book.bookingDatabase;
       if (allBookings.length === 0) {
         return resPonse.errorMessage(res, 404, 'No bookings made at the moment');
-      } resPonse.successData(res, 200, allBookings);
+      } resPonse.successData(res, 200, 'All trips successfully fetched', allBookings);
     }
     const forUser = Book.getUserBookings(getUser.id);
     if (forUser.length === 0) {

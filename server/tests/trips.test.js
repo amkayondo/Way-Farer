@@ -12,8 +12,8 @@ before('signup non admin', (done) => {
   chai.request(app)
     .post('/api/v1/auth/signup')
     .send({
-      firstname: 'kayondo',
-      lastname: 'edward',
+      first_name: 'kayondo',
+      last_name: 'edward',
       email: 'qwjnkdnkdf@amtomd.co',
       password: '38e3olsdjf',
       phone: '0781295406',
@@ -48,11 +48,11 @@ before((done) => {
   done();
 });
 const tripData = {
-  seatingcapacity: '50',
-  buslicensenumber: 'UGXHD',
+  seating_capacity: '50',
+  bus_license_number: 'UGXHD',
   origin: 'kampala',
   destination: 'kigali',
-  tripdate: '23-12-2019',
+  trip_date: '23-12-2019',
   fare: '30000',
 };
 
@@ -128,7 +128,7 @@ describe('TRIPS TESTS', () => {
       .post('/api/v1/trips')
       .set('Authorization', userToken)
       .send({
-        seatingCapacity: 50,
+        seating_capacity: 50,
         fare: 20000,
       })
       .end((err, res) => {
