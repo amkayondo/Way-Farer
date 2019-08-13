@@ -1,10 +1,11 @@
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 
+const trip = new Trip();
 
 const queryTrips = async (req, res, next) => {
   try {
-    const foundtrips = await Trip.getAllTrips();
+    const foundtrips = await trip.getAllTrips();
 
     const { destination, origin } = req.query;
     if (foundtrips.rowcount === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }

@@ -26,7 +26,7 @@ class Database {
 
   async addNewTrip(data) {
     const result = await Pool.query(`INSERT INTO trips(
-        seatingcapacity, availableSeats, buslicensenumber,
+        seatingcapacity, availableseats, buslicensenumber,
         origin, destination, fare, tripdate, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, data);
     return result;

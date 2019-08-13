@@ -5,6 +5,7 @@ const Extension = require('@hapi/joi-date');
 
 const regeX = (/^[0-9]{2,5}$/);
 const regeX2 = (/^[a-zA-Z0-9]{3,30}$/);
+const validateError = (res, result) => resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
 const JoiD = Joi.extend(Extension);
 const validate = (values, validations) => Joi.validate(values, validations);
 const Validator = {
@@ -27,7 +28,7 @@ const Validator = {
         .label('Fare should be an integer'),
     });
     if (result.error) {
-      return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+      return validateError(res, result);
     }
     next();
   },
@@ -50,7 +51,7 @@ const Validator = {
         .label('Please enter a valid password and it should be longer than six characters'),
     });
     if (result.error) {
-      return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+      return validateError(res, result);
     }
     next();
   },
@@ -62,7 +63,7 @@ const Validator = {
         .label('Invalid Password'),
     });
     if (result.error) {
-      return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+      return validateError(res, result);
     }
     next();
   },
@@ -78,7 +79,7 @@ const Validator = {
         .label('Only [DD-MM-YYYY] Date format is allowed '),
     });
     if (result.error) {
-      return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+      return validateError(res, result);
     }
     next();
   },
