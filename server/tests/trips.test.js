@@ -132,7 +132,7 @@ describe('TRIPS TESTS', () => {
         fare: 20000,
       })
       .end((err, res) => {
-        expect(res).to.have.status(201);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -178,7 +178,7 @@ describe('TRIPS TESTS', () => {
         done();
       });
   });
- 
+
   it('should return all trips', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
