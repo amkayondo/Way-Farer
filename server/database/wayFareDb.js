@@ -16,7 +16,7 @@ class Database {
   // Get Item By Id
   async selectItemById(table, colom, id) {
     // try {
-    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}=${id};`);
+    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}='${id}';`);
     return result;
     // } catch (err) {}
   }
@@ -53,12 +53,10 @@ class Database {
 
   // get all items
   async getAllItems(tableName) {
-    // try {
-    const result = await Pool.query(`SELECT * FROM ${tableName}`);
-    return result;
-    // } catch (err) {
-    //   return err;
-    // }
+    try {
+      const result = await Pool.query(`SELECT * FROM ${tableName}`);
+      return result;
+    } catch (err) {}
   }
 
   // Login User
@@ -66,9 +64,12 @@ class Database {
     try {
       const data = await Pool.query(`SELECT * FROM users WHERE email='${email}';`);
       return data;
-    } catch (err) {
-      return err;
-    }
+    } catch (err) {}
+  }
+
+  // Update items
+  async updateItems(data){
+    const result = await Pool.query(``)
   }
 }
 
