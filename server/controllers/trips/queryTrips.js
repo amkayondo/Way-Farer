@@ -2,7 +2,6 @@ import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 
 
-// eslint-disable-next-line consistent-return
 const queryTrips = async (req, res, next) => {
   try {
     const foundtrips = await Trip.getAllTrips();

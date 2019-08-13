@@ -1,11 +1,7 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-empty */
 import Databse from '../database/wayFareDb';
 
 const db = new Databse();
 
-
-// Trips Model
 const Trip = {
   tripData(seatingcapacity, availableSeats,
     buslicensenumber, origin, destination, tripdate, fare, status) {
@@ -32,11 +28,23 @@ const Trip = {
       return result;
     } catch (err) {}
   },
+  async updateTripStatus(tripId, staTus){
+    try {
+      const foundTrip = await db.updateTrip(staTus, tripId);
+      return foundTrip;
+    } catch (err){}
+  },
   async getAllTrips() {
     try {
       const result = await db.getAllItems('trips');
       return result;
     } catch (err) {}
+  },
+  async getTripBylience(liecence, tripdate){
+    try {
+      const foundt = await db.getTripBylicence(liecence, tripdate);
+      return foundt;
+    } catch (err){}
   },
 
 };

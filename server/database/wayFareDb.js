@@ -1,46 +1,35 @@
-/* eslint-disable no-empty */
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
 import dotenv from 'dotenv';
 import Pool from '../config/dbEnv';
-
 
 dotenv.config();
 
 class Database {
-  async queryDatabySelect(table, key, data) {
-    const result = (`SELECT * FROM ${table} WHERE ${key}=${data};`);
-    return result;
-  }
-
-  // Get Item By Id
   async selectItemById(table, colom, id) {
-    // try {
-    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}='${id}';`);
-    return result;
-    // } catch (err) {}
-  }
-
-  // Get Item By Id
-  async getTripBylicence(table, buslicensenumber) {
     try {
-      const result = await Pool.query(this.queryDatabySelect(table, 'buslicensenumber', buslicensenumber));
+      const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}='${id}';`);
       return result;
     } catch (err) {}
   }
 
-  // Add new user
+  async getTripBylicence(buslicensenumber, tripDate) {
+    try {
+      const result = await Pool.query(`SELECT * 
+    FROM trips WHERE buslicensenumber='${buslicensenumber}' 
+    AND tripdate='${tripDate}';`);
+      return result;
+    } catch (err) {}
+  }
+
   async addNewUser(data) {
     try {
-      const result = await Pool.query(`INSERT INTO users(
-        firstname, lastname, email, password, phone, address, 
-        isadmin)
-        VALUES ($1, $2, $3, $4, $5, $6, $7);`, data);
+      const result = await Pool.query(`
+      INSERT INTO users(firstname, lastname, 
+      email, password, phone, address, isadmin)
+      VALUES ($1, $2, $3, $4, $5, $6, $7);`, data);
       return result;
     } catch (err) {}
   }
 
-  // Add new user
   async addNewTrip(data) {
     try {
       const result = await Pool.query(`INSERT INTO trips(
@@ -51,7 +40,6 @@ class Database {
     } catch (err) {}
   }
 
-  // get all items
   async getAllItems(tableName) {
     try {
       const result = await Pool.query(`SELECT * FROM ${tableName}`);
@@ -59,17 +47,12 @@ class Database {
     } catch (err) {}
   }
 
-  // Login User
-  async getUserByEmail(email) {
-    try {
-      const data = await Pool.query(`SELECT * FROM users WHERE email='${email}';`);
-      return data;
-    } catch (err) {}
-  }
 
-  // Update items
-  async updateItems(data){
-    const result = await Pool.query(``)
+  async updateTrip(staTus, tripId) {
+    try {
+      const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE tripid=${tripId}`);
+      return result;
+    } catch (err){}
   }
 }
 

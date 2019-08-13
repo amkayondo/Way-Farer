@@ -13,7 +13,6 @@ const createBooking = (req, res) => {
   const { tripId, tripDate, numberOfSeats } = req.body;
 
   const schema = bookingSchema(Joi);
-  // eslint-disable-next-line consistent-return
   Joi.validate(req.body, schema, (error) => {
     try {
       if (error) {
@@ -27,7 +26,6 @@ const createBooking = (req, res) => {
       if (foundTrip.tripDate === tripDate) {
         verifyTrip(foundTrip, resPonse, res, numberOfSeats, Book, bookData);
       } return resPonse.errorMessage(res, 404, `No trip is available on this date ${tripDate}`);
-    // eslint-disable-next-line no-empty
     } catch (err) {}
   });
   return true;

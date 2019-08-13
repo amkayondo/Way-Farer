@@ -20,7 +20,6 @@ app.use('/api/v1', userRouter, tripRouter, createBooking);
 app.use('*', (req, res) => {
   resPonse.successWithNoData(res, 404, 'resource not found');
 });
-// eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`RUNNING ON PORT ${PORT}`));
 
 module.exports = app;

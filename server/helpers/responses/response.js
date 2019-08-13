@@ -1,4 +1,3 @@
-// Responses
 const resPonse = {
   errorMessage(res, statusCode, error) {
     return res.status(statusCode).json({
