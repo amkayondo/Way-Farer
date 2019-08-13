@@ -21,7 +21,8 @@ const queryTrips = async (req, res, next) => {
       return resPonse.successDatas(res, 200, gotDest.length, gotDest);
     }
     next();
-  // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (error) {
+    resPonse.errorMessage(res, 500, error.message);
+  }
 };
 module.exports = queryTrips;

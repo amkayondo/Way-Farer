@@ -15,8 +15,9 @@ const getAllBookings = (req, res) => {
     if (forUser.length === 0) {
       return resPonse.errorMessage(res, 200, 'You have made no bookings yet');
     } resPonse.successData(res, 200, forUser);
-  // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (error) {
+    resPonse.errorMessage(res, 500, error.message);
+  }
   return true;
 };
 module.exports = getAllBookings;

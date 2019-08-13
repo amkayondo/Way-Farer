@@ -1,11 +1,9 @@
-import Joi from '@hapi/joi';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
-import signUpSchema from '../../helpers/schema/signup';
 import payLoad from './payload';
 
-const newUser = User;
+const newUser = new User();
 const signUp = async (req, res) => {
   try {
     const {
@@ -23,10 +21,6 @@ const signUp = async (req, res) => {
       xc,
     };
 
-    const result = Joi.validate(req.body, signUpSchema);
-    if (result.error) {
-      return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
-    }
     const userExists = await newUser.findUser(req.body.email);
     if (userExists) {
       return resPonse.errorMessage(res, 400, 'User with the same email exists');
@@ -39,7 +33,9 @@ const signUp = async (req, res) => {
     res.header('Authorization', token);
     await newUser.createNewUser(newData);
     resPonse.successUser(res, 201, 'Account successfully created', token);
-  } catch (err){}
+  } catch (err){
+    resPonse.errorMessage(res, 500, err.message);
+  }
 };
 
 module.exports = signUp;

@@ -5,8 +5,9 @@ const isAdmin = (req, res, next) => {
   try {
     isAdminController(req, resPonse, res);
     next();
-  } catch (error) {}
-  return true;
+  } catch (error) {
+    resPonse.errorMessage(res, 500, error.message);
+  }
 };
 
 module.exports = isAdmin;

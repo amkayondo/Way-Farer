@@ -17,34 +17,24 @@ const Trip = {
     };
   },
   async creatAtrip(tripData) {
-    try {
-      const result = await db.addNewTrip(tripData);
-      return result;
-    } catch (err) {}
+    const result = await db.addNewTrip(tripData);
+    return result;
   },
   async findTrip(tripInput) {
-    try {
-      const result = await db.selectItemById('trips', 'tripid', tripInput);
-      return result;
-    } catch (err) {}
+    const result = await db.selectItemById('trips', 'tripid', tripInput);
+    return result;
   },
   async updateTripStatus(tripId, staTus){
-    try {
-      const foundTrip = await db.updateTrip(staTus, tripId);
-      return foundTrip;
-    } catch (err){}
+    const foundTrip = await db.updateTrip(staTus, tripId);
+    return foundTrip;
   },
   async getAllTrips() {
-    try {
-      const result = await db.getAllItems('trips');
-      return result;
-    } catch (err) {}
+    const result = await db.getAllItems('trips');
+    return result;
   },
   async getTripBylience(liecence, tripdate){
-    try {
-      const foundt = await db.getTripBylicence(liecence, tripdate);
-      return foundt;
-    } catch (err){}
+    const foundt = await db.getTripBylicence(liecence, tripdate);
+    return foundt;
   },
 
 };

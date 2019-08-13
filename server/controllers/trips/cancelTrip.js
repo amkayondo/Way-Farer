@@ -10,7 +10,9 @@ const cancelTrip = async (req, res) => {
       const cancelResponse = { message: 'Trip cancelled successfully' };
       return resPonse.successData(res, 200, cancelResponse);
     } resPonse.errorMessage(res, 404, `Not Trip found with Id ${tripId}`);
-  } catch (err){}
+  } catch (err){
+    resPonse.errorMessage(res, 500, err.message);
+  }
 };
 
 module.exports = cancelTrip;

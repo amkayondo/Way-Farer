@@ -5,54 +5,42 @@ dotenv.config();
 
 class Database {
   async selectItemById(table, colom, id) {
-    try {
-      const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}='${id}';`);
-      return result;
-    } catch (err) {}
+    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}='${id}';`);
+    return result;
   }
 
   async getTripBylicence(buslicensenumber, tripDate) {
-    try {
-      const result = await Pool.query(`SELECT * 
+    const result = await Pool.query(`SELECT * 
     FROM trips WHERE buslicensenumber='${buslicensenumber}' 
     AND tripdate='${tripDate}';`);
-      return result;
-    } catch (err) {}
+    return result;
   }
 
   async addNewUser(data) {
-    try {
-      const result = await Pool.query(`
+    const result = await Pool.query(`
       INSERT INTO users(firstname, lastname, 
       email, password, phone, address, isadmin)
       VALUES ($1, $2, $3, $4, $5, $6, $7);`, data);
-      return result;
-    } catch (err) {}
+    return result;
   }
 
   async addNewTrip(data) {
-    try {
-      const result = await Pool.query(`INSERT INTO trips(
+    const result = await Pool.query(`INSERT INTO trips(
         seatingcapacity, availableSeats, buslicensenumber,
         origin, destination, fare, tripdate, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, data);
-      return result;
-    } catch (err) {}
+    return result;
   }
 
   async getAllItems(tableName) {
-    try {
-      const result = await Pool.query(`SELECT * FROM ${tableName}`);
-      return result;
-    } catch (err) {}
+    const result = await Pool.query(`SELECT * FROM ${tableName}`);
+    return result;
   }
 
 
   async updateTrip(staTus, tripId) {
-    try {
-      const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE tripid=${tripId}`);
-      return result;
-    } catch (err){}
+    const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE tripid=${tripId}`);
+    return result;
   }
 }
 

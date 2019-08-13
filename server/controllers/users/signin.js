@@ -1,19 +1,13 @@
-import Joi from '@hapi/joi';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
-import signInSchema from '../../helpers/schema/sigin';
 import payLoad from './payload';
 
-const newUser = User;
+const newUser = new User();
 
 
 const signIn = async (req, res) => {
   try {
-    const result = Joi.validate(req.body, signInSchema);
-    if (result.error) {
-      return resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
-    }
     const userExists = await newUser.findUser(req.body.email);
     if (!userExists) {
       return resPonse.errorMessage(res, 400, 'Incorrect email');
@@ -29,7 +23,9 @@ const signIn = async (req, res) => {
     return (
       resPonse.successUser(res, 200, 'You have successfully Signned in', token)
     );
-  } catch (err){}
+  } catch (err){
+    resPonse.errorMessage(res, 500, err.message);
+  }
 };
 
 module.exports = signIn;
