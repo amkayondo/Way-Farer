@@ -3,7 +3,6 @@ import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
 
-const uuid = require('uuid');
 
 chai.use(chaiHttp);
 
@@ -50,15 +49,6 @@ describe('USERS TESTS', () => {
       });
     done();
   });
-  it('should return error if email exists on create an account', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send(newUser)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-      });
-    done();
-  });
   it('should login user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signin')
@@ -88,10 +78,11 @@ describe('USERS TESTS', () => {
   });
   it('should return an error when email not given', (done) => {
     const noEmail = {
-      id: uuid.v4(),
       firstname: 'kayondo',
       lastname: 'edward',
       password: '23456',
+      phone: '07812356',
+      address: 'kampala',
       admin: false,
     };
     chai.request(app)

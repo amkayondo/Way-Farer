@@ -1,59 +1,25 @@
-/* eslint-disable no-empty */
-/* eslint-disable consistent-return */
-/* eslint-disable space-before-blocks */
 import Database from '../database/wayFareDb';
 
 const db = new Database();
 
-const User = {
-  userData(firstname,
-    lastname,
-    email,
-    password,
-    address,
-    phone) {
-    return {
-      firstname,
-      lastname,
-      email,
-      password,
-      address,
-      phone,
-    };
-  },
-
-  // FInd User
+export default class User {
   async findUser(data_) {
-    try {
-      const user = await db.getUserByEmail(data_);
-      const result = user.rows[0];
-      return result;
-    } catch (err){}
-  },
+    const user = await db.selectItemById('users', 'email', data_);
+    const result = user.rows[0];
+    return result;
+  }
 
-  // create new user
   async createNewUser(userInfo) {
-    const data = this.userData(
-      userInfo.firstname,
-      userInfo.lastname,
+    const userData = [
+      userInfo.first_name,
+      userInfo.last_name,
       userInfo.email,
       userInfo.password,
-      userInfo.address,
       userInfo.phone,
-      userInfo.isAdmin,
-    );
-    const userData = [
-      data.firstname,
-      data.lastname,
-      data.email,
-      data.password,
-      data.phone,
-      data.address,
+      userInfo.address,
       false,
     ];
-    const cret = await db.addNewUser(userData);
-    return cret;
-  },
-};
-
-module.exports = User;
+    const create = await db.addNewUser(userData);
+    return create;
+  }
+}

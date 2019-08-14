@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-// eslint-disable-next-line consistent-return
 const isAdminController = (req, resPonse, res) => {
   const header = req.headers.authorization;
   const x = jwt.decode(header, { complete: true });

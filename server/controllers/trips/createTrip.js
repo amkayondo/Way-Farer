@@ -1,41 +1,23 @@
-/* eslint-disable radix */
-import Joi from '@hapi/joi';
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
-import tripSchema from '../../helpers/schema/trip';
 
-const createTrip = (req, res) => {
-  // const inputData = req.body;
-  const {
-    seatingcapacity, buslicensenumber, origin, destination, tripdate, fare,
-  } = req.body;
-
-  const avSeats = seatingcapacity;
-  const data = Trip.tripData(
-    parseInt(seatingcapacity), parseInt(avSeats),
-    buslicensenumber,
-    origin, destination, tripdate,
-    parseInt(fare), 'active',
-  );
-  const newTrip = [
-    data.seatingcapacity,
-    data.availableSeats,
-    data.buslicensenumber,
-    data.origin,
-    data.destination,
-    data.fare,
-    data.tripdate,
-    data.status,
-  ];
-  // const isBus = Trip.getTripBylicence(buslicensenumber);
-  // if (isBus) {
-  //   return resPonse.errorMessage(
-  //     res, 400,
-  //     `A bus with License Number ${buslicensenumber} is already booked`,
-  //   );
-  // }
-  // console.log(newTrip);
-  Trip.creatAtrip(newTrip);
-  return resPonse.successData(res, 201, data);
+const newtrip = new Trip();
+const createTrip = async (req, res) => {
+  try {
+    const data = {
+      seating_capacity: parseInt(req.body.seating_capacity),
+      available_seats: parseInt(req.body.seating_capacity),
+      bus_license_number: req.body.bus_license_number,
+      origin: req.body.origin,
+      destination: req.body.destination,
+      trip_date: req.body.trip_date,
+      fare: parseInt(req.body.fare),
+      status: 'active',
+    };
+    newtrip.creatAtrip(data);
+    return resPonse.successData(res, 201, 'Trip successfully created', data);
+  } catch (err){
+    resPonse.errorMessage(res, 500, err.message);
+  }
 };
 module.exports = createTrip;

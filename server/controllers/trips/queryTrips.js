@@ -1,11 +1,11 @@
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 
+const trip = new Trip();
 
-// eslint-disable-next-line consistent-return
 const queryTrips = async (req, res, next) => {
   try {
-    const foundtrips = await Trip.getAllTrips();
+    const foundtrips = await trip.getAllTrips();
 
     const { destination, origin } = req.query;
     if (foundtrips.rowcount === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }
@@ -22,7 +22,8 @@ const queryTrips = async (req, res, next) => {
       return resPonse.successDatas(res, 200, gotDest.length, gotDest);
     }
     next();
-  // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (error) {
+    resPonse.errorMessage(res, 500, error.message);
+  }
 };
 module.exports = queryTrips;

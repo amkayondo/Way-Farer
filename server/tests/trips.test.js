@@ -7,15 +7,13 @@ chai.use(chaiHttp);
 
 let userToken;
 let notAdminToken;
-let tripId;
 
-// signUp Non Admin
 before('signup non admin', (done) => {
   chai.request(app)
     .post('/api/v1/auth/signup')
     .send({
-      firstname: 'kayondo',
-      lastname: 'edward',
+      first_name: 'kayondo',
+      last_name: 'edward',
       email: 'qwjnkdnkdf@amtomd.co',
       password: '38e3olsdjf',
       phone: '0781295406',
@@ -28,11 +26,10 @@ before('signup non admin', (done) => {
     });
 });
 
-// Signin Admin
 before('signup admin', (done) => {
   chai.request(app)
     .post('/api/v1/auth/signin')
-    .send({ // admin@app.com
+    .send({
       email: 'admin@app.com',
       password: 'admin123',
     })
@@ -46,27 +43,27 @@ before((done) => {
   chai.request(app)
     .get('/api/v1/trips')
     .end((err, res) => {
-      expect(res).to.have.status(400);
+      expect(res).to.have.status(404);
     });
   done();
 });
 const tripData = {
-  seatingcapacity: '50',
-  buslicensenumber: 'UGXHD',
+  seating_capacity: '50',
+  bus_license_number: 'UGXHD',
   origin: 'kampala',
   destination: 'kigali',
-  tripdate: '23-12-2019',
+  trip_date: '23-12-2019',
   fare: '30000',
 };
 
-// before((done) => {
-//   chai.request(app)
-//     .get('/api/v1/trips')
-//     .end((err, res) => {
-//       expect(res).to.have.status(200);
-//     });
-//   done();
-// });
+before((done) => {
+  chai.request(app)
+    .get('/api/v1/trips')
+    .end((err, res) => {
+      expect(res).to.have.status(404);
+    });
+  done();
+});
 describe('TRIPS TESTS', () => {
   it('should retun 404 if route not found', (done) => {
     chai.request(app)
@@ -82,7 +79,6 @@ describe('TRIPS TESTS', () => {
       .set('Authorization', userToken)
       .send(tripData)
       .end((err, res) => {
-        tripId = res.body.data.id;
         expect(res).to.have.status(201);
         done();
       });
@@ -132,11 +128,11 @@ describe('TRIPS TESTS', () => {
       .post('/api/v1/trips')
       .set('Authorization', userToken)
       .send({
-        seatingCapacity: 50,
+        seating_capacity: 50,
         fare: 20000,
       })
       .end((err, res) => {
-        expect(res).to.have.status(201);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -150,9 +146,9 @@ describe('TRIPS TESTS', () => {
   });
   it('should return error if trip doesnt exist', (done) => {
     chai.request(app)
-      .get('/api/v1/trips/kkdndiksdmfdm')
+      .get('/api/v1/trips/78978978')
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
   });
@@ -178,39 +174,14 @@ describe('TRIPS TESTS', () => {
     chai.request(app)
       .get(`/api/v1/trips/${2323232}`)
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
   });
-  it('should return trip if found', (done) => {
-    chai.request(app)
-      .get(`/api/v1/trips/${tripId}`)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
+
   it('should return all trips', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-  it('should cancel a trip', (done) => {
-    chai.request(app)
-      .patch(`/api/v1/trips/${tripId}`)
-      .set('Authorization', userToken)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-  it('should return error if the to be cancelled trip doesnt exist', (done) => {
-    chai.request(app)
-      .patch(`/api/v1/trips/${87324628482}`)
-      .set('Authorization', userToken)
       .end((err, res) => {
         expect(res).to.have.status(200);
         done();

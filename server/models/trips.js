@@ -2,35 +2,41 @@ import Databse from '../database/wayFareDb';
 
 const db = new Databse();
 
-
-// Trips Model
-const Trip = {
-  tripData(seatingcapacity, availableSeats,
-    buslicensenumber, origin, destination, tripdate, fare, status) {
-    return {
-      seatingcapacity,
-      availableSeats,
-      buslicensenumber,
-      origin,
-      destination,
-      tripdate,
-      fare,
-      status,
-    };
-  },
+export default class Trip {
   async creatAtrip(tripData) {
-    const result = await db.addNewTrip(tripData);
+    const newData = [
+      tripData.seating_capacity,
+      tripData.availableseats,
+      tripData.bus_license_number,
+      tripData.origin,
+      tripData.destination,
+      tripData.fare,
+      tripData.trip_date,
+      tripData.status,
+    ];
+    const result = await db.addNewTrip(newData);
     return result;
-  },
+  }
+
   async findTrip(tripInput) {
-    const result = await db.selectItemById('trips', tripInput);
+    const result = await db.selectItemById('trips', 'trip_id', tripInput);
     return result;
-  },
+  }
+
+  async updateTripStatus(tripId, staTus){
+    const foundTrip = await db.updateTrip(staTus, tripId);
+    return foundTrip;
+  }
+
   async getAllTrips() {
     const result = await db.getAllItems('trips');
     return result;
-  },
+  }
 
-};
+  async getTripBylience(liecence, tripdate){
+    const foundt = await db.getTripBylicence(liecence, tripdate);
+    return foundt;
+  }
+}
 
 module.exports = Trip;

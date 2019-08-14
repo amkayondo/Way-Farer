@@ -9,14 +9,15 @@ const getAllBookings = (req, res) => {
       const allBookings = Book.bookingDatabase;
       if (allBookings.length === 0) {
         return resPonse.errorMessage(res, 404, 'No bookings made at the moment');
-      } resPonse.successData(res, 200, allBookings);
+      } resPonse.successData(res, 200, 'All trips successfully fetched', allBookings);
     }
     const forUser = Book.getUserBookings(getUser.id);
     if (forUser.length === 0) {
       return resPonse.errorMessage(res, 200, 'You have made no bookings yet');
     } resPonse.successData(res, 200, forUser);
-  // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (error) {
+    resPonse.errorMessage(res, 500, error.message);
+  }
   return true;
 };
 module.exports = getAllBookings;
