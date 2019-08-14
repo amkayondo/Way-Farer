@@ -28,7 +28,7 @@ const Validator = {
       fare: Joi.number().integer().min(15000)
         .max(50000)
         .required()
-        .label('Fare should be an integer and should be betwwen 15000 - 50000'),
+        .label('Fare should be an integer and should be between 15000 - 50000'),
     });
     if (result.error) {
       return validateError(res, result);
