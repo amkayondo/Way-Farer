@@ -10,7 +10,7 @@ const signUp = async (req, res) => {
       first_name, last_name, phone, address, email, password,
     } = req.body;
 
-    const xc = false;
+    const is_admin = false;
     const newData = {
       first_name,
       last_name,
@@ -18,7 +18,7 @@ const signUp = async (req, res) => {
       address,
       email,
       password,
-      xc,
+      is_admin,
     };
 
     const userExists = await newUser.findUser(req.body.email);
