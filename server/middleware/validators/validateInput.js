@@ -13,9 +13,9 @@ const validate = (values, validations) => Joi.validate(values, validations);
 const Validator = {
   trip(req, res, next) {
     const result = validate(req.body, {
-      seating_capacity: Joi.number().integer().min(50).max(80)
+      seating_capacity: Joi.number().integer().min(14).max(80)
         .required()
-        .label('Seating capacity must be Only Integers with between 50 - 80'),
+        .label('Seating capacity must be Only Integers with between 14 - 80'),
       bus_license_number: Joi.string().trim().alphanum().max(6)
         .required()
         .label('Invalid Bus LicenseNumber with max of 6 characters'),
