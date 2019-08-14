@@ -20,7 +20,7 @@ class Database {
     const result = await Pool.query(`
       INSERT INTO users(first_name, last_name, 
       email, password, phone, address, isadmin)
-      VALUES ($1, $2, $3, $4, $5, $6, $7);`, data);
+      VALUES ($1, $2, $3, $4, $5, $6, $7) returning *;`, data);
     return result;
   }
 
@@ -28,7 +28,7 @@ class Database {
     const result = await Pool.query(`INSERT INTO trips(
         seating_capacity, available_seats, bus_license_number,
         origin, destination, fare, trip_date, status)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`, data);
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) returning *;`, data);
     return result;
   }
 

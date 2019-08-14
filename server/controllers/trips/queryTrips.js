@@ -1,12 +1,11 @@
+import jwt from 'jsonwebtoken';
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 
 const trip = new Trip();
-
 const queryTrips = async (req, res, next) => {
   try {
     const foundtrips = await trip.getAllTrips();
-
     const { destination, origin } = req.query;
     if (foundtrips.rowcount === 0) { return resPonse.successWithNoData(res, 404, 'No trips available'); }
 
@@ -19,8 +18,9 @@ const queryTrips = async (req, res, next) => {
     }
 
     if (gotDest.length > 0) {
+      console.log(gotDest);
       return resPonse.successDatas(res, 200, gotDest.length, gotDest);
-    }
+    } resPonse.errorMessage(res, 404, 'No trips found');
     next();
   } catch (error) {
     resPonse.errorMessage(res, 500, error.message);

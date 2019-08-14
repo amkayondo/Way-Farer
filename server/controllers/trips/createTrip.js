@@ -4,9 +4,10 @@ import Trip from '../../models/trips';
 const newtrip = new Trip();
 const createTrip = async (req, res) => {
   try {
+    const availableSeats = parseInt(req.body.seating_capacity);
     const data = {
       seating_capacity: parseInt(req.body.seating_capacity),
-      available_seats: parseInt(req.body.seating_capacity),
+      available_seats: availableSeats,
       bus_license_number: req.body.bus_license_number,
       origin: req.body.origin,
       destination: req.body.destination,
@@ -14,8 +15,15 @@ const createTrip = async (req, res) => {
       fare: parseInt(req.body.fare),
       status: 'active',
     };
-    newtrip.creatAtrip(data);
-    return resPonse.successData(res, 201, 'Trip successfully created', data);
+    const trpExists = await newtrip.getTripBylience(data.bus_license_number, data.trip_date);
+    const getTrip = trpExists.rows;
+    if (getTrip.length === 0){
+      newtrip.creatAtrip(data);
+      return resPonse.successData(res, 201, 'Trip successfully created', data);
+    }
+    if (trpExists.rowCount === 1){
+      return resPonse.errorMessage(res, 400, `Bus with bus_license_number ${data.bus_license_number} is ready booked on ${data.trip_date}`);
+    }
   } catch (err){
     resPonse.errorMessage(res, 500, err.message);
   }

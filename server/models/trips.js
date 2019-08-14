@@ -6,7 +6,7 @@ export default class Trip {
   async creatAtrip(tripData) {
     const newData = [
       tripData.seating_capacity,
-      tripData.availableseats,
+      tripData.available_seats,
       tripData.bus_license_number,
       tripData.origin,
       tripData.destination,
