@@ -42,6 +42,11 @@ export default class Trip {
     const foundt = await db.getTripBylicence(licence, tripdate);
     return foundt;
   }
+
+  async getById(tripId){
+    const result = await db.getTripById(tripId);
+    return result;
+  }
 }
 
 module.exports = Trip;

@@ -2,19 +2,22 @@ import jwt from 'jsonwebtoken';
 import resPonse from '../../helpers/responses/response';
 import Book from '../../models/bookings';
 
-const deleteBooking = (req, res) => {
+const book = new Book();
+
+const deleteBooking = async (req, res) => {
   const { bookingId } = req.params;
   const getUser = jwt.decode(req.headers.authorization);
-  const foundBooking = Book.findBooking(bookingId);
-  const userMatches = Book.checkBookingUser(getUser.id);
-  if (!foundBooking) {
+  const foundBooking = await book.deleteUserBookings(getUser.user_id, bookingId);
+  if (foundBooking.rowCount === 0) {
     return resPonse.errorMessage(res, 400, `Booking not found with id ${bookingId}`);
   }
-  if (userMatches || getUser.isAdmin === true) {
-    const foundTrip = Book.checkForLicence(foundBooking.busLicenseNumber);
-    const firstB = foundTrip.availableSeats + foundBooking.numberOfSeats;
-    foundTrip.availableSeats = firstB;
-    Book.bookingDatabase.splice(bookingId, 1);
+  const booking = foundBooking.rows[0];
+  const foundTrip = await book.checkIfTripExists(booking.bus_license_number, booking.trip_date);
+  const trip = foundTrip.rows[0];
+  if (foundBooking.rowCount === 1 || getUser.isAdmin === true) {
+    const dc = await book.increaseNumberOfSeats(trip.trip_id, trip.available_seats,
+      booking.number_of_seats);
+    await book.deleteBookingByUser(bookingId, getUser.user_id);
     return resPonse.successWithNoData(res, 200, 'Booking successfully deleted');
   } resPonse.errorMessage(res, 400, `You did not make this booking with id ${bookingId}`);
 };

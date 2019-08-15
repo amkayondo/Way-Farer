@@ -61,11 +61,25 @@ class Database {
     return result;
   }
 
+  async deleteBookingsByUser(userId, booking_id) {
+    const result = await Pool.query(`SELECT * FROM bookings WHERE user_id=${userId} AND booking_id=${booking_id}`);
+    return result;
+  }
+
+  async deleteBooking(booking_id, userId){
+    const result = await Pool.query(`DELETE FROM bookings WHERE booking_id=${booking_id} AND user_id=${userId}`);
+    return result;
+  }
 
   async updateBookings(tripId, newData) {
     const result = await Pool.query(`UPDATE trips
     SET available_seats='${newData}' 
     WHERE trip_id=${tripId} returning *;`);
+    return result;
+  }
+
+  async updateTrip(staTus, tripId) {
+    const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE trip_id=${tripId}`);
     return result;
   }
 
