@@ -30,7 +30,7 @@ export default class Book {
   }
 
 
-  async checkIfTripExists(bus_license_number, trip_date) {
+  async isTripExists(bus_license_number, trip_date) {
     const result = await newTrip.getTripBylience(bus_license_number, trip_date);
     return result;
   }
