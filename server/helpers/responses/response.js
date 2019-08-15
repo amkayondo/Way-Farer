@@ -14,10 +14,10 @@ const resPonse = {
       },
     });
   },
-  successData(res, statusCode, massage, data) {
+  successData(res, statusCode, message, data) {
     return res.status(statusCode).json({
       status: statusCode,
-      massage,
+      message,
       data,
     });
   },
