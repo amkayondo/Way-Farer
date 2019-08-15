@@ -7,7 +7,7 @@ const book = new Book();
 const deleteBooking = async (req, res) => {
   const { bookingId } = req.params;
   const getUser = jwt.decode(req.headers.authorization);
-  const foundBooking = await book.deleteUserBookings(getUser.user_id, bookingId);
+  const foundBooking = await book.getUserBookings(getUser.user_id, bookingId);
   if (foundBooking.rowCount === 0) {
     return resPonse.errorMessage(res, 400, `Booking not found with id ${bookingId}`);
   }

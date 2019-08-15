@@ -54,15 +54,12 @@ export default class Book {
   }
 
   async checkBookingUser(userid) {
-    // return this.getAtllbookings.find(x => x.userId === userid);
-  }
-
-  async deleteUserBookings(userid, booking_id) {
-    const userBookings = await db.deleteBookingsByUser(userid, booking_id);
+    const userBookings = await db.getOnlyBookingsByUser(userid);
     return userBookings;
   }
 
-  async findBooking(bookid) {
-    // return bookingDatabase.find(x => x.bookingId === bookid);
+  async getUserBookings(userid, booking_id) {
+    const userBookings = await db.getBookingsByUser(userid, booking_id);
+    return userBookings;
   }
 }
