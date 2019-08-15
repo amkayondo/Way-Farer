@@ -24,8 +24,11 @@ CREATE TABLE IF NOT EXISTS users (
     create_on TIMESTAMP DEFAULT NOW(), PRIMARY KEY (trip_id));
     
     CREATE TABLE IF NOT EXISTS bookings (
-    booking_id SERIAL, user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE, amount INTEGER NOT NULL,
-    status VARCHAR(30) NOT NULL, create_on TIMESTAMP DEFAULT NOW(), PRIMARY KEY (booking_id));
+    booking_id SERIAL, user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE, 
+    bus_license_number VARCHAR(30) NOT NULL, 
+    trip_date VARCHAR(30) NOT NULL, number_of_Seats INTEGER NOT NULL,
+    first_name VARCHAR(24) NOT NULL, last_name VARCHAR(24) NOT NULL, email VARCHAR(50) NOT NULL, 
+    create_on TIMESTAMP DEFAULT NOW(), PRIMARY KEY (booking_id));
 `);
   return result;
 };

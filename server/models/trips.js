@@ -33,8 +33,13 @@ export default class Trip {
     return result;
   }
 
-  async getTripBylience(liecence, tripdate){
-    const foundt = await db.getTripBylicence(liecence, tripdate);
+  async getTripById(tripId){
+    const foundt = await db.getTripByIdAndDate(tripId);
+    return foundt;
+  }
+
+  async getTripBylience(licence, tripdate){
+    const foundt = await db.getTripBylicence(licence, tripdate);
     return foundt;
   }
 }

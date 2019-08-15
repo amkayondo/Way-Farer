@@ -78,9 +78,9 @@ const Validator = {
       trip_id: Joi.number().integer()
         .required()
         .label('trip id should be an integer'),
-      number_of_Seats: Joi.number().integer().min(1).max(80)
+      number_of_seats: Joi.number().integer().min(1).max(80)
         .required()
-        .label('Number of seats must be integers'),
+        .label('Number of seats must be integers between 14 - 80'),
       trip_date: JoiD.date().format('MM-MM-YYYY').required()
         .label('Only [DD-MM-YYYY] Date format is allowed '),
     });
