@@ -15,7 +15,8 @@ const createTrip = async (req, res) => {
       fare: parseInt(req.body.fare),
       status: 'active',
     };
-    const trpExists = await newtrip.getTripBylience(data.bus_license_number, data.trip_date);
+    const trpExists = await newtrip.getTripBylience(data.bus_license_number,
+      data.trip_date, data.status);
     const getTrip = trpExists.rows;
     if (getTrip.length === 0){
       const nwdata = await newtrip.creatAtrip(data);

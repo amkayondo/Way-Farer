@@ -22,6 +22,8 @@ module.exports = {
     "no-console": 0,
     "camelcase": 0,
     "prefer-destructuring": 0,
-    "no-param-reassign":0
+    "no-param-reassign":0,
+    "no-shadow": 0,
+    "no-unused-vars": 0
   },
 };

@@ -2,7 +2,7 @@ import resPonse from '../../helpers/responses/response';
 
 const Joi = require('@hapi/joi');
 
-const validateError = (res, result) => resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+const validateError = (res, result) => resPonse.errorMessage(res, 400, (`${result.error.details[0].message}`));
 const validate = (values, validations) => Joi.validate(values, validations);
 
 const ValidateReq = {

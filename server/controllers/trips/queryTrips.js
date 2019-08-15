@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
 

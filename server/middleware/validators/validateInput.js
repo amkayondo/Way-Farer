@@ -6,7 +6,7 @@ const Extension = require('@hapi/joi-date');
 const regeX = (/^[0-9]{9,12}$/);
 const regeX2 = (/^[a-zA-Z0-9]{3,30}$/);
 const regexText = (/^[a-zA-Z]{3,30}$/);
-const validateError = (res, result) => resPonse.errorMessage(res, 400, (`${result.error.details[0].context.label}`));
+const validateError = (res, result) => resPonse.errorMessage(res, 400, (`${result.error.details[0].message}`));
 const JoiD = Joi.extend(Extension);
 const validate = (values, validations) => Joi.validate(values, validations);
 
