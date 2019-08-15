@@ -1,10 +1,12 @@
 import Book from '../models/bookings';
 
-const bookDataUtil = (req, getUser, trip) => {
+const bkdb = new Book();
+
+const bookDataUtil = async (req, getUser, trip) => {
   const { tripDate, numberOfSeats } = req.body;
 
-  const bookData = Book.bookindModel(
-    getUser.id,
+  const bookData = await bkdb.createNewBooking(
+    getUser.user_id,
     trip.busLicenseNumber,
     tripDate,
     parseInt(numberOfSeats),

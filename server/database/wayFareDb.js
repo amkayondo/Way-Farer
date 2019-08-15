@@ -16,6 +16,18 @@ class Database {
     return result;
   }
 
+  async getTripById(trip_id) {
+    const result = await Pool.query(`SELECT * 
+    FROM trips WHERE trip_id=${trip_id};`);
+    return result;
+  }
+
+  async getTripByIdAndDate(trip_id) {
+    const result = await Pool.query(`SELECT * 
+    FROM trips WHERE trip_id=${trip_id};`);
+    return result;
+  }
+
   async addNewUser(data) {
     const result = await Pool.query(`
       INSERT INTO users(first_name, last_name, 
@@ -32,11 +44,30 @@ class Database {
     return result;
   }
 
+  async addNewBooking(data) {
+    try {
+      const result = await Pool.query(`INSERT INTO bookings (
+      user_id, bus_license_number, trip_date,
+      number_of_Seats, first_name, last_name, email)
+      VALUES ($1, $2, $3, $4, $5, $6, $7) returning *;`, data);
+      return result;
+    } catch (err){
+      console.log(err.message);
+    }
+  }
+
   async getAllItems(tableName) {
     const result = await Pool.query(`SELECT * FROM ${tableName}`);
     return result;
   }
 
+
+  async updateBookings(tripId, newData) {
+    const result = await Pool.query(`UPDATE trips
+    SET available_seats='${newData}' 
+    WHERE trip_id=${tripId} returning *;`);
+    return result;
+  }
 
   async updateTrip(staTus, tripId) {
     const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE trip_id=${tripId}`);

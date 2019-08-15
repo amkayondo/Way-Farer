@@ -15,7 +15,7 @@ const queryTrips = async (req, res, next) => {
 
     if (gotOrigin.length > 0) {
       return resPonse.successDatas(res, 200, gotOrigin.length, gotOrigin);
-    }
+    }resPonse.errorMessage(res, 404, 'No trips found');
 
     if (gotDest.length > 0) {
       console.log(gotDest);

@@ -18,8 +18,9 @@ const createTrip = async (req, res) => {
     const trpExists = await newtrip.getTripBylience(data.bus_license_number, data.trip_date);
     const getTrip = trpExists.rows;
     if (getTrip.length === 0){
-      newtrip.creatAtrip(data);
-      return resPonse.successData(res, 201, 'Trip successfully created', data);
+      const nwdata = await newtrip.creatAtrip(data);
+      const trip_data = nwdata.rows[0];
+      return resPonse.successData(res, 201, 'Trip successfully created', trip_data);
     }
     if (trpExists.rowCount === 1){
       return resPonse.errorMessage(res, 400, `Bus with bus_license_number ${data.bus_license_number} is ready booked on ${data.trip_date}`);

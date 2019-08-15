@@ -13,7 +13,9 @@ const signIn = async (req, res) => {
       return resPonse.errorMessage(res, 400, 'Incorrect email');
     }
     const payld = payLoad(
-      userExists.id, userExists.isadmin,
+      userExists.user_id, userExists.isadmin,
+      userExists.first_name, userExists.last_name,
+      userExists.email,
     );
     const token = createToken(payld);
     if (!(userExists.password === req.body.password)) {

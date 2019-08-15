@@ -25,13 +25,19 @@ const signUp = async (req, res) => {
     if (userExists) {
       return resPonse.errorMessage(res, 400, 'User with the same email exists');
     }
+
+    const newUsr = await newUser.createNewUser(newData);
+    const usrData = newUsr.rows[0];
     const payload = payLoad(
-      newData.userid,
-      newData.isadmin,
+      usrData.user_id,
+      usrData.isadmin,
+      usrData.first_name,
+      usrData.last_name,
+      usrData.email,
     );
     const token = createToken(payload);
     res.header('Authorization', token);
-    await newUser.createNewUser(newData);
+
     resPonse.successUser(res, 201, 'Account successfully created', token);
   } catch (err){
     resPonse.errorMessage(res, 500, err.message);

@@ -5,7 +5,7 @@ import chaiHttp from 'chai-http';
 import app from '../index';
 
 chai.use(chaiHttp);
-let bookingId;
+let booking_id;
 let otherUserToken;
 
 const user = {
@@ -46,8 +46,8 @@ before('NEW USER SIGN UP', (done) => {
       first_name: 'kayondo',
       last_name: 'edward',
       email: 'amkayondoedtom@open.co',
-      password: '38e3olsdjf',
-      phone: '0781295406',
+      password: 'kjdksjdsakjbwukn',
+      phone: '123456789',
       address: 'kawempe',
     })
     .end((err, res) => {
@@ -63,8 +63,8 @@ before('NEW USER 2 SIGN UP', (done) => {
       first_name: 'kayondo',
       last_name: 'edward',
       email: 'tomboya@open.co',
-      password: '38e3olsdjf',
-      phone: '0781295406',
+      password: 'kjdksjdsakjbwukn',
+      phone: '123456789',
       address: 'kawempe',
     })
     .end((err, res) => {
@@ -80,14 +80,14 @@ before('Admin should create new trip', (done) => {
     .set('Authorization', userToken)
     .send({
       seating_capacity: '30',
-      bus_license_number: 'UGX23',
+      bus_license_number: 'UjX23',
       origin: 'kampala',
       destination: 'kigali',
       trip_date: '23-12-2019',
       fare: '30000',
     })
     .end((err, res) => {
-      tripId = res.body.data.id;
+      tripId = res.body.data.trip_id;
       expect(res).to.have.status(201);
     });
   done();
@@ -98,7 +98,7 @@ before('Admin should create new trip', (done) => {
     .set('Authorization', userToken)
     .send(tripData)
     .end((err, res) => {
-      expect(res).to.have.status(201);
+      expect(res).to.have.status(400);
     });
   done();
 });
@@ -109,14 +109,15 @@ before('Admin should create another new trip', (done) => {
     .set('Authorization', userToken)
     .send({
       seating_capacity: '10',
-      bus_license_number: 'UGX13',
+      bus_license_number: 'UGX73',
       origin: 'kampala',
       destination: 'kigali',
       trip_date: '23-12-2019',
       fare: '30000',
     })
     .end((err, res) => {
-      tripIdT = res.body.data.id;
+      tripIdT = res.body.data.trip_id;
+      console.log(res.body);
       expect(res).to.have.status(201);
     });
   done();
@@ -162,7 +163,7 @@ describe('BOOKINGS TESTS', () => {
         numberOfSeats: '3',
       })
       .end((err, res) => {
-        bookingId = res.body.data.bookingId;
+        booking_id = res.body.data.booking_id;
         if (err) done(err);
         done();
       });
@@ -177,7 +178,7 @@ describe('BOOKINGS TESTS', () => {
         numberOfSeats: '3',
       })
       .end((err, res) => {
-        bookingId2 = res.body.data.bookingId;
+        bookingId2 = res.body.data.booking_id;
         if (err) done(err);
         done();
       });
@@ -192,7 +193,7 @@ describe('BOOKINGS TESTS', () => {
         numberOfSeats: '3',
       })
       .end((err, res) => {
-        bookingId3 = res.body.data.bookingId;
+        bookingId3 = res.body.data.booking_id;
         if (err) done(err);
         done();
       });
@@ -259,7 +260,7 @@ describe('BOOKINGS TESTS', () => {
   });
   it('should return booking by ID', (done) => {
     chai.request(app)
-      .delete(`/api/v1/bookings/${bookingId}`)
+      .delete(`/api/v1/bookings/${booking_id}`)
       .set('Authorization', userToken)
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -304,7 +305,7 @@ describe('BOOKINGS TESTS', () => {
   });
   it('should delete a booking', (done) => {
     chai.request(app)
-      .delete(`/api/v1/bookings/${bookingId}`)
+      .delete(`/api/v1/bookings/${booking_id}`)
       .set('Authorization', otherUserToken)
       .end((err, res) => {
         expect(res).to.have.status(400);
