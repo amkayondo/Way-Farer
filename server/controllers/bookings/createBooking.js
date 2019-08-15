@@ -10,7 +10,7 @@ const createBooking = async (req, res) => {
   const { trip_id, trip_date, number_of_seats } = req.body;
 
   try {
-    const foundTrip = await book.checkIfTripExists(trip_id);
+    const foundTrip = await book.isTripIdExixts(trip_id);
     const trpData = foundTrip.rows[0];
     if (foundTrip.rowCount === 0) {
       return resPonse.errorMessage(res, 404, `Trip with ID ${trip_id} doesnt exist`);

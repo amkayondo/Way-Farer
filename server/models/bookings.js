@@ -18,9 +18,8 @@ export default class Book {
     return result;
   }
 
-  async decreaseNumberOfSeats(tripId, seatsAvailable, newSeats) {
-    const newData = parseInt(seatsAvailable - newSeats);
-    console.log(newData);
+  async updateNumberOfSeats(tripId, operation) {
+    const newData = parseInt(operation);
     const result = await db.updateBookings(tripId, newData);
     return result;
   }
@@ -30,12 +29,14 @@ export default class Book {
     return allbookings;
   }
 
-  async increaseNumberOfSeats(findTrip, seats) {
-    return parseInt(findTrip + seats);
+
+  async isTripExists(bus_license_number, trip_date) {
+    const result = await newTrip.getTripBylience(bus_license_number, trip_date);
+    return result;
   }
 
-  async checkIfTripExists(trip_id) {
-    const result = await newTrip.getTripById(trip_id);
+  async isTripIdExixts(tripId) {
+    const result = await newTrip.getById(tripId);
     return result;
   }
 
@@ -47,12 +48,18 @@ export default class Book {
     return newTrip.findTripDate(Date);
   }
 
+  async deleteBookingByUser(booking_id, user_id){
+    const result = await db.deleteBooking(booking_id, user_id);
+    return result;
+  }
+
   async checkBookingUser(userid) {
     // return this.getAtllbookings.find(x => x.userId === userid);
   }
 
-  async getUserBookings(userid) {
-    // return bookingDatabase.filter(x => x.userId === userid);
+  async deleteUserBookings(userid, booking_id) {
+    const userBookings = await db.deleteBookingsByUser(userid, booking_id);
+    return userBookings;
   }
 
   async findBooking(bookid) {
