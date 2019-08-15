@@ -8,9 +8,8 @@ const verifyTrip = async (foundTrip, resPonse, res, number_of_Seats, Book, bookD
   if (foundTrip.available_seats < parseInt(number_of_Seats)) {
     return resPonse.errorMessage(res, 400, `Number of seats must be less than ${foundTrip.available_seats}`);
   }
-  await Book.decreaseNumberOfSeats(foundTrip.trip_id, foundTrip.available_seats,
-    parseInt(number_of_Seats));
-
+  const decreaseNumberOfSeats = foundTrip.available_seats - parseInt(number_of_Seats);
+  await Book.updateNumberOfSeats(foundTrip.trip_id, decreaseNumberOfSeats);
   const newData = await Book.createNewBooking(bookData);
   return resPonse.successData(res, 201, 'New Booking successfully made', newData.rows[0]);
 };

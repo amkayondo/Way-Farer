@@ -15,8 +15,8 @@ const deleteBooking = async (req, res) => {
   const foundTrip = await book.checkIfTripExists(booking.bus_license_number, booking.trip_date);
   const trip = foundTrip.rows[0];
   if (foundBooking.rowCount === 1 || getUser.isAdmin === true) {
-    const dc = await book.increaseNumberOfSeats(trip.trip_id, trip.available_seats,
-      booking.number_of_seats);
+    const increaseNumberOfSeats = trip.available_seats + booking.number_of_seats;
+    await book.updateNumberOfSeats(trip.trip_id, increaseNumberOfSeats);
     await book.deleteBookingByUser(bookingId, getUser.user_id);
     return resPonse.successWithNoData(res, 200, 'Booking successfully deleted');
   } resPonse.errorMessage(res, 400, `You did not make this booking with id ${bookingId}`);

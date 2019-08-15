@@ -18,18 +18,8 @@ export default class Book {
     return result;
   }
 
-  async decreaseNumberOfSeats(tripId, seatsAvailable, newSeats) {
-    const newData = parseInt(seatsAvailable - newSeats);
-    const result = await db.updateBookings(tripId, newData);
-    return result;
-  }
-
-  async increaseNumberOfSeats(tripId, seatsAvailable, newSeats) {
-    const newData = seatsAvailable + newSeats;
-    console.log(newData);
-    console.log(seatsAvailable);
-    console.log(newSeats);
-
+  async updateNumberOfSeats(tripId, operation) {
+    const newData = parseInt(operation);
     const result = await db.updateBookings(tripId, newData);
     return result;
   }
@@ -45,7 +35,7 @@ export default class Book {
     return result;
   }
 
-  async checkIfTripExistsById(tripId) {
+  async isTripIdExixts(tripId) {
     const result = await newTrip.getById(tripId);
     return result;
   }

@@ -82,11 +82,6 @@ class Database {
     const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE trip_id=${tripId}`);
     return result;
   }
-
-  async updateTrip(staTus, tripId) {
-    const result = await Pool.query(`UPDATE trips SET status='${staTus}' WHERE trip_id=${tripId}`);
-    return result;
-  }
 }
 
 export default Database;
