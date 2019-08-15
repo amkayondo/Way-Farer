@@ -19,8 +19,8 @@ const createTrip = async (req, res) => {
       data.trip_date, data.status);
     const getTrip = trpExists.rows;
     if (getTrip.length === 0){
-      const nwdata = await newtrip.creatAtrip(data);
-      const trip_data = nwdata.rows[0];
+      const newdata = await newtrip.creatAtrip(data);
+      const trip_data = newdata.rows[0];
       return resPonse.successData(res, 201, 'Trip successfully created', trip_data);
     }
     if (trpExists.rowCount === 1){

@@ -5,7 +5,6 @@ import Trip from '../../models/trips';
 const trip = new Trip();
 
 const getAllTrips = async (req, res) => {
-  // try {
   const foundtrips = await trip.getAllTrips();
   if (foundtrips.rowCount === 0){
     return resPonse.errorMessage(res, 404, 'No trips available at the moment');
@@ -14,8 +13,5 @@ const getAllTrips = async (req, res) => {
   if (admin.isadmin === true){
     return resPonse.successDatas(res, 200, foundtrips.rows.length, foundtrips.rows);
   }
-  // } catch (err) {
-  //   console.log(err.message);
-  // }
 };
 module.exports = getAllTrips;

@@ -6,7 +6,7 @@ const isAdmin = (req, res, next) => {
     isAdminController(req, resPonse, res);
     next();
   } catch (error) {
-    resPonse.errorMessage(res, 500, error.message);
+    console.log(error.message);
   }
 };
 

@@ -22,7 +22,7 @@ const queryTrips = async (req, res, next) => {
     } resPonse.errorMessage(res, 404, 'No trips found');
     next();
   } catch (error) {
-    resPonse.errorMessage(res, 500, error.message);
+    console.log(error.message);
   }
 };
 module.exports = queryTrips;
