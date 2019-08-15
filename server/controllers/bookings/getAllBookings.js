@@ -6,8 +6,8 @@ const book = new Book();
 const getAllBookings = async (req, res) => {
   try {
     const getUser = jwt.decode(req.headers.authorization);
-    if (getUser.isAdmin === true) {
-      const allBookings = await book.getAtllbookings;
+    if (getUser.isadmin === true) {
+      const allBookings = await book.getAtllbookings();
       if (allBookings.rowCount === 0) {
         return resPonse.errorMessage(res, 404, 'No bookings made at the moment');
       } resPonse.successData(res, 200, 'All bookings successfully fetched', allBookings.rows);
@@ -15,9 +15,9 @@ const getAllBookings = async (req, res) => {
     const forUser = await book.checkBookingUser(getUser.user_id);
     if (forUser.rowCount === 0) {
       return resPonse.errorMessage(res, 200, 'You have made no bookings yet');
-    } resPonse.successData(res, 200, forUser.rows);
+    } resPonse.successData(res, 200, 'All bookings successfully fetched', forUser.rows);
   } catch (error) {
-    resPonse.errorMessage(res, 500, error.message);
+    console.log(error.message);
   }
   return true;
 };
