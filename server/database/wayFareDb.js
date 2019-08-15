@@ -9,10 +9,10 @@ class Database {
     return result;
   }
 
-  async getTripBylicence(bus_license_number, tripDate) {
+  async getTripBylicence(bus_license_number, tripDate, status) {
     const result = await Pool.query(`SELECT * 
     FROM trips WHERE bus_license_number='${bus_license_number}' 
-    AND trip_date='${tripDate}';`);
+    AND trip_date='${tripDate}' AND status='${status}';`);
     return result;
   }
 

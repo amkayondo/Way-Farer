@@ -7,22 +7,22 @@ import app from '../index';
 chai.use(chaiHttp);
 
 const newUser = {
-  firstname: 'kayondo',
-  lastname: 'edward',
+  first_name: 'kayondo',
+  last_name: 'edward',
   email: 'kayondo@open.co',
-  password: 'vbcbcbcb',
+  password: 'kjhfsdfkjsfnkslfnkl',
   address: 'kampala',
   phone: '0781295406',
 };
 
 const siginUser = {
   email: 'kayondo@open.co',
-  password: 'vbcbcbcb6367289',
+  password: 'kjhfsdfkjsfnkslfnkl',
 };
 
 const invalidUser = {
   email: 'tom@open.co',
-  password: 'vbcbcbcb6367289',
+  password: 'kjhfsdfkjsfnkslfnkl',
 };
 
 const invalidPassword = {
@@ -54,7 +54,7 @@ describe('USERS TESTS', () => {
       .post('/api/v1/auth/signin')
       .send(siginUser)
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(200);
       });
     done();
   });
@@ -78,8 +78,8 @@ describe('USERS TESTS', () => {
   });
   it('should return an error when email not given', (done) => {
     const noEmail = {
-      firstname: 'kayondo',
-      lastname: 'edward',
+      first_name: 'kayondo',
+      last_name: 'edward',
       password: '23456',
       phone: '07812356',
       address: 'kampala',
