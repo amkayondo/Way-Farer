@@ -61,8 +61,13 @@ class Database {
     return result;
   }
 
-  async deleteBookingsByUser(userId, booking_id) {
+  async getBookingsByUser(userId, booking_id) {
     const result = await Pool.query(`SELECT * FROM bookings WHERE user_id=${userId} AND booking_id=${booking_id}`);
+    return result;
+  }
+
+  async getOnlyBookingsByUser(userId){
+    const result = await Pool.query(`SELECT * FROM bookings WHERE user_id=${userId}`);
     return result;
   }
 
