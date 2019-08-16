@@ -1,29 +1,33 @@
-import Joi from '@hapi/joi';
 import User from '../../models/users';
 import createToken from '../../helpers/users/token';
 import resPonse from '../../helpers/responses/response';
-import signInSchema from '../../helpers/schema/sigin';
 import payLoad from './payload';
 
-const newUser = User;
-const signIn = (req, res) => {
-  const schema = signInSchema(Joi);
-  Joi.validate(req.body, schema, (error) => {
-    if (error) { return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`)); }
-    const userExists = newUser.findUser(req.body.email.trim());
-    if (!userExists) { return resPonse.errorMessage(res, 400, 'Incorrect email'); }
+const newUser = new User();
+
+
+const signIn = async (req, res) => {
+  try {
+    const userExists = await newUser.findUser(req.body.email);
+    if (!userExists) {
+      return resPonse.errorMessage(res, 400, 'Incorrect email');
+    }
     const payld = payLoad(
-      userExists.id, userExists.firstName, userExists.lastName,
-      userExists.email, userExists.password, userExists.isAdmin,
-      userExists.isLoggedin,
+      userExists.user_id, userExists.isadmin,
+      userExists.first_name, userExists.last_name,
+      userExists.email,
     );
     const token = createToken(payld);
-    if (!(userExists.password === req.body.password.trim())) return resPonse.errorMessage(res, 400, 'Incorrect Password');
+    if (!(userExists.password === req.body.password)) {
+      return resPonse.errorMessage(res, 400, 'Incorrect Password');
+    }
     res.header('Authorization', token);
     return (
       resPonse.successUser(res, 200, 'You have successfully Signned in', token)
     );
-  });
+  } catch (err){
+    resPonse.errorMessage(res, 500, err.message);
+  }
 };
 
 module.exports = signIn;

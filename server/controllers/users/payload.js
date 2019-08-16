@@ -1,18 +1,16 @@
 // Pay load
 const payLoad = (
-  id,
-  firstName,
-  lastName,
+  user_id,
+  isadmin,
+  first_name,
+  last_name,
   email,
-  password,
-  isAdmin,
 ) => ({
-  id,
-  firstName,
-  lastName,
+  user_id,
+  isadmin,
+  first_name,
+  last_name,
   email,
-  password,
-  isAdmin,
 });
 
 module.exports = payLoad;

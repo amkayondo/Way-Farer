@@ -1,37 +1,25 @@
-import uuid from 'uuid';
+import Database from '../database/wayFareDb';
 
-// User Database
-const userDataBase = [
-  {
-    id: uuid.v4(),
-    firstName: 'I am',
-    lastName: 'admin',
-    email: 'admin@app.com',
-    password: 'admin123',
-    isAdmin: true,
-  },
-];
-const User = {
-  userDataBase,
-  userData(id, firstName, lastName, email, password) {
-    return {
-      id, firstName, lastName, email, password,
-    };
-  },
+const db = new Database();
 
-  // FInd User
-  findUser(data_) {
-    return userDataBase.find(x => x.email === data_);
-  },
+export default class User {
+  async findUser(data_) {
+    const user = await db.selectItemById('users', 'email', data_);
+    const result = user.rows[0];
+    return result;
+  }
 
-  // create new user
-  createNewUser(userInfo) {
-    const data = this.userData(
-      userInfo.id, userInfo.firstName, userInfo.lastName,
-      userInfo.email, userInfo.password, userInfo.isAdmin,
-    );
-    userDataBase.push(data);
-  },
-};
-
-module.exports = User;
+  async createNewUser(userInfo) {
+    const userData = [
+      userInfo.first_name,
+      userInfo.last_name,
+      userInfo.email,
+      userInfo.password,
+      userInfo.phone,
+      userInfo.address,
+      false,
+    ];
+    const create = await db.addNewUser(userData);
+    return create;
+  }
+}

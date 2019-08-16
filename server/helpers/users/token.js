@@ -1,6 +1,9 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const createToken = payload => jwt.sign(payload,
-  'THIS IS MY SECRETE', { expiresIn: '7d' });
+  'knffslfnksldfkslfbafsjf', { expiresIn: '7d' });
 
 export default createToken;

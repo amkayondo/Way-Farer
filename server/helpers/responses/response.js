@@ -1,4 +1,3 @@
-// Responses
 const resPonse = {
   errorMessage(res, statusCode, error) {
     return res.status(statusCode).json({
@@ -15,9 +14,18 @@ const resPonse = {
       },
     });
   },
-  successData(res, statusCode, data) {
+  successData(res, statusCode, message, data) {
     return res.status(statusCode).json({
       status: statusCode,
+      message,
+      data,
+    });
+  },
+  successDatas(res, statusCode, count, data) {
+    return res.status(statusCode).json({
+      status: statusCode,
+      message: 'All trips successfully fetched',
+      'Number of trips': count,
       data,
     });
   },

@@ -1,41 +1,33 @@
-/* eslint-disable radix */
-import Joi from '@hapi/joi';
 import resPonse from '../../helpers/responses/response';
 import Trip from '../../models/trips';
-import tripSchema from '../../helpers/schema/trip';
 
-const uuid = require('uuid');
-
-const createTrip = (req, res) => {
-  const inputData = req.body;
-  const {
-    seatingCapacity, busLicenseNumber, origin, destination, tripDate, fare,
-  } = req.body;
-  const avSeats = seatingCapacity;
-  const data = Trip.tripData(
-    uuid.v4(), parseInt(seatingCapacity), parseInt(avSeats), busLicenseNumber,
-    origin, destination, tripDate,
-    parseInt(fare), 'active',
-  );
-  const schema = tripSchema(Joi);
-  Joi.validate(inputData, schema, (error) => {
-    try {
-      if (error) {
-        return resPonse.errorMessage(res, 400, (`${error.details[0].context.label}`));
-      }
-      const isBus = Trip.tripDataBase.find(x => x.busLicenseNumber === busLicenseNumber);
-      if (isBus) {
-        return resPonse.errorMessage(
-          res, 400,
-          `A bus with License Number ${busLicenseNumber} is already booked`,
-        );
-      }
-
-      Trip.creatAtrip(data);
-      return resPonse.successData(res, 201, data);
-    // eslint-disable-next-line no-shadow
-    // eslint-disable-next-line no-empty
-    } catch (err) {}
-  });
+const newtrip = new Trip();
+const createTrip = async (req, res) => {
+  try {
+    const availableSeats = parseInt(req.body.seating_capacity);
+    const data = {
+      seating_capacity: parseInt(req.body.seating_capacity),
+      available_seats: availableSeats,
+      bus_license_number: req.body.bus_license_number,
+      origin: req.body.origin,
+      destination: req.body.destination,
+      trip_date: req.body.trip_date,
+      fare: parseInt(req.body.fare),
+      status: 'active',
+    };
+    const trpExists = await newtrip.getTripBylience(data.bus_license_number,
+      data.trip_date, data.status);
+    const getTrip = trpExists.rows;
+    if (getTrip.length === 0){
+      const newdata = await newtrip.creatAtrip(data);
+      const trip_data = newdata.rows[0];
+      return resPonse.successData(res, 201, 'Trip successfully created', trip_data);
+    }
+    if (trpExists.rowCount === 1){
+      return resPonse.errorMessage(res, 400, `Bus with bus_license_number ${data.bus_license_number} is ready booked on ${data.trip_date}`);
+    }
+  } catch (err){
+    resPonse.errorMessage(res, 500, err.message);
+  }
 };
 module.exports = createTrip;

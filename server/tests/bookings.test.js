@@ -1,313 +1,188 @@
-/* eslint-disable no-shadow */
 import chai, { expect } from 'chai';
 import { describe, it, before } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
+import {
+  noEmail, newUserTwo, invalidPassword, invalidUser, siginUser, newUserOne, admin,
+} from './mockingData/users';
+import { tripDataForBooking } from './mockingData/trips';
 
 chai.use(chaiHttp);
-let bookingId;
-let otherUserToken;
 
-
-const user = {
-  email: 'admin@app.com',
-  password: 'admin123',
-};
-
-let userToken;
+let adminToken;
+let notAdminToken;
 let tripId;
-let tripIdT;
+let bookingIdTwo;
+let bookingId;
 
-const tripData = {
-  seatingCapacity: '40',
-  busLicenseNumber: 'UUBE345',
-  origin: 'kampala',
-  destination: 'kigali',
-  tripDate: '23-12-2019',
-  fare: '30000',
-};
-
-before('user signs in', (done) => {
-  chai.request(app)
-    .post('/api/v1/auth/signin')
-    .send(user)
-    .end((err, res) => {
-      if (err) done(err);
-      userToken = res.body.data.token;
-      done();
-    });
-});
-before('NEW USER SIGN UP', (done) => {
-  chai.request(app)
-    .post('/api/v1/auth/signup')
-    .send({
-      first_name: 'kayondo',
-      last_name: 'edward',
-      email: 'amkayondoedtom@open.co',
-      password: 'vbcbcbcb',
-    })
-    .end((err, res) => {
-      if (err) done(err);
-      otherUserToken = res.body.data.token;
-      done();
-    });
-});
-
-before('Admin should create new trip', (done) => {
-  chai.request(app)
-    .post('/api/v1/trips')
-    .set('Authorization', userToken)
-    .send({
-      seatingCapacity: '30',
-      busLicenseNumber: 'UGX23',
-      origin: 'kampala',
-      destination: 'kigali',
-      tripDate: '23-12-2019',
-      fare: '30000',
-    })
-    .end((err, res) => {
-      tripId = res.body.data.id;
-      expect(res).to.have.status(201);
-    });
-  done();
-});
-before('Admin should create new trip', (done) => {
-  chai.request(app)
-    .post('/api/v1/trips')
-    .set('Authorization', userToken)
-    .send(tripData)
-    .end((err, res) => {
-      expect(res).to.have.status(201);
-    });
-  done();
-});
-
-before('Admin should create another new trip', (done) => {
-  chai.request(app)
-    .post('/api/v1/trips')
-    .set('Authorization', userToken)
-    .send({
-      seatingCapacity: '10',
-      busLicenseNumber: 'UGX13',
-      origin: 'kampala',
-      destination: 'kigali',
-      tripDate: '23-12-2019',
-      fare: '30000',
-    })
-    .end((err, res) => {
-      tripIdT = res.body.data.id;
-      expect(res).to.have.status(201);
-    });
-  done();
-});
-
-before('should return no array of bookings if he has none', (done) => {
-  chai.request(app)
-    .get('/api/v1/bookings')
-    .set('Authorization', otherUserToken)
-    .end((err, res) => {
-      expect(res).to.have.status(200);
-    });
-  done();
-});
-
-describe('BOOKINGS TESTS', () => {
-  it('should return error if not found bookings', (done) => {
+const runBookingTests = () => {
+  before('Not admin to siginUp', (done) => {
     chai.request(app)
-      .get('/api/v1/bookings')
-      .set('Authorization', userToken)
+      .post('/api/v1/auth/signup')
+      .send(newUserTwo)
       .end((err, res) => {
-        expect(res).to.have.status(404);
-      });
-    done();
-  });
-  it('should return an array of bookings', (done) => {
-    chai.request(app)
-      .get('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .end((err, res) => {
-        expect(res).to.have.status(404);
-      });
-    done();
-  });
-
-  it('should post new bookings', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', otherUserToken)
-      .send({
-        tripId: `${tripId}`,
-        tripDate: '23-12-2019',
-        numberOfSeats: '3',
-      })
-      .end((err, res) => {
-        // eslint-disable-next-line prefer-destructuring
-        bookingId = res.body.data.bookingId;
-        if (err) done(err);
-        done();
-      });
-  });
-  it('should return error if seats are more than', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        tripId: `${tripIdT}`,
-        tripDate: '23-12-2019',
-        numberOfSeats: '47',
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        if (err) done(err);
-        done();
-      });
-  });
-  it('should post another new bookings', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        tripId: `${tripIdT}`,
-        tripDate: '23-12-2019',
-        numberOfSeats: '10',
-      })
-      .end((err, res) => {
+        notAdminToken = res.body.data.token;
         expect(res).to.have.status(201);
-        if (err) done(err);
-        done();
+        expect(res.body).to.be.an('object');
       });
+    done();
   });
-  it('should return error ifno seats available', (done) => {
+
+  before('Admin should siginin', (done) => {
     chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        tripId: `${tripIdT}`,
-        tripDate: '23-12-2019',
-        numberOfSeats: '10',
-      })
+      .post('/api/v1/auth/signin')
+      .send(admin)
       .end((err, res) => {
-        expect(res).to.have.status(404);
-        if (err) done(err);
-        done();
-      });
-  });
-  it('should return error ifno seats available', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        tripId: `${tripIdT}`,
-        tripDate: '23-12-2019',
-        numberOfSeats: '50',
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(404);
-        if (err) done(err);
-        done();
-      });
-  });
-  it('should return booking by ID', (done) => {
-    chai.request(app)
-      .delete(`/api/v1/bookings/${bookingId}`)
-      .set('Authorization', userToken)
-      .end((err, res) => {
+        adminToken = res.body.data.token;
         expect(res).to.have.status(200);
-        done();
+        expect(res.body).to.be.an('object');
       });
+    done();
   });
-  it('should return an array of bookings', (done) => {
-    chai.request(app)
-      .get('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
+
+  describe('BOOKINGS TESTS', () => {
+    it('should create a trip', (done) => {
+      chai.request(app)
+        .post('/api/v1/trips')
+        .set('Authorization', adminToken)
+        .send(tripDataForBooking)
+        .end((err, res) => {
+          tripId = res.body.data.trip_id;
+          expect(res).to.have.status(201);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.deep.equal('Trip successfully created');
+          done();
+        });
+    });
+    it('get error not found when not bookings made yet by User', (done) => {
+      chai.request(app)
+        .get('/api/v1/bookings')
+        .set('Authorization', notAdminToken)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body.error).to.deep.equal('You have made no bookings yet');
+        });
+      done();
+    });
+    it('get error not found when not bookings made yet by Admin', (done) => {
+      chai.request(app)
+        .get('/api/v1/bookings')
+        .set('Authorization', adminToken)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body.error).to.deep.equal('No bookings made at the moment');
+        });
+      done();
+    });
+
+    it('should create a bookings', (done) => {
+      chai.request(app)
+        .post('/api/v1/bookings')
+        .set('Authorization', adminToken)
+        .send({
+          trip_id: tripId,
+          trip_date: '23-12-2019',
+          number_of_seats: 25,
+        })
+        .end((err, res) => {
+          bookingId = res.body.data.booking_id;
+          expect(res).to.have.status(201);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.deep.equal('New Booking successfully made');
+          done();
+        });
+    });
+    it('should return error if trip invalid', (done) => {
+      chai.request(app)
+        .post('/api/v1/bookings')
+        .set('Authorization', adminToken)
+        .send({
+          trip_id: 346,
+          trip_date: '23-12-2019',
+          number_of_seats: 25,
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body).to.be.an('object');
+          expect(res.body.error).to.deep.equal('Trip with ID 346 doesnt exist');
+          done();
+        });
+    });
+    it('should return error if trip date invalid', (done) => {
+      chai.request(app)
+        .post('/api/v1/bookings')
+        .set('Authorization', adminToken)
+        .send({
+          trip_id: tripId,
+          trip_date: '23-12-2014',
+          number_of_seats: 25,
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body).to.be.an('object');
+          expect(res.body.error).to.deep.equal('No trip is available on this date 23-12-2014');
+          done();
+        });
+    });
+    it('should create another bookings', (done) => {
+      chai.request(app)
+        .post('/api/v1/bookings')
+        .set('Authorization', notAdminToken)
+        .send({
+          trip_id: tripId,
+          trip_date: '23-12-2019',
+          number_of_seats: 25,
+        })
+        .end((err, res) => {
+          bookingIdTwo = res.body.data.booking_id;
+          expect(res).to.have.status(201);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.deep.equal('New Booking successfully made');
+          done();
+        });
+    });
+    it('should return all bookings by the user', (done) => {
+      chai.request(app)
+        .get('/api/v1/bookings')
+        .set('Authorization', adminToken)
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res).to.have.status(200);
+        });
+      done();
+    });
+    it('should return error when deleting a booking not for the same user', (done) => {
+      chai.request(app)
+        .delete(`/api/v1/bookings/${bookingId}`)
+        .set('Authorization', notAdminToken)
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res).to.have.status(400);
+          expect(res.body.error).to.deep.equal(`Booking not found with id ${bookingId}`);
+        });
+      done();
+    });
+    it('should  deletea booking is for the user', (done) => {
+      chai.request(app)
+        .delete(`/api/v1/bookings/${bookingId}`)
+        .set('Authorization', adminToken)
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res).to.have.status(200);
+          expect(res.body.message).to.deep.equal('Booking successfully deleted');
+        });
+      done();
+    });
+    it('should return all bookings', (done) => {
+      chai.request(app)
+        .get('/api/v1/bookings')
+        .set('Authorization', adminToken)
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res).to.have.status(200);
+        });
+      done();
+    });
   });
-  it('should return an array of bookings', (done) => {
-    chai.request(app)
-      .get('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-  it('should return error on delete a booking if not the owner', (done) => {
-    chai.request(app)
-      .delete(`/api/v1/bookings/${bookingId}`)
-      .set('Authorization', userToken)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        done();
-      });
-  });
-  it('should delete a booking', (done) => {
-    chai.request(app)
-      .delete(`/api/v1/bookings/${bookingId}`)
-      .set('Authorization', otherUserToken)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        done();
-      });
-  });
-  it('should return an array of bookings', (done) => {
-    chai.request(app)
-      .get('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-  it('should return error of invalid booking not found when deleting a booking', (done) => {
-    chai.request(app)
-      .delete(`/api/v1/bookings/${643456384}`)
-      .set('Authorization', otherUserToken)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        done();
-      });
-  });
-  it('should return error if bus licence is not found', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        busLicenseNumber: 'UAG34223',
-        tripDate: '23-12-2019',
-        numberOfSeats: '3',
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        done();
-      });
-  });
-  it('should return error if a field is missing', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        busLicenseNumber: 'UAG34223',
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        done();
-      });
-  });
-  it('should return error if trip date is not found', (done) => {
-    chai.request(app)
-      .post('/api/v1/bookings')
-      .set('Authorization', userToken)
-      .send({
-        busLicenseNumber: 'UUBE345',
-        tripDate: '13-12-2019',
-        numberOfSeats: '3',
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        done();
-      });
-  });
-});
+};
+module.exports = runBookingTests;
