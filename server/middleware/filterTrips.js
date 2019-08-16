@@ -4,7 +4,6 @@ import checkIfNotAdmin from '../helpers/users/checkIfnotAdmin';
 import Trip from '../models/trips';
 
 const trip = new Trip();
-
 const allTrips = async (req, res, next) => {
   const foundtrips = await trip.getAllTrips();
   const tripData = foundtrips.rows;
@@ -17,5 +16,4 @@ const allTrips = async (req, res, next) => {
   }
   next();
 };
-
 module.exports = allTrips;

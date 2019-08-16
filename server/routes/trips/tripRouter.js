@@ -7,6 +7,7 @@ import filterByAdmin from '../../middleware/filterTripId';
 import allTrips from '../../middleware/filterTrips';
 import getAllTrips from '../../controllers/trips/getTrips';
 import queryTrips from '../../controllers/trips/queryTrips';
+import validateQuery from '../../middleware/validators/validateQuery';
 import cancelTrip from '../../controllers/trips/cancelTrip';
 import appAuth from '../../middleware/appAuth';
 import isAdmin from '../../middleware/isAdmin';
@@ -14,7 +15,7 @@ import isAdmin from '../../middleware/isAdmin';
 const tripRouter = express.Router();
 tripRouter.get('/trips/:tripId', ValidateReq.validId, filterByAdmin, getTripbyId);
 tripRouter.post('/trips', appAuth, isAdmin, Validator.trip, createTrip);
-tripRouter.get('/trips', allTrips, getAllTrips);
+tripRouter.get('/trips', validateQuery, queryTrips, allTrips, getAllTrips);
 tripRouter.patch('/trips/:tripId', appAuth, isAdmin, cancelTrip);
 
 module.exports = tripRouter;

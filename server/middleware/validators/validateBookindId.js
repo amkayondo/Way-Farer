@@ -8,11 +8,11 @@ const validate = (values, validations) => Joi.validate(values, validations);
 
 const ValidateReqBooking = {
   validBookingId(req, res, next){
-    const qury = Joi.object().keys({
+    const query = Joi.object().keys({
       bookingId: Joi.number().integer()
         .label('Booking Id must be an integer'),
     });
-    const result = validate(req.params, qury);
+    const result = validate(req.params, query);
     if (result.error) {
       return validateError(res, result);
     }

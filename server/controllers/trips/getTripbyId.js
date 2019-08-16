@@ -7,8 +7,6 @@ const getTripbyId = async (req, res) => {
   const admin = jwt.decode(req.headers.authorization);
   const { tripId } = req.params;
   const foundTrip = await trip.findTrip(tripId);
-  if (admin.isadmin === true){
-    return resPonse.successData(res, 200, 'Trip found', foundTrip.rows[0]);
-  }
+  return resPonse.successData(res, 200, 'Trip found', foundTrip.rows[0]);
 };
 module.exports = getTripbyId;

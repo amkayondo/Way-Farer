@@ -275,7 +275,7 @@ div#adm-nav {
 }
 
 .cttp {
-    margin-left: 348px;
+    /* margin-left: 348px; */
     font-size: 34px;
     font-family: app_font;
     font-weight: 900;
@@ -288,11 +288,11 @@ div#adm-nav {
     background-color: white;
     padding: 13px;
     margin-left: 320px;
-    margin-top: 14px;
+    margin-top: -34px;
 }
 
 .crth {
-    font-size: 39px;
+    font-size: 46px;
     padding-bottom: 23px;
     text-align: center;
     padding-top: 25px;
@@ -739,7 +739,7 @@ button.bk--st.ksd {
     z-index: -6;
 }
 
-.trplsv {margin-top: 28px;background: #828384;width: 328px;padding: 12px;height: 117px;font-size: 46px;font-weight: 900;margin-left: 267px;border-radius: 8px;padding-left: 36px;float: left;}
+.trplsv {margin-top: 28px;background: #ffffff;width: 328px;padding: 12px;height: 117px;font-size: 46px;font-weight: 900;margin-left: 267px;border-radius: 8px;padding-left: 36px;float: left;box-shadow: 0 0 5px 4px #e4e4e4;}
 
 .trplsv.ksfnsl {
     width: 328px;

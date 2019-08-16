@@ -13,7 +13,7 @@ const getAllBookings = async (req, res) => {
   }
   const forUser = await book.checkBookingUser(getUser.user_id);
   if (forUser.rowCount === 0) {
-    return resPonse.errorMessage(res, 200, 'You have made no bookings yet');
+    return resPonse.errorMessage(res, 404, 'You have made no bookings yet');
   } resPonse.successData(res, 200, 'All bookings successfully fetched', forUser.rows);
   return true;
 };

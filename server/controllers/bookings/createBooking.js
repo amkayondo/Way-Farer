@@ -6,9 +6,7 @@ import verifyTrip from '../../helpers/bookings/verifyTrip';
 const book = new Book();
 const createBooking = async (req, res) => {
   const getUser = jwt.decode(req.headers.authorization);
-
   const { trip_id, trip_date, number_of_seats } = req.body;
-
   try {
     const foundTrip = await book.isTripIdExixts(trip_id);
     const trpData = foundTrip.rows[0];
@@ -34,5 +32,4 @@ const createBooking = async (req, res) => {
     resPonse.errorMessage(res, 500, err.message);
   }
 };
-
 module.exports = createBooking;
