@@ -4,6 +4,9 @@
         --responsive: calc((var(--min-font) * 1px) + (var(--max-font) - var(--min-font)) * ((100vw - 420px) / (1200 - 420))); 
         
     }
+    .dktpft {
+        display: none;
+    }
         .mblnv {
             background: #ffffff;
             height: 102px;

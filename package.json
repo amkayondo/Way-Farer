@@ -42,7 +42,7 @@
     "addadmin": "cross-env NODE_ENV=development node --require @babel/register ./server/database/createAdmin.js",
     "devdb": "cross-env NODE_ENV=development node --require @babel/register ./server/database/createTables.js",
     "test": "cross-env NODE_ENV=test npm run dropdb && npm run testdb && npm run testadmin && npm run runtest",
-    "runtest": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/ --exit",
+    "runtest": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 100000 server/tests/main.test.js --exit",
     "dropdb": "cross-env NODE_ENV=test node --require @babel/register ./server/database/dropTables.js",
     "testdb": "cross-env NODE_ENV=test node --require @babel/register ./server/database/createTables.js",
     "testadmin": "cross-env NODE_ENV=test node --require @babel/register ./server/database/createAdmin.js",

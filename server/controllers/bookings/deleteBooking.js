@@ -12,7 +12,7 @@ const deleteBooking = async (req, res) => {
     return resPonse.errorMessage(res, 400, `Booking not found with id ${bookingId}`);
   }
   const booking = foundBooking.rows[0];
-  const foundTrip = await book.isTripExists(booking.bus_license_number, booking.trip_date);
+  const foundTrip = await book.isTripExists(booking.bus_license_number, booking.trip_date, 'active');
   const trip = foundTrip.rows[0];
   if (foundBooking.rowCount === 1 || getUser.isAdmin === true) {
     const increaseNumberOfSeats = trip.available_seats + booking.number_of_seats;
