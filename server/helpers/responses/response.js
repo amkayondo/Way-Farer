@@ -24,7 +24,7 @@ const resPonse = {
   successDatas(res, statusCode, count, data) {
     return res.status(statusCode).json({
       status: statusCode,
-      message: 'All trips successfully fetched',
+      message: 'all trips successfully fetched',
       'Number of trips': count,
       data,
     });

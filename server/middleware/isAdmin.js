@@ -1,13 +1,13 @@
+import jwt from 'jsonwebtoken';
 import resPonse from '../helpers/responses/response';
-import isAdminController from '../util/isAdmin';
 
 const isAdmin = (req, res, next) => {
-  try {
-    isAdminController(req, resPonse, res);
-    next();
-  } catch (error) {
-    console.log(error.message);
+  const header = req.headers.authorization;
+  const token = jwt.decode(header);
+  if (token.isadmin === false) {
+    return resPonse.errorMessage(res, 401, 'unauthorized access');
   }
+  next();
 };
 
 module.exports = isAdmin;

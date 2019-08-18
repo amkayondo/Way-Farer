@@ -10,10 +10,10 @@ const cancelTrip = async (req, res) => {
   }
   if (foundTrip.rows[0].status === 'active') {
     await trip.updateTripStatus(tripId, 'cancelled');
-    return resPonse.successWithNoData(res, 200, 'Trip cancelled successfully');
+    return resPonse.successWithNoData(res, 200, 'trip cancelled successfully');
   }
   if (foundTrip.rows[0].status === 'cancelled') {
-    return resPonse.successWithNoData(res, 200, 'Trip already cancelled');
+    return resPonse.successWithNoData(res, 200, 'trip already cancelled');
   }
 };
 module.exports = cancelTrip;

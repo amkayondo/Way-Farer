@@ -1,5 +1,13 @@
 const tripData = {
   seating_capacity: '50',
+  bus_license_number: 'UBBNJ',
+  origin: 'kampala',
+  destination: 'kigali',
+  trip_date: '23-12-2019',
+  fare: '30000',
+};
+const tripDataTwo = {
+  seating_capacity: '50',
   bus_license_number: 'UGXHD',
   origin: 'kampala',
   destination: 'kigali',
@@ -25,5 +33,6 @@ const tripDataX = {
 module.exports = {
   tripData,
   tripDataX,
+  tripDataTwo,
   tripDataForBooking,
 };
