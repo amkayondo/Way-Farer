@@ -14,7 +14,7 @@ const appAuth = (req, res, next) => {
   if (decoded === null){
     return resPonse.errorMessage(res, 400, 'invalid access token');
   }
-  jwt.verify(header, process.env.SECRET_KEY, { expiresIn: '7d' });
+  jwt.verify(header, 'opensecrete', { expiresIn: '7d' });
   next();
 };
 
