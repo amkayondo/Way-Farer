@@ -1,8 +1,5 @@
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import resPonse from '../helpers/responses/response';
-
-dotenv.config();
 
 const appAuth = (req, res, next) => {
   const header = req.headers.authorization;
@@ -14,7 +11,7 @@ const appAuth = (req, res, next) => {
   if (decoded === null){
     return resPonse.errorMessage(res, 400, 'invalid access token');
   }
-  jwt.verify(header, 'opensecrete', { expiresIn: '7d' });
+  jwt.verify(header, 'openseamanopensecretecrete', { expiresIn: '7d' });
   next();
 };
 
