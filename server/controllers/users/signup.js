@@ -10,7 +10,7 @@ const signUp = async (req, res) => {
   } = req.body;
   const is_admin = false;
   const userExists = await newUser.findUser(req.body.email);
-  if (userExists) { return resPonse.errorMessage(res, 400, 'User with the same email exists'); }
+  if (userExists) { return resPonse.errorMessage(res, 400, 'user with the same email exists'); }
   const newUsr = await newUser.createNewUser({
     first_name, last_name, phone, address, email, password, is_admin,
   });
@@ -19,6 +19,6 @@ const signUp = async (req, res) => {
     usrData.user_id, usrData.isadmin, usrData.first_name, usrData.last_name, usrData.email,
   );
   res.header('Authorization', createToken(payload));
-  resPonse.successUser(res, 201, 'Account successfully created', createToken(payload));
+  resPonse.successUser(res, 201, 'account successfully created', createToken(payload));
 };
 module.exports = signUp;

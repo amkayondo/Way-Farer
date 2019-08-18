@@ -45,15 +45,11 @@ class Database {
   }
 
   async addNewBooking(data) {
-    try {
-      const result = await Pool.query(`INSERT INTO bookings (
+    const result = await Pool.query(`INSERT INTO bookings (
       user_id, bus_license_number, trip_date,
       number_of_Seats, first_name, last_name, email)
       VALUES ($1, $2, $3, $4, $5, $6, $7) returning *;`, data);
-      return result;
-    } catch (err){
-      console.log(err.message);
-    }
+    return result;
   }
 
   async getAllItems(tableName) {

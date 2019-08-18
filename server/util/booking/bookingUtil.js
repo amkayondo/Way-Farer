@@ -1,4 +1,4 @@
-import Book from '../models/bookings';
+import Book from '../../models/bookings';
 
 const bkdb = new Book();
 

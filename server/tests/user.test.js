@@ -3,7 +3,7 @@ import { describe, it } from 'mocha';
 import chaiHttp from 'chai-http';
 import app from '../index';
 import {
-  noEmail, invalidPassword, invalidUser, siginUser, newUserOne, admin,
+  noEmail, invalidPassword, invalidUser, userExists, newUserOne, admin,
 } from './mockingData/users';
 
 chai.use(chaiHttp);
@@ -35,7 +35,7 @@ const runUserTests = () => {
         .send(invalidUser)
         .end((err, res) => {
           expect(res).to.have.status(400);
-          expect(res.body.error).to.deep.equal('Incorrect email');
+          expect(res.body.error).to.deep.equal('incorrect email');
         });
       done();
     });
@@ -46,7 +46,7 @@ const runUserTests = () => {
         .end((err, res) => {
           expect(res).to.have.status(201);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.deep.equal('Account successfully created');
+          expect(res.body.message).to.deep.equal('account successfully created');
         });
       done();
     });
@@ -57,25 +57,18 @@ const runUserTests = () => {
         .end((err, res) => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.error).to.deep.equal('"Email is invalid" is required');
+          expect(res.body.error).to.deep.equal('"email is invalid" is required');
         });
       done();
     });
     it('should return error if user exists', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
-        .send({
-          first_name: 'kayondo',
-          last_name: 'edward',
-          email: 'admin@app.com',
-          password: 'skldfdskfnklsfnflsfdfdf',
-          address: 'kampala',
-          phone: '0781295406',
-        })
+        .send(userExists)
         .end((err, res) => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.error).to.deep.equal('User with the same email exists');
+          expect(res.body.error).to.deep.equal('user with the same email exists');
         });
       done();
     });
@@ -85,7 +78,7 @@ const runUserTests = () => {
         .send(invalidPassword)
         .end((err, res) => {
           expect(res).to.have.status(400);
-          expect(res.body.error).to.deep.equal('Incorrect Password');
+          expect(res.body.error).to.deep.equal('incorrect Password');
         });
       done();
     });

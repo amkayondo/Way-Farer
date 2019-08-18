@@ -8,13 +8,14 @@ const getAllBookings = async (req, res) => {
   if (getUser.isadmin === true) {
     const allBookings = await book.getAtllbookings();
     if (allBookings.rowCount === 0) {
-      return resPonse.errorMessage(res, 404, 'No bookings made at the moment');
-    } resPonse.successData(res, 200, 'All bookings successfully fetched', allBookings.rows);
+      return resPonse.errorMessage(res, 404, 'no bookings made at the moment');
+    }
+    return resPonse.successData(res, 200, 'all \'users\' bookings successfully fetched', allBookings.rows);
   }
   const forUser = await book.checkBookingUser(getUser.user_id);
   if (forUser.rowCount === 0) {
-    return resPonse.errorMessage(res, 404, 'You have made no bookings yet');
-  } resPonse.successData(res, 200, 'All bookings successfully fetched', forUser.rows);
-  return true;
+    return resPonse.errorMessage(res, 404, 'you have made no bookings yet');
+  }
+  return resPonse.successData(res, 200, 'all bookings successfully fetched', forUser.rows);
 };
 module.exports = getAllBookings;

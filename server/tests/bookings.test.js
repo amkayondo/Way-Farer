@@ -1,17 +1,19 @@
 import chai, { expect } from 'chai';
 import { describe, it, before } from 'mocha';
 import chaiHttp from 'chai-http';
+import { exec } from 'child_process';
 import app from '../index';
 import {
   noEmail, newUserTwo, invalidPassword, invalidUser, siginUser, newUserOne, admin,
 } from './mockingData/users';
-import { tripDataForBooking } from './mockingData/trips';
+import { tripDataForBooking, tripDataTwo } from './mockingData/trips';
 
 chai.use(chaiHttp);
 
 let adminToken;
 let notAdminToken;
 let tripId;
+let tripIdTwo;
 let bookingIdTwo;
 let bookingId;
 
@@ -50,7 +52,20 @@ const runBookingTests = () => {
           tripId = res.body.data.trip_id;
           expect(res).to.have.status(201);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.deep.equal('Trip successfully created');
+          expect(res.body.message).to.deep.equal('trip successfully created');
+          done();
+        });
+    });
+    it('should create another trip', (done) => {
+      chai.request(app)
+        .post('/api/v1/trips')
+        .set('Authorization', adminToken)
+        .send(tripDataTwo)
+        .end((err, res) => {
+          tripIdTwo = res.body.data.trip_id;
+          expect(res).to.have.status(201);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.deep.equal('trip successfully created');
           done();
         });
     });
@@ -60,7 +75,7 @@ const runBookingTests = () => {
         .set('Authorization', notAdminToken)
         .end((err, res) => {
           expect(res).to.have.status(404);
-          expect(res.body.error).to.deep.equal('You have made no bookings yet');
+          expect(res.body.error).to.deep.equal('you have made no bookings yet');
         });
       done();
     });
@@ -70,7 +85,7 @@ const runBookingTests = () => {
         .set('Authorization', adminToken)
         .end((err, res) => {
           expect(res).to.have.status(404);
-          expect(res.body.error).to.deep.equal('No bookings made at the moment');
+          expect(res.body.error).to.deep.equal('no bookings made at the moment');
         });
       done();
     });
@@ -88,7 +103,7 @@ const runBookingTests = () => {
           bookingId = res.body.data.booking_id;
           expect(res).to.have.status(201);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.deep.equal('New Booking successfully made');
+          expect(res.body.message).to.deep.equal('new Booking successfully made');
           done();
         });
     });
@@ -104,7 +119,7 @@ const runBookingTests = () => {
         .end((err, res) => {
           expect(res).to.have.status(404);
           expect(res.body).to.be.an('object');
-          expect(res.body.error).to.deep.equal('Trip with ID 346 doesnt exist');
+          expect(res.body.error).to.deep.equal('trip with ID 346 doesnt exist');
           done();
         });
     });
@@ -120,7 +135,7 @@ const runBookingTests = () => {
         .end((err, res) => {
           expect(res).to.have.status(404);
           expect(res.body).to.be.an('object');
-          expect(res.body.error).to.deep.equal('No trip is available on this date 23-12-2014');
+          expect(res.body.error).to.deep.equal('no trip is available on this date 23-12-2014');
           done();
         });
     });
@@ -129,15 +144,16 @@ const runBookingTests = () => {
         .post('/api/v1/bookings')
         .set('Authorization', notAdminToken)
         .send({
-          trip_id: tripId,
+          trip_id: tripIdTwo,
           trip_date: '23-12-2019',
           number_of_seats: 25,
         })
         .end((err, res) => {
           bookingIdTwo = res.body.data.booking_id;
+          console.log(bookingIdTwo);
           expect(res).to.have.status(201);
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.deep.equal('New Booking successfully made');
+          expect(res.body.message).to.deep.equal('new Booking successfully made');
           done();
         });
     });
@@ -148,6 +164,7 @@ const runBookingTests = () => {
         .end((err, res) => {
           expect(res.body).to.be.an('object');
           expect(res).to.have.status(200);
+          expect(res.body.message).to.deep.equal('all \'users\' bookings successfully fetched');
         });
       done();
     });
@@ -158,18 +175,7 @@ const runBookingTests = () => {
         .end((err, res) => {
           expect(res.body).to.be.an('object');
           expect(res).to.have.status(400);
-          expect(res.body.error).to.deep.equal(`Booking not found with id ${bookingId}`);
-        });
-      done();
-    });
-    it('should  deletea booking is for the user', (done) => {
-      chai.request(app)
-        .delete(`/api/v1/bookings/${bookingId}`)
-        .set('Authorization', adminToken)
-        .end((err, res) => {
-          expect(res.body).to.be.an('object');
-          expect(res).to.have.status(200);
-          expect(res.body.message).to.deep.equal('Booking successfully deleted');
+          expect(res.body.error).to.deep.equal(`booking not found with id ${bookingId}`);
         });
       done();
     });
@@ -180,6 +186,17 @@ const runBookingTests = () => {
         .end((err, res) => {
           expect(res.body).to.be.an('object');
           expect(res).to.have.status(200);
+        });
+      done();
+    });
+    it('should return error if token header is empty', (done) => {
+      chai.request(app)
+        .get('/api/v1/bookings')
+        .set('Authorization', '')
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res).to.have.status(401);
+          expect(res.body.error).to.deep.equal('access token cant be empty');
         });
       done();
     });

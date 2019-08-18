@@ -3,6 +3,15 @@ const admin = {
   password: 'admin123',
 };
 
+const userExists = {
+  first_name: 'kayondo',
+  last_name: 'edward',
+  email: 'admin@app.com',
+  password: 'skldfdskfnklsfnflsfdfdf',
+  address: 'kampala',
+  phone: '0781295406',
+};
+
 const newUserOne = {
   first_name: 'kayondo',
   last_name: 'edward',
@@ -56,6 +65,7 @@ const noEmail = {
 module.exports = {
   noEmail,
   invalidPassword,
+  userExists,
   invalidUser,
   siginUser,
   newUserOne,

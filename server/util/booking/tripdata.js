@@ -1,4 +1,4 @@
-const tripData = (getUser, trpData, number_of_seats) => ({
+const tripdata = (getUser, trpData, number_of_seats) => ({
   user_id: getUser.user_id,
   bus_license_number: trpData.bus_license_number,
   trip_date: trpData.trip_date,
@@ -7,4 +7,4 @@ const tripData = (getUser, trpData, number_of_seats) => ({
   last_name: getUser.last_name,
   email: getUser.email,
 });
-module.exports = tripData;
+module.exports = tripdata;
