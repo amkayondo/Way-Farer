@@ -3,8 +3,8 @@ import Database from '../database/wayFareDb';
 const db = new Database();
 
 export default class User {
-  async findUser(data_) {
-    const user = await db.selectItemById('users', 'email', data_);
+  async findUser(email) {
+    const user = await db.findUser(email);
     const result = user.rows[0];
     return result;
   }

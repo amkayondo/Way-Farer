@@ -4,21 +4,29 @@ import Pool from '../config/dbEnv';
 dotenv.config();
 
 class Database {
-  async selectItemById(table, colom, id) {
-    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colom}='${id}';`);
+  async selectItem(table, colomn, data){
+    const result = await Pool.query(`SELECT * FROM ${table} WHERE ${colomn}='${data}';`);
     return result;
   }
 
-  async getTripBylicence(bus_license_number, tripDate, status) {
-    const result = await Pool.query(`SELECT * 
-    FROM trips WHERE bus_license_number='${bus_license_number}' 
-    AND trip_date='${tripDate}' AND status='${status}';`);
+  async selectItemById(table, colom, id) {
+    const result = this.selectItem(table, colom, id);
+    return result;
+  }
+
+  async findUser(email){
+    const result = this.selectItem('users', 'email', email);
     return result;
   }
 
   async getTripById(trip_id) {
-    const result = await Pool.query(`SELECT * 
-    FROM trips WHERE trip_id=${trip_id};`);
+    const result = this.selectItem('trips', 'trip_id', trip_id);
+    return result;
+  }
+
+  async getTripBylicence(bus_license_number, tripDate, status) {
+    const result = await Pool.query(`SELECT * FROM trips WHERE bus_license_number='${bus_license_number}' 
+    AND trip_date='${tripDate}' AND status='${status}';`);
     return result;
   }
 
@@ -73,9 +81,7 @@ class Database {
   }
 
   async updateBookings(tripId, newData) {
-    const result = await Pool.query(`UPDATE trips
-    SET available_seats='${newData}' 
-    WHERE trip_id=${tripId} returning *;`);
+    const result = await Pool.query(`UPDATE trips SET available_seats='${newData}' WHERE trip_id=${tripId} returning *;`);
     return result;
   }
 

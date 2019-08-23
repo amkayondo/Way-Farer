@@ -5,12 +5,11 @@ const mdl = document.getElementById('modl');
 usr_menu.style.display = 'none';
 mdl.style.display = 'none';
 
-usr_img.addEventListener('click', () => {
-    usr_menu.style.display = 'block';
-    mdl.style.display = 'block';
-});
+const nakeChange = (main, div1, div2, action1, action2) => {
+    main.addEventListener('click', () => {
+    div1.style.display = action1;
+    div2.style.display = action2;
+})}
 
-mdl.addEventListener('click', () => {
-    usr_menu.style.display = 'none';
-    mdl.style.display = 'none';
-});
+nakeChange(usr_img, usr_menu, mdl, 'block', 'block');
+nakeChange(mdl, usr_menu, mdl, 'none', 'none');

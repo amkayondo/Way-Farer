@@ -52,7 +52,8 @@
     "coverage": "nyc --reporter=lcov npm run test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint",
-    "build": "babel ./server/ --out-dir dist"
+    "build": "babel ./server/ --out-dir dist",
+    "devc": "nodemon --exec babel-node dev/api.js"
   },
   "repository": {
     "type": "git",

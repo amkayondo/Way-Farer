@@ -21,14 +21,12 @@ adminNav.innerHTML = `
 </div>
 </div>
 `
-newtrip.addEventListener('click', () => {
-    location = './trip.html';
-});
+const route = (div, url) => {
+    div.addEventListener('click', () => {
+        location = url;
+    });    
+}
 
-gohome.addEventListener('click', () => {
-    location = './index.html';
-});
-
-cancel.addEventListener('click', () => {
-location = './trip_del.html';
-});
+route(newtrip, './trip.html');
+route(gohome, './index.html');
+route(cancel, './trip_del.html');
