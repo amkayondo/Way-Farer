@@ -3,14 +3,23 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const appEnv = (evN, db) => {
-  if (process.env.NODE_ENV === evN) {
-    module.exports = new Pool({
-      connectionString: db,
-    });
-  }
+const Connection = {
+  connectdb() {
+    if (process.env.NODE_ENV === 'development') {
+      return new Pool({
+        connectionString: process.env.DEV_DATABASE,
+      });
+    }
+    if (process.env.NODE_ENV === 'production') {
+      return new Pool({
+        connectionString: process.env.PRODUCTION_DATABASE,
+      });
+    }
+    if (process.env.NODE_ENV === 'test') {
+      return new Pool({
+        connectionString: process.env.TEST_DATABASE,
+      });
+    }
+  },
 };
-
-appEnv('development', process.env.DEV_DATABASE);
-appEnv('production', process.env.PRODUCTION_DATABASE);
-appEnv('test', process.env.TEST_DATABASE);
+module.exports = Connection;

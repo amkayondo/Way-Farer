@@ -1,12 +1,14 @@
 import '@babel/plugin-transform-regenerator';
 import '@babel/polyfill';
 import dotenv from 'dotenv';
-import Pool from '../config/dbEnv';
+import Connection from '../config/dbEnv';
+
+const pool = Connection.connectdb();
 
 dotenv.config();
 
 const createTables = async () => {
-  const result = await Pool.query(`
+  const result = await pool.query(`
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL, first_name VARCHAR(24) NOT NULL, last_name VARCHAR(24) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL, password VARCHAR(80) NOT NULL, phone VARCHAR(24),
