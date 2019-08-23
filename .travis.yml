@@ -1,13 +1,14 @@
 language: node_js
 node_js:
   - node
-install:
-  - npm install
 services:
   - postgresql
 
-before_script:
+before_install:
   - psql -c 'create database WayFareTestDb;' -U postgres
+
+install:
+  - npm install
 
 script:
   - npm run test
