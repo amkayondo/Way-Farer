@@ -4,10 +4,10 @@ const canlBtn = document.getElementById('mcn');
 
 userMenu.style.display = 'none';
 
-userImg.addEventListener('click', () => {
-    userMenu.style.display = 'block';
-});
+const makeChange = (main, div1, action1) => {
+    main.addEventListener('click', () => {
+    div1.style.display = action1;
+})}
 
-canlBtn.addEventListener('click', () => {
-    userMenu.style.display = 'none';
-});
+makeChange(userImg, userMenu, 'block');
+makeChange(canlBtn, userMenu, 'none');
