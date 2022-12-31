@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.20.7",
     "@babel/node": "^7.5.5",
     "@babel/plugin-transform-regenerator": "^7.4.5",
     "@babel/polyfill": "^7.4.4",
